@@ -16,6 +16,7 @@
   },
   "require": {
     "php": "^7.3",
-    "ext-xmlreader": "*"
+    "ext-xmlreader": "*",
+    "ext-simplexml": "*"
   }
 }
