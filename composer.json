@@ -1,0 +1,20 @@
+{
+  "name": "kinimodmeyer/tradebyte-sdk",
+  "type": "library",
+  "description": "Tradebyte SDK",
+  "homepage": "https://github.com/kinimodmeyer/tradebyte-sdk-php",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Tradebyte\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tradebyte\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^7.3"
+  }
+}
