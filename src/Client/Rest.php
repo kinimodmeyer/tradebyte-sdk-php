@@ -69,10 +69,22 @@ class Rest
         $auth = base64_encode($this->accountUser.':'.$this->accountPassword);
         $context = [
             'http' => [
-                'header' => 'Authorization: Basic '.$auth
+                'header' => 'Authorization: Basic '.$auth,
+                'ignore_errors' => true
             ]
         ];
         libxml_set_streams_context(stream_context_create($context));
-        return XMLReader::open($this->baseURL.'/'.$this->accountNumber.'/'.$url.'/');
+        $reader = new XMLReader();
+        $reader->open($this->baseURL.'/'.$this->accountNumber.'/'.$url.'/');
+
+        $statusLine = $http_response_header[0];
+        preg_match('{HTTP\/\S*\s(\d{3})}', $statusLine, $match);
+        $status = $match[1];
+
+        if ($status !== '200') {
+            throw new \RuntimeException('unexpected response status: '.$statusLine);
+        }
+
+        return $reader;
     }
 }

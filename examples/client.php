@@ -12,8 +12,12 @@ $client = new Tradebyte\Client([
 /*
  * orders
  */
-$iterator = $client->getOrderHandler()->getOrdersBy();
+try {
+    $iterator = $client->getOrderHandler()->getOrdersBy();
 
-foreach ($iterator as $order) {
-    var_dump($order->getId());
+    foreach ($iterator as $order) {
+        var_dump($order->getId());
+    }
+} catch (Exception $e) {
+    var_dump($e->getMessage());
 }

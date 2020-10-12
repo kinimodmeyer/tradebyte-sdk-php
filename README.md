@@ -13,7 +13,9 @@
 
 ## Install
 
-get composer via https://getcomposer.org/download/
+1. get composer via https://getcomposer.org/download
+2. clone this repository
+3. execute the following:
 
 ```bash
 $ composer install
@@ -21,6 +23,10 @@ $ composer install
 
 ## Execute Examples
 
+you can execute the examples on the cli.
+
 ```bash
 $ php examples/client.php
 ```
+
+it can also be used with a webserver but normally that´s not how you process bigger data.
