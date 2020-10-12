@@ -2,14 +2,17 @@
 
 ## Features
 
-* the library is build that way that it will not consume much memory. that means you could even process gigabyte of data.
+* the sdk is build that way that it will not consume much memory, no matter if you export small order data or giant product-data.
+* the sdk offers mostly two modes: fetching & processing the data on the fly or download the data and processing it later.
 * the following data end-points are implemented
   * order(s) fetching
 
 ## Requirements
 
-* credentials see https://tb-io.tradebyte.org/how-to/generate-rest-api-credentials-in-tb-one/
+* credentials (username,password,account number)
+  * see https://tb-io.tradebyte.org/how-to/generate-rest-api-credentials-in-tb-one/
 * PHP >= 7.3
+* Composer
 
 ## Install
 
