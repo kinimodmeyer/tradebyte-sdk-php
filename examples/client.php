@@ -1,16 +1,19 @@
 <?php
 require 'vendor/autoload.php';
 
-$options = [
+$client = new Tradebyte\Client([
     'credentials' => [
         'account_number' => '1234',
         'account_user' => 'xyz',
         'account_password' => 'xyz'
     ]
-];
+]);
 
-$client = new Tradebyte\Client(
-    $options
-);
+/*
+ * orders
+ */
+$iterator = $client->getOrderHandler()->getOrdersBy();
 
-#$client->getProductHandler();
+foreach ($iterator as $order) {
+    var_dump($order->getId());
+}
