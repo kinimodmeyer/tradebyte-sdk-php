@@ -8,6 +8,7 @@
 
 ## Requirements
 
+* credentials see https://tb-io.tradebyte.org/how-to/generate-rest-api-credentials-in-tb-one/
 * PHP >= 7.3
 
 ## Install
