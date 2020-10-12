@@ -1,5 +1,9 @@
 # Tradebyte SDK
 
+## Requirements
+
+* PHP >= 7.3
+
 ## Install
 
 get composer via https://getcomposer.org/download/
