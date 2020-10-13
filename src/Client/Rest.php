@@ -62,9 +62,10 @@ class Rest
 
     /**
      * @param string $url
+     * @param mixed[] $filter
      * @return XMLReader
      */
-    public function getXML(string $url): XMLReader
+    public function getXML(string $url, array $filter = []): XMLReader
     {
         $auth = base64_encode($this->accountUser.':'.$this->accountPassword);
         $context = [
@@ -75,7 +76,13 @@ class Rest
         ];
         libxml_set_streams_context(stream_context_create($context));
         $reader = new XMLReader();
-        $reader->open($this->baseURL.'/'.$this->accountNumber.'/'.$url.'/');
+        $uri = $this->baseURL.'/'.$this->accountNumber.'/'.$url.'/';
+
+        if (!empty($filter)) {
+            $uri .= '?'.http_build_query($filter);
+        }
+
+        $reader->open($uri);
 
         $statusLine = $http_response_header[0];
         preg_match('{HTTP\/\S*\s(\d{3})}', $statusLine, $match);

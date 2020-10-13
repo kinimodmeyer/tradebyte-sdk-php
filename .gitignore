@@ -2,4 +2,4 @@ vendor
 .idea
 composer.lock
 composer.phar
-test.php
+examples/credentials.php

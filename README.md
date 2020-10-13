@@ -26,10 +26,12 @@ $ composer install
 
 ## Execute Examples
 
-you can execute the examples on the cli.
+rename ``examples/example_credentials.php`` to ``examples/credentials.php`` and replace it with your credentials.
+after this you can execute the examples on the cli:
 
 ```bash
-$ php examples/client.php
+$ php examples/products.php channel=1370 id=123
+$ php examples/orders.php
 ```
 
 it can also be used with a webserver but normally that´s not how you process bigger data.

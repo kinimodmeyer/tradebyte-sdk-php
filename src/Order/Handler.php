@@ -29,7 +29,6 @@ class Handler
      */
     public function getOrdersBy(array $where = []): Iterator
     {
-        $xml = $this->client->getRestClient()->getXML('orders');
-        return new Iterator($xml);
+        return new Iterator($this->client, 'orderlist', $where);
     }
 }

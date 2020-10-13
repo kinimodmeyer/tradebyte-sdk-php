@@ -1,13 +1,7 @@
 <?php
-require 'vendor/autoload.php';
+require 'examples/loader.php';
 
-$client = new Tradebyte\Client([
-    'credentials' => [
-        'account_number' => '1234',
-        'account_user' => 'xyz',
-        'account_password' => 'xyz'
-    ]
-]);
+$client = new Tradebyte\Client(['credentials' => $credentials]);
 
 /*
  * orders

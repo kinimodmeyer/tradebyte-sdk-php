@@ -22,4 +22,22 @@ class Handler
     {
         $this->client = $client;
     }
+
+    /**
+     * @param array $filter
+     * @return Iterator
+     */
+    public function getProductsBy(array $filter = []): Iterator
+    {
+        return new Iterator($this->client, 'productlist', $filter);
+    }
+
+    /**
+     * @param array $filter
+     * @return Iterator
+     */
+    public function getProductBy(array $filter = []): Iterator
+    {
+        return new Iterator($this->client, 'productlist', $filter);
+    }
 }

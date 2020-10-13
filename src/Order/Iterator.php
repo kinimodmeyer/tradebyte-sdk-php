@@ -2,42 +2,17 @@
 namespace Tradebyte\Order;
 
 use XMLReader;
+use Tradebyte\Base;
 
 /**
  * @package Tradebyte
  */
-class Iterator implements \Iterator
+class Iterator extends Base\Iterator implements \Iterator
 {
     /**
-     * @var XMLReader
+     * @return void
      */
-    private $xmlReader;
-
-    /**
-     * @var Model
-     */
-    private $current;
-
-    /**
-     * @param XMLReader $xml
-     */
-    public function __construct(XMLReader $xml)
-    {
-        $this->xmlReader = $xml;
-    }
-
-    /**
-     * @return Model
-     */
-    public function current()
-    {
-        return $this->current;
-    }
-
-    /**
-     * @return bool
-     */
-    public function valid()
+    public function next()
     {
         while ($this->xmlReader->read()) {
             if ($this->xmlReader->nodeType == XMLReader::ELEMENT && $this->xmlReader->name == 'ORDER') {
@@ -56,25 +31,26 @@ class Iterator implements \Iterator
                 ];
 
                 $this->current = new Model($data);
-                return true;
+                return;
             }
         }
 
-        return false;
+        $this->current = null;
     }
 
-    public function next()
-    {
-        // TODO: Implement method.
-    }
-
-    public function key()
-    {
-        // TODO: Implement method.
-    }
-
+    /**
+     * @return void
+     */
     public function rewind()
     {
-        // TODO: Implement method.
+        if ($this->xmlReader) {
+            $this->xmlReader->close();
+        }
+
+        if ($this->type == 'orderlist') {
+            $this->xmlReader = $this->client->getRestClient()->getXML('orders', $this->filter);
+        }
+
+        parent::rewind();
     }
 }
