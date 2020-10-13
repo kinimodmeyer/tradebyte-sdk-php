@@ -39,5 +39,5 @@ after this you can execute the examples on the cli:
 
 ```bash
 $ php examples/products.php channel=1370 id=123
-$ php examples/orders.php
+$ php examples/orders.php channel=8 id=123
 ```

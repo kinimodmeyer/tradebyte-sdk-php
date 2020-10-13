@@ -79,7 +79,14 @@ class Rest
         $uri = $this->baseURL.'/'.$this->accountNumber.'/'.$url.'/';
 
         if (!empty($filter)) {
-            $uri .= '?'.http_build_query($filter);
+            if (!empty($filter['extra'])) {
+                $uri .= $filter['extra'];
+                unset($filter['extra']);
+            }
+
+            if (!empty($filter)) {
+                $uri .= '?'.http_build_query($filter);
+            }
         }
 
         $reader->open($uri);

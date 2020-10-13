@@ -31,4 +31,21 @@ class Handler
     {
         return new Orderlist\Iterator($this->client, 'orderlist', $where);
     }
+
+    /**
+     * @param array $filter
+     * @return Model\Order
+     */
+    public function getOrderBy(array $filter = []): Model\Order
+    {
+        if (!empty($filter['id'])) {
+            $filter['extra'] = $filter['id'];
+            unset($filter['id']);
+        }
+
+        $iterator = new Orderlist\Iterator($this->client, 'orderlist', $filter);
+        $iterator->rewind();
+
+        return $iterator->current();
+    }
 }

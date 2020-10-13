@@ -12,9 +12,9 @@ if (!empty($filter['channel'])) {
                 ]
             );
 
-            var_dump($productModel->getId());
+            echo $productModel->getId();
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            echo $e->getMessage();
         }
     } else {
         /*
@@ -27,7 +27,7 @@ if (!empty($filter['channel'])) {
                 var_dump($product->getNumber());
             }
         } catch (Exception $e) {
-            var_dump($e->getMessage());
+            echo $e->getMessage();
         }
     }
 }
