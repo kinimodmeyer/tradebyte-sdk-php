@@ -25,10 +25,10 @@ class Handler
 
     /**
      * @param array $where
-     * @return Iterator
+     * @return Orderlist\Iterator
      */
-    public function getOrdersBy(array $where = []): Iterator
+    public function getOrdersBy(array $where = []): Orderlist\Iterator
     {
-        return new Iterator($this->client, 'orderlist', $where);
+        return new Orderlist\Iterator($this->client, 'orderlist', $where);
     }
 }

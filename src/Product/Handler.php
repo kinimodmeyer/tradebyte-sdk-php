@@ -25,19 +25,22 @@ class Handler
 
     /**
      * @param array $filter
-     * @return Iterator
+     * @return Tbcat\Iterator
      */
-    public function getProductsBy(array $filter = []): Iterator
+    public function getProductsBy(array $filter = []): Tbcat\Iterator
     {
-        return new Iterator($this->client, 'productlist', $filter);
+        return new Tbcat\Iterator($this->client, 'tbcat', $filter);
     }
 
     /**
      * @param array $filter
-     * @return Iterator
+     * @return Model
      */
-    public function getProductBy(array $filter = []): Iterator
+    public function getProductBy(array $filter = []): Model
     {
-        return new Iterator($this->client, 'productlist', $filter);
+        $iterator = new Tbcat\Iterator($this->client, 'tbcat', $filter);
+        $iterator->rewind();
+
+        return $iterator->current();
     }
 }

@@ -1,6 +1,7 @@
 <?php
-namespace Tradebyte\Order;
+namespace Tradebyte\Order\Orderlist;
 
+use Tradebyte\Order\Model;
 use XMLReader;
 use Tradebyte\Base;
 
@@ -15,7 +16,9 @@ class Iterator extends Base\Iterator implements \Iterator
     public function next()
     {
         while ($this->xmlReader->read()) {
-            if ($this->xmlReader->nodeType == XMLReader::ELEMENT && $this->xmlReader->name == 'ORDER') {
+            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+                && $this->xmlReader->depth === 1
+                && $this->xmlReader->name == 'ORDER') {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
                 $data = [
                     'id' => (int)$xmlElement->ORDER_DATA->TB_ID,

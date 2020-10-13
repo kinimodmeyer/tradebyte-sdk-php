@@ -6,11 +6,13 @@ $client = new Tradebyte\Client(['credentials' => $credentials]);
 if (!empty($filter['channel'])) {
     if (!empty($filter['id'])) {
         try {
-            $iterator = $client->getProductHandler()->getProductBy(['channel' => $filter['channel'], 'p_id' => $filter['id']]);
+            $productModel = $client->getProductHandler()->getProductBy([
+                    'channel' => $filter['channel'],
+                    'p_id' => $filter['id']
+                ]
+            );
 
-            foreach ($iterator as $product) {
-                var_dump($product->getNumber());
-            }
+            var_dump($productModel->getId());
         } catch (Exception $e) {
             var_dump($e->getMessage());
         }

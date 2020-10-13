@@ -22,9 +22,9 @@ class Model
     /**
      * @return string
      */
-    public function getNumber(): string
+    public function getId(): int
     {
-        return $this->data['number'];
+        return $this->data['id'];
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
-namespace Tradebyte\Product;
+namespace Tradebyte\Product\Tbcat;
 
+use Tradebyte\Product\Model;
 use XMLReader;
 use Tradebyte\Base;
 
@@ -15,10 +16,12 @@ class Iterator extends Base\Iterator implements \Iterator
     public function next()
     {
         while ($this->xmlReader->read()) {
-            if ($this->xmlReader->nodeType == XMLReader::ELEMENT && $this->xmlReader->name == 'PRODUCT') {
+            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+                && $this->xmlReader->depth == 2
+                && $this->xmlReader->name == 'PRODUCT') {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
                 $data = [
-                    'number' => (string)$xmlElement->P_NR
+                    'id' => (string)$xmlElement->P_NR
                 ];
 
                 $this->current = new Model($data);
@@ -38,9 +41,7 @@ class Iterator extends Base\Iterator implements \Iterator
             $this->xmlReader->close();
         }
 
-        if ($this->type == 'productlist') {
-            $this->xmlReader = $this->client->getRestClient()->getXML('products', $this->filter);
-        }
+        $this->xmlReader = $this->client->getRestClient()->getXML('products', $this->filter);
 
         parent::rewind();
     }
