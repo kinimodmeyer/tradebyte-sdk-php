@@ -1,7 +1,7 @@
 <?php
 namespace Tradebyte\Order\Orderlist;
 
-use Tradebyte\Order\Model;
+use Tradebyte\Order\Model\Order;
 use XMLReader;
 use Tradebyte\Base;
 
@@ -20,20 +20,9 @@ class Iterator extends Base\Iterator implements \Iterator
                 && $this->xmlReader->depth === 1
                 && $this->xmlReader->name == 'ORDER') {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
-                $data = [
-                    'id' => (int)$xmlElement->ORDER_DATA->TB_ID,
-                    'order_date' => (string)$xmlElement->ORDER_DATA->ORDER_DATE,
-                    'date_created' => (string)$xmlElement->ORDER_DATA->DATE_CREATED,
-                    'channel_sign' => (string)$xmlElement->ORDER_DATA->CHANNEL_SIGN,
-                    'channel_id' => (string)$xmlElement->ORDER_DATA->CHANNEL_ID,
-                    'channel_number' => (string)$xmlElement->ORDER_DATA->CHANNEL_NO,
-                    'paid' => (bool)$xmlElement->ORDER_DATA->PAID,
-                    'approved' => (bool)$xmlElement->ORDER_DATA->APPROVED,
-                    'item_count' => (int)$xmlElement->ORDER_DATA->ITEM_COUNT,
-                    'total_item_amount' => (float)$xmlElement->ORDER_DATA->TOTAL_ITEM_AMOUNT
-                ];
-
-                $this->current = new Model($data);
+                $model = new Order();
+                $model->fillFromSimpleXMLElement($xmlElement);
+                $this->current = $model;
                 return;
             }
         }

@@ -10,8 +10,17 @@ try {
     $iterator = $client->getOrderHandler()->getOrdersBy();
 
     foreach ($iterator as $order) {
-        var_dump($order->getId());
+        echo 'order:' . $order->getId();
+
+        foreach ($order->getItems() as $item) {
+            echo $item->getEan().',';
+        }
+
+        /*
+         * or get full raw data with $order->getRawData()
+         */
+        echo "\n";
     }
 } catch (Exception $e) {
-    var_dump($e->getMessage());
+    echo $e->getMessage();
 }

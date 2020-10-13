@@ -1,15 +1,23 @@
-# Tradebyte SDK
+# TB.IO SDK 
+
+SDK to handle all different ways to interact with Tradebyte API. more infromations you will find on [TB.IO](https://tradebyte.io/).
+
+#### !!! this repository is in WIP state !!!
 
 ## Features
 
-* the sdk is build that way that it will not consume much memory, no matter if you export small order data or giant product-data.
-* the sdk offers mostly two modes: fetching & processing the data on the fly or download the data and processing it later.
+* the sdk is build that way that it will not consume much memory. this is done by using iterators and xml readers.
 * the following data end-points are implemented
-  * order(s) fetching
+- [x] order list (filter)
+- [ ] order ack
+- [ ] product list
+- [ ] import push
+- [ ] stock
+- [ ] messages
 
 ## Requirements
 
-* credentials (username,password,account number)
+* credentials (username,password,account-number)
   * see https://tb-io.tradebyte.org/how-to/generate-rest-api-credentials-in-tb-one/
 * PHP >= 7.3
 * Composer
@@ -33,5 +41,3 @@ after this you can execute the examples on the cli:
 $ php examples/products.php channel=1370 id=123
 $ php examples/orders.php
 ```
-
-it can also be used with a webserver but normally that´s not how you process bigger data.

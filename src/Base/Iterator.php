@@ -2,6 +2,7 @@
 namespace Tradebyte\Base;
 
 use Tradebyte\Client;
+use Tradebyte\Order\Model\Order;
 use XMLReader;
 
 /**
@@ -15,7 +16,7 @@ class Iterator
     protected $xmlReader = null;
 
     /**
-     * @var Model
+     * @var Order
      */
     protected $current;
 
