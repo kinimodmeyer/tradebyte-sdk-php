@@ -12,7 +12,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 - [ ] order ack
 - [ ] product list
 - [ ] import push
-- [ ] stock
+- [x] stock
 - [ ] messages
 
 ## Requirements
@@ -39,5 +39,6 @@ after this you can execute the examples on the cli:
 
 ```bash
 $ php examples/products.php channel=1370 id=123
-$ php examples/orders.php channel=8 id=123
+$ php examples/orders.php channel=1370 id=123
+$ php examples/stock.php channel=1370 delta=123
 ```

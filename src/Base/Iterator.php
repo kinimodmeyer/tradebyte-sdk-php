@@ -53,14 +53,6 @@ class Iterator
     }
 
     /**
-     * @return Model
-     */
-    public function current()
-    {
-        return $this->current;
-    }
-
-    /**
      * @return bool
      */
     public function valid()

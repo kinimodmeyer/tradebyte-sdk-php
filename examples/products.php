@@ -24,7 +24,7 @@ if (!empty($filter['channel'])) {
             $iterator = $client->getProductHandler()->getProductsBy(['channel' => $filter['channel']]);
 
             foreach ($iterator as $product) {
-                var_dump($product->getNumber());
+                var_dump($product->getId());
             }
         } catch (Exception $e) {
             echo $e->getMessage();

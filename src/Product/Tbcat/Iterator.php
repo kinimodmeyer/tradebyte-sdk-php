@@ -12,6 +12,14 @@ use Tradebyte\Base;
 class Iterator extends Base\Iterator implements \Iterator
 {
     /**
+     * @return Product
+     */
+    public function current(): Product
+    {
+        return $this->current;
+    }
+
+    /**
      * @return void
      */
     public function next()

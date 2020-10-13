@@ -1,7 +1,7 @@
 <?php
-namespace Tradebyte\Order\Orderlist;
+namespace Tradebyte\Stock;
 
-use Tradebyte\Order\Model\Order;
+use Tradebyte\Stock\Model\Stock;
 use XMLReader;
 use Tradebyte\Base;
 
@@ -11,9 +11,9 @@ use Tradebyte\Base;
 class Iterator extends Base\Iterator implements \Iterator
 {
     /**
-     * @return Order
+     * @return Stock
      */
-    public function current(): Order
+    public function current(): Stock
     {
         return $this->current;
     }
@@ -26,10 +26,11 @@ class Iterator extends Base\Iterator implements \Iterator
         while ($this->xmlReader->read()) {
             if ($this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth === 1
-                && $this->xmlReader->name == 'ORDER') {
+                && $this->xmlReader->name == 'ARTICLE') {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
-                $model = new Order();
-                $model->fillFromSimpleXMLElement($xmlElement);
+                $model = new Stock();
+                $model->setArticleNumber((string)$xmlElement->A_NR);
+                $model->setStock((int)$xmlElement->A_STOCK);
                 $this->current = $model;
                 return;
             }
@@ -47,9 +48,7 @@ class Iterator extends Base\Iterator implements \Iterator
             $this->xmlReader->close();
         }
 
-        if ($this->type == 'orderlist') {
-            $this->xmlReader = $this->client->getRestClient()->getXML('orders', $this->filter);
-        }
+        $this->xmlReader = $this->client->getRestClient()->getXML('stock', $this->filter);
 
         parent::rewind();
     }

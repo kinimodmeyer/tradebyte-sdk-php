@@ -60,4 +60,12 @@ class Client
     {
         return new Product\Handler($this);
     }
+
+    /**
+     * @return Stock\Handler
+     */
+    public function getStockHandler(): Stock\Handler
+    {
+        return new Stock\Handler($this);
+    }
 }
