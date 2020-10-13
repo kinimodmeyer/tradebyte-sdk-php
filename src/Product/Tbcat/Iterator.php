@@ -1,7 +1,8 @@
 <?php
 namespace Tradebyte\Product\Tbcat;
 
-use Tradebyte\Product\Model;
+use SimpleXMLElement;
+use Tradebyte\Product\Model\Product;
 use XMLReader;
 use Tradebyte\Base;
 
@@ -19,12 +20,10 @@ class Iterator extends Base\Iterator implements \Iterator
             if ($this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth == 2
                 && $this->xmlReader->name == 'PRODUCT') {
-                $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
-                $data = [
-                    'id' => (string)$xmlElement->P_NR
-                ];
-
-                $this->current = new Model($data);
+                $xmlElement = new SimpleXMLElement($this->xmlReader->readOuterXML());
+                $product = new Product();
+                $product->fillFromSimpleXMLElement($xmlElement);
+                $this->current = $product;
                 return;
             }
         }

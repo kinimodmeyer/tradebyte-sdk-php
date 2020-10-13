@@ -1,4 +1,4 @@
-# TB.IO SDK 
+# Tradebyte SDK
 
 SDK to handle all different ways to interact with Tradebyte API. more infromations you will find on [TB.IO](https://tradebyte.io/).
 
@@ -6,7 +6,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 
 ## Features
 
-* the sdk is build that way that it will not consume much memory. this is done by using iterators and xml readers.
+* the sdk is build that way that it not consume much memory and can even process gigabyte of data. this is done by using iterators and xml readers.
 * the following data end-points are implemented
 - [x] order list (filter)
 - [ ] order ack

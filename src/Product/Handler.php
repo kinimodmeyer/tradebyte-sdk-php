@@ -34,9 +34,9 @@ class Handler
 
     /**
      * @param array $filter
-     * @return Model
+     * @return Model\Product
      */
-    public function getProductBy(array $filter = []): Model
+    public function getProductBy(array $filter = []): Model\Product
     {
         $iterator = new Tbcat\Iterator($this->client, 'tbcat', $filter);
         $iterator->rewind();
