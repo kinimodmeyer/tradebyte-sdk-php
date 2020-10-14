@@ -28,7 +28,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 2. execute the following:
 
 ```bash
-$ composer require kinimodmeyer/tradebyte-sdk
+$ composer require kinimodmeyer/tradebyte-sdk:dev-main
 ```
 
 ## Execute Examples
