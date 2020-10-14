@@ -24,28 +24,32 @@ class Handler
     }
 
     /**
-     * @param array $where
+     * @param array $params
      * @return Orderlist\Iterator
      */
-    public function getOrdersBy(array $where = []): Orderlist\Iterator
+    public function getOrdersBy(array $params = []): Orderlist\Iterator
     {
-        return new Orderlist\Iterator($this->client, 'orderlist', $where);
+        return new Orderlist\Iterator($this->client, 'orders/', $params);
     }
 
     /**
-     * @param array $filter
+     * @param int $orderId
      * @return Model\Order
      */
-    public function getOrderBy(array $filter = []): Model\Order
+    public function getOrderById(int $orderId): Model\Order
     {
-        if (!empty($filter['id'])) {
-            $filter['extra'] = $filter['id'];
-            unset($filter['id']);
-        }
-
-        $iterator = new Orderlist\Iterator($this->client, 'orderlist', $filter);
+        $iterator = new Orderlist\Iterator($this->client, 'orders/'.$orderId);
         $iterator->rewind();
 
         return $iterator->current();
+    }
+
+    /**
+     * @param int $orderId
+     * @return string
+     */
+    public function updateOrderExported(int $orderId)
+    {
+        return $this->client->getRestClient()->postXML('orders/'.$orderId.'/exported');
     }
 }

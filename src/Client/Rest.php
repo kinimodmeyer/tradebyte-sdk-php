@@ -62,6 +62,41 @@ class Rest
 
     /**
      * @param string $url
+     * @param array $filter
+     * @return string
+     */
+    public function postXML(string $url, array $filter = []): string
+    {
+        $auth = base64_encode($this->accountUser.':'.$this->accountPassword);
+        $context = [
+            'http' => [
+                'method'  => 'POST',
+                'header' => 'Authorization: Basic '.$auth,
+                'ignore_errors' => true,
+                'time_out' => 3600,
+            ]
+        ];
+
+        $uri = $this->baseURL.'/'.$this->accountNumber.'/'.$url;
+
+        if (!empty($filter)) {
+            $uri .= '?'.http_build_query($filter);
+        }
+
+        $response =  file_get_contents($uri, false, stream_context_create($context));
+        $statusLine = $http_response_header[0];
+        preg_match('{HTTP\/\S*\s(\d{3})}', $statusLine, $match);
+        $status = $match[1];
+
+        if ($status !== '200') {
+            throw new \RuntimeException('unexpected response status: '.$statusLine);
+        }
+
+        return $response;
+    }
+
+    /**
+     * @param string $url
      * @param mixed[] $filter
      * @return XMLReader
      */
@@ -77,17 +112,10 @@ class Rest
         ];
         libxml_set_streams_context(stream_context_create($context));
         $reader = new XMLReader();
-        $uri = $this->baseURL.'/'.$this->accountNumber.'/'.$url.'/';
+        $uri = $this->baseURL.'/'.$this->accountNumber.'/'.$url;
 
         if (!empty($filter)) {
-            if (!empty($filter['extra'])) {
-                $uri .= $filter['extra'];
-                unset($filter['extra']);
-            }
-
-            if (!empty($filter)) {
-                $uri .= '?'.http_build_query($filter);
-            }
+            $uri .= '?'.http_build_query($filter);
         }
 
         $reader->open($uri);

@@ -47,9 +47,7 @@ class Iterator extends Base\Iterator implements \Iterator
             $this->xmlReader->close();
         }
 
-        if ($this->type == 'orderlist') {
-            $this->xmlReader = $this->client->getRestClient()->getXML('orders', $this->filter);
-        }
+        $this->xmlReader = $this->client->getRestClient()->getXML($this->url, $this->filter);
 
         parent::rewind();
     }

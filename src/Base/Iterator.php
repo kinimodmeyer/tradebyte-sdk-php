@@ -33,7 +33,7 @@ class Iterator
     /**
      * @var string
      */
-    protected $type;
+    protected $url;
 
     /**
      * @var mixed[]
@@ -42,14 +42,14 @@ class Iterator
 
     /**
      * @param Client $client
-     * @param string $type
+     * @param string $url
      * @param mixed[] $filter
      */
-    public function __construct(Client $client, string $type, array $filter)
+    public function __construct(Client $client, string $url, array $filter = [])
     {
         $this->client = $client;
+        $this->url = $url;
         $this->filter = $filter;
-        $this->type = $type;
     }
 
     /**

@@ -5,7 +5,7 @@ $client = new Tradebyte\Client(['credentials' => $credentials]);
 
 if (!empty($filter['id'])) {
     try {
-        $order = $client->getOrderHandler()->getOrderBy(['id' => $filter['id']]);
+        $order = $client->getOrderHandler()->getOrderById($filter['id']);
 
         echo $order->getId();
     } catch (Exception $e) {
@@ -13,9 +13,9 @@ if (!empty($filter['id'])) {
     }
 } else {
     try {
-        $iterator = $client->getOrderHandler()->getOrdersBy();
+        $orderHandler = $client->getOrderHandler();
 
-        foreach ($iterator as $order) {
+        foreach ($orderHandler->getOrdersBy() as $order) {
             echo 'order:' . $order->getId();
 
             foreach ($order->getItems() as $item) {
@@ -23,7 +23,9 @@ if (!empty($filter['id'])) {
             }
 
             /*
-             * or get full raw data with $order->getRawData()
+             * acknowledge order received.
+             *
+             * $orderHandler->updateOrderExported($order->getId());
              */
             echo "\n";
         }

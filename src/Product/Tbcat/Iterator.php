@@ -48,7 +48,7 @@ class Iterator extends Base\Iterator implements \Iterator
             $this->xmlReader->close();
         }
 
-        $this->xmlReader = $this->client->getRestClient()->getXML('products', $this->filter);
+        $this->xmlReader = $this->client->getRestClient()->getXML($this->url, $this->filter);
 
         parent::rewind();
     }

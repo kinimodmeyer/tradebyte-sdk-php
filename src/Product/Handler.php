@@ -29,16 +29,17 @@ class Handler
      */
     public function getProductsBy(array $filter = []): Tbcat\Iterator
     {
-        return new Tbcat\Iterator($this->client, 'tbcat', $filter);
+        return new Tbcat\Iterator($this->client, 'products/', $filter);
     }
 
     /**
-     * @param array $filter
+     * @param int $productId
+     * @param int $channelId
      * @return Model\Product
      */
-    public function getProductBy(array $filter = []): Model\Product
+    public function getProductById(int $productId, int $channelId): Model\Product
     {
-        $iterator = new Tbcat\Iterator($this->client, 'tbcat', $filter);
+        $iterator = new Tbcat\Iterator($this->client, 'products/', ['p_id' => $productId, 'channel' => $channelId]);
         $iterator->rewind();
 
         return $iterator->current();

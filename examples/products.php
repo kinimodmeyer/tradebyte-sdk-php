@@ -6,12 +6,7 @@ $client = new Tradebyte\Client(['credentials' => $credentials]);
 if (!empty($filter['channel'])) {
     if (!empty($filter['id'])) {
         try {
-            $productModel = $client->getProductHandler()->getProductBy([
-                    'channel' => $filter['channel'],
-                    'p_id' => $filter['id']
-                ]
-            );
-
+            $productModel = $client->getProductHandler()->getProductById($filter['id'], $filter['channel']);
             echo $productModel->getId();
         } catch (Exception $e) {
             echo $e->getMessage();
