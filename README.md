@@ -25,8 +25,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 ## Install
 
 1. get composer via https://getcomposer.org/download
-2. clone this repository
-3. execute the following:
+2. execute the following:
 
 ```bash
 $ composer require kinimodmeyer/tradebyte-sdk
