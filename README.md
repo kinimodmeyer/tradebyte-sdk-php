@@ -24,7 +24,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 
 ## Install
 
-1. get composer via https://getcomposer.org/download
+1. download composer (https://getcomposer.org/download)
 2. execute the following:
 
 ```bash
@@ -33,8 +33,9 @@ $ composer require kinimodmeyer/tradebyte-sdk:dev-main
 
 ## Execute Examples
 
-rename ``examples/example_credentials.php`` to ``examples/credentials.php`` and replace it with your credentials.
-after this you can execute the examples on the cli:
+copy ``vendor/kinimodmeyer/tradebyte-sdk/examples/`` folder to your project-root.
+rename ``examples/example_credentials.php`` to ``examples/credentials.php`` and replace the credentials.
+execute the examples from the cli:
 
 ```bash
 $ php examples/products.php channel=1370 id=123
