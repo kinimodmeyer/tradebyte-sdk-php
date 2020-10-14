@@ -14,6 +14,9 @@
       "Tradebyte\\": "tests/"
     }
   },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
   "require": {
     "php": "^7.3",
     "ext-xmlreader": "*",
