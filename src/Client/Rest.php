@@ -71,7 +71,8 @@ class Rest
         $context = [
             'http' => [
                 'header' => 'Authorization: Basic '.$auth,
-                'ignore_errors' => true
+                'ignore_errors' => true,
+                'time_out' => 3600,
             ]
         ];
         libxml_set_streams_context(stream_context_create($context));

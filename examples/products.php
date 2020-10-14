@@ -1,5 +1,5 @@
 <?php
-require 'examples/loader.php';
+require __DIR__.'/loader.php';
 
 $client = new Tradebyte\Client(['credentials' => $credentials]);
 

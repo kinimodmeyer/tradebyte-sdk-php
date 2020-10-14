@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-require 'examples/credentials.php';
+require __DIR__.'/credentials.php';
 
 $filter = [];
 unset($argv[0]);
