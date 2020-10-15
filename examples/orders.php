@@ -25,8 +25,13 @@ if (!empty($filter['id'])) {
             /*
              * acknowledge order received.
              *
-             * $orderHandler->updateOrderExported($order->getId());
+             * try {
+             *     $orderHandler->updateOrderExported($order->getId());
+             * } catch (Exception $e) {
+             *     echo $e->getMessage();
+             *  }
              */
+
             echo "\n";
         }
     } catch (Exception $e) {

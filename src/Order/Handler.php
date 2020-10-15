@@ -46,10 +46,11 @@ class Handler
 
     /**
      * @param int $orderId
-     * @return string
+     * @return boolean
      */
     public function updateOrderExported(int $orderId)
     {
-        return $this->client->getRestClient()->postXML('orders/'.$orderId.'/exported');
+        $this->client->getRestClient()->postXML('orders/'.$orderId.'/exported');
+        return true;
     }
 }
