@@ -22,11 +22,33 @@ class Handler
     }
 
     /**
-     * @param array $where
+     * @param array $filter
      * @return Iterator
      */
-    public function getChannelStockBy(array $where = []): Iterator
+    public function getChannelStockBy(array $filter = []): Iterator
     {
-        return new Iterator($this->client, 'stock', $where);
+        return new Iterator($this->client, 'stock/', $filter);
+    }
+
+    /**
+     * @param string $filePath
+     * @param array $filter
+     * @return bool
+     */
+    public function downloadChannelStockBy(string $filePath, array $filter = []): bool
+    {
+        return $this->client->getRestClient()->downloadFile($filePath, 'stock/', $filter);
+    }
+
+    /**
+     * @param string $filePath
+     * @return Iterator
+     */
+    public function openChannelStockFile(string $filePath) : Iterator
+    {
+        $iterator = new Iterator($this->client, $filePath);
+        $iterator->setOpenLocalFilepath(true);
+
+        return $iterator;
     }
 }
