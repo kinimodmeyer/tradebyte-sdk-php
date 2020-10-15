@@ -13,6 +13,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 - [x] order list
 - [x] order single
 - [x] order ack
+- [ ] channel list
 - [ ] order push
 - [ ] product list
 - [ ] product single
