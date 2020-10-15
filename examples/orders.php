@@ -15,6 +15,9 @@ if (!empty($filter['id'])) {
     try {
         $orderHandler = $client->getOrderHandler();
 
+        /*
+         * on the fly mode
+         */
         foreach ($orderHandler->getOrdersBy() as $order) {
             echo 'order:' . $order->getId();
 
@@ -33,6 +36,15 @@ if (!empty($filter['id'])) {
              */
 
             echo "\n";
+        }
+
+        /*
+         * download mode
+         */
+        $orderHandler->downloadOrdersBy(__DIR__.'/files/order.xml');
+
+        foreach ($orderHandler->openOrderFile(__DIR__.'/files/order.xml') as $order) {
+            echo $order->getId()."\n";
         }
     } catch (Exception $e) {
         echo $e->getMessage();

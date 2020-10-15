@@ -24,6 +24,28 @@ class Handler
     }
 
     /**
+     * @param string $filePath
+     * @param array $params
+     * @return bool
+     */
+    public function downloadOrdersBy(string $filePath, array $params = []): bool
+    {
+        return $this->client->getRestClient()->downloadFile($filePath, 'orders/', $params);
+    }
+
+    /**
+     * @param string $filePath
+     * @return Orderlist\Iterator
+     */
+    public function openOrderFile(string $filePath) : Orderlist\Iterator
+    {
+        $iterator = new Orderlist\Iterator($this->client, $filePath);
+        $iterator->setOpenLocalFilepath(true);
+
+        return $iterator;
+    }
+
+    /**
      * @param array $params
      * @return Orderlist\Iterator
      */

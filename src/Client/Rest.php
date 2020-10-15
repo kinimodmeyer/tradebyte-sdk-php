@@ -61,34 +61,94 @@ class Rest
     }
 
     /**
+     * @return string
+     */
+    private function getAuthHeader()
+    {
+        $auth = base64_encode($this->accountUser.':'.$this->accountPassword);
+        return 'Authorization: Basic '.$auth;
+    }
+
+    /**
      * @param string $url
      * @param array $filter
      * @return string
      */
-    public function postXML(string $url, array $filter = []): string
+    private function getCreatedURI(string $url, array $filter = [])
     {
-        $auth = base64_encode($this->accountUser.':'.$this->accountPassword);
-        $context = [
-            'http' => [
-                'method'  => 'POST',
-                'header' => 'Authorization: Basic '.$auth,
-                'ignore_errors' => true,
-                'time_out' => 3600,
-            ]
-        ];
-
         $uri = $this->baseURL.'/'.$this->accountNumber.'/'.$url;
 
         if (!empty($filter)) {
             $uri .= '?'.http_build_query($filter);
         }
 
-        $response =  file_get_contents($uri, false, stream_context_create($context));
-        $statusLine = $http_response_header[0];
-        preg_match('{HTTP\/\S*\s(\d{3})}', $statusLine, $match);
-        $status = $match[1];
+        return $uri;
+    }
 
-        if ($status !== '200') {
+    /**
+     * @param string $statusLine
+     * @return int
+     */
+    private function getStatusCode(string $statusLine): int
+    {
+        preg_match('{HTTP\/\S*\s(\d{3})}', $statusLine, $match);
+        return (int)$match[1];
+    }
+
+    /**
+     * @param string $localFilePath
+     * @param string $url
+     * @param array $filter
+     * @return bool
+     */
+    public function downloadFile(string $localFilePath, string $url, array $filter = []): bool
+    {
+        $context = [
+            'http' => [
+                'header' => $this->getAuthHeader(),
+                'ignore_errors' => true,
+                'time_out' => 3600,
+            ]
+        ];
+
+        $handle = fopen($this->getCreatedURI($url, $filter), 'rb', false, stream_context_create($context));
+        $statusLine = $http_response_header[0];
+
+        if ($this->getStatusCode($statusLine) !== 200) {
+            throw new \RuntimeException('unexpected response status: '.$statusLine);
+        }
+
+        file_put_contents($localFilePath, '');
+
+        while (!feof($handle)) {
+            file_put_contents($localFilePath, fread($handle, 1024 * 1024), FILE_APPEND);
+        }
+
+        fclose($handle);
+
+        return true;
+    }
+
+    /**
+     * @param string $url
+     * @param array $filter
+     * @return string
+     */
+    public function postXML(string $url, array $filter = []): string
+    {
+        $context = [
+            'http' => [
+                'method'  => 'POST',
+                'header' => $this->getAuthHeader(),
+                'ignore_errors' => true,
+                'time_out' => 3600,
+            ]
+        ];
+
+        $response =  file_get_contents($this->getCreatedURI($url, $filter), false, stream_context_create($context));
+        $statusLine = $http_response_header[0];
+
+        if ($this->getStatusCode($statusLine) !== 200) {
             throw new \RuntimeException('unexpected response status: '.$statusLine);
         }
 
@@ -102,29 +162,19 @@ class Rest
      */
     public function getXML(string $url, array $filter = []): XMLReader
     {
-        $auth = base64_encode($this->accountUser.':'.$this->accountPassword);
-        $context = [
+        libxml_set_streams_context(stream_context_create([
             'http' => [
-                'header' => 'Authorization: Basic '.$auth,
+                'header' => $this->getAuthHeader(),
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
-        ];
-        libxml_set_streams_context(stream_context_create($context));
+        ]));
+
         $reader = new XMLReader();
-        $uri = $this->baseURL.'/'.$this->accountNumber.'/'.$url;
-
-        if (!empty($filter)) {
-            $uri .= '?'.http_build_query($filter);
-        }
-
-        $reader->open($uri);
-
+        $reader->open($this->getCreatedURI($url, $filter));
         $statusLine = $http_response_header[0];
-        preg_match('{HTTP\/\S*\s(\d{3})}', $statusLine, $match);
-        $status = $match[1];
 
-        if ($status !== '200') {
+        if ($this->getStatusCode($statusLine) !== 200) {
             throw new \RuntimeException('unexpected response status: '.$statusLine);
         }
 

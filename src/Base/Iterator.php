@@ -41,6 +41,11 @@ class Iterator
     protected $filter;
 
     /**
+     * @var bool
+     */
+    protected $openLocalFilepath = false;
+
+    /**
      * @param Client $client
      * @param string $url
      * @param mixed[] $filter
@@ -50,6 +55,14 @@ class Iterator
         $this->client = $client;
         $this->url = $url;
         $this->filter = $filter;
+    }
+
+    /**
+     * @param bool $openLocalFilepath
+     */
+    public function setOpenLocalFilepath(bool $openLocalFilepath)
+    {
+        $this->openLocalFilepath = $openLocalFilepath;
     }
 
     /**

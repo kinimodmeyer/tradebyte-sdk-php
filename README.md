@@ -7,14 +7,17 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 ## Features
 
 * the sdk is build that way that it not consume much memory and can even process gigabyte of data. this is done by using iterators and xml readers.
+* you can choose between on the fly processing or on downloading it first and reprocessing it later.
 * the following data end-points are implemented
 
 - [x] order list
+- [x] order list download/open
 - [x] order ack
-- [ ] order list download
 - [ ] product list
+- [ ] product list download/open
 - [ ] import push
 - [x] stock list
+- [ ] stock list download/open
 - [ ] message list
 - [ ] message ack
 
