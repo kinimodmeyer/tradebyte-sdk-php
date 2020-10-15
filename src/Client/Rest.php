@@ -118,13 +118,17 @@ class Rest
             throw new \RuntimeException('unexpected response status: '.$statusLine);
         }
 
-        file_put_contents($localFilePath, '');
+        $localHandle = fopen($localFilePath, 'w+');
+
+        // 8 mb in one go
+        $length = 8 * 1024;
 
         while (!feof($handle)) {
-            file_put_contents($localFilePath, fread($handle, 1024 * 1024), FILE_APPEND);
+            fwrite($localHandle, fread($handle, $length));
         }
 
         fclose($handle);
+        fclose($localHandle);
 
         return true;
     }
