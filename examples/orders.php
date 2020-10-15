@@ -2,19 +2,27 @@
 require __DIR__.'/loader.php';
 
 $client = new Tradebyte\Client(['credentials' => $credentials]);
+$orderHandler = $client->getOrderHandler();
 
 if (!empty($filter['id'])) {
     try {
-        $order = $client->getOrderHandler()->getOrderById($filter['id']);
+        /*
+         * on the fly mode
+         */
+        $order = $orderHandler->getOrderById($filter['id']);
+        echo $order->getId();
 
+        /*
+         * download mode
+         */
+        $orderHandler->downloadOrderById(__DIR__.'/files/order_'.$filter['id'].'.xml', $filter['id']);
+        $order = $orderHandler->openOrderFile(__DIR__.'/files/order_'.$filter['id'].'.xml');
         echo $order->getId();
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 } else {
     try {
-        $orderHandler = $client->getOrderHandler();
-
         /*
          * on the fly mode
          */
@@ -43,7 +51,7 @@ if (!empty($filter['id'])) {
          */
         $orderHandler->downloadOrdersBy(__DIR__.'/files/order.xml');
 
-        foreach ($orderHandler->openOrderFile(__DIR__.'/files/order.xml') as $order) {
+        foreach ($orderHandler->openOrdersFile(__DIR__.'/files/order.xml') as $order) {
             echo $order->getId()."\n";
         }
     } catch (Exception $e) {

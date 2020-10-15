@@ -10,14 +10,14 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 * you can choose between on the fly processing or on downloading it first and reprocessing it later.
 * the following data end-points are implemented
 
-- [x] order list
-- [x] order list download/open
+- [x] order list (on the fly)
+- [x] order list (download/open)
 - [x] order ack
-- [ ] product list
-- [ ] product list download/open
+- [ ] product list (on the fly)
+- [ ] product list (download/open)
 - [ ] import push
-- [x] stock list
-- [ ] stock list download/open
+- [x] stock list (on the fly)
+- [ ] stock list (download/open)
 - [ ] message list
 - [ ] message ack
 

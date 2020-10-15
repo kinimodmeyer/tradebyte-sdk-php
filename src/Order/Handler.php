@@ -37,12 +37,25 @@ class Handler
      * @param string $filePath
      * @return Orderlist\Iterator
      */
-    public function openOrderFile(string $filePath) : Orderlist\Iterator
+    public function openOrdersFile(string $filePath) : Orderlist\Iterator
     {
         $iterator = new Orderlist\Iterator($this->client, $filePath);
         $iterator->setOpenLocalFilepath(true);
 
         return $iterator;
+    }
+
+    /**
+     * @param string $filePath
+     * @return Model\Order
+     */
+    public function openOrderFile(string $filePath) : Model\Order
+    {
+        $iterator = new Orderlist\Iterator($this->client, $filePath);
+        $iterator->setOpenLocalFilepath(true);
+        $iterator->rewind();
+
+        return $iterator->current();
     }
 
     /**
@@ -64,6 +77,16 @@ class Handler
         $iterator->rewind();
 
         return $iterator->current();
+    }
+
+    /**
+     * @param string $filePath
+     * @param int $orderId
+     * @return bool
+     */
+    public function downloadOrderById(string $filePath, int $orderId): bool
+    {
+        return $this->client->getRestClient()->downloadFile($filePath, 'orders/'.$orderId);
     }
 
     /**
