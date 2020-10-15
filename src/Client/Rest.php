@@ -105,7 +105,8 @@ class Rest
     {
         $context = [
             'http' => [
-                'header' => $this->getAuthHeader(),
+                'header' => $this->getAuthHeader()
+                    ."\r\n".'User-Agent: Tradebyte-SDK',
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
@@ -143,7 +144,10 @@ class Rest
         $context = [
             'http' => [
                 'method'  => 'POST',
-                'header' => $this->getAuthHeader(),
+                'header' => $this->getAuthHeader()
+                    ."\r\n".'Content-Type: application/xml'
+                    ."\r\n".'Accept: application/xml'
+                    ."\r\n".'User-Agent: Tradebyte-SDK',
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
@@ -168,7 +172,9 @@ class Rest
     {
         libxml_set_streams_context(stream_context_create([
             'http' => [
-                'header' => $this->getAuthHeader(),
+                'header' => $this->getAuthHeader()
+                    ."\r\n".'Accept: application/xml'
+                    ."\r\n".'User-Agent: Tradebyte-SDK',
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
