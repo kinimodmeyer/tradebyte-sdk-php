@@ -7,7 +7,7 @@ if (!empty($filter['channel'])) {
     if (!empty($filter['id'])) {
         try {
             $productModel = $client->getProductHandler()->getProductById($filter['id'], $filter['channel']);
-            echo $productModel->getId();
+            var_dump($productModel->getId(), $productModel->getRawData());
         } catch (Exception $e) {
             echo $e->getMessage();
         }
