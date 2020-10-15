@@ -48,7 +48,12 @@ class Iterator extends Base\Iterator implements \Iterator
             $this->xmlReader->close();
         }
 
-        $this->xmlReader = $this->client->getRestClient()->getXML($this->url, $this->filter);
+        if ($this->openLocalFilepath) {
+            $this->xmlReader = new XMLReader();
+            $this->xmlReader->open($this->url);
+        } else {
+            $this->xmlReader = $this->client->getRestClient()->getXML($this->url, $this->filter);
+        }
 
         parent::rewind();
     }
