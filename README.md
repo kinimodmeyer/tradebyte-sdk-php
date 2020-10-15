@@ -1,6 +1,6 @@
 # Tradebyte SDK
 
-SDK to handle all different ways to interact with Tradebyte API. more infromations you will find on [TB.IO](https://tradebyte.io/).
+SDK to handle all different ways to interact with Tradebyte API. more infromations you will find on [TB.IO](https://tradebyte.io).
 
 #### !!! this repository is in WIP state !!!
 

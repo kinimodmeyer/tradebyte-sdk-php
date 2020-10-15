@@ -451,7 +451,7 @@ class Order
     /**
      * @return mixed[]
      */
-    public function getRawData()
+    public function getRawData(): array
     {
         $data = [
             'id' => $this->getId(),

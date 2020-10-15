@@ -177,7 +177,7 @@ class Item
     /**
      * @return mixed[]
      */
-    public function getRawData()
+    public function getRawData(): array
     {
         return [
             'id' => $this->getId(),
