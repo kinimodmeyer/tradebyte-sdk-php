@@ -9,7 +9,29 @@ use Tradebyte\Stock\Model\Stock;
  */
 class StockTest extends Base
 {
-    public function testStockObjectGetRawData()
+    /**
+     * @return void
+     */
+    public function testOrderFillFromXml(): void
+    {
+        $stock = new Stock();
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>
+                <ARTICLE>
+                    <A_NR>a_nr_test</A_NR>
+                    <A_STOCK>2</A_STOCK>
+                </ARTICLE>';
+        $stock->fillFromSimpleXMLElement(simplexml_load_string($xml));
+
+        $this->assertSame([
+            'article_number' => 'a_nr_test',
+            'stock' => 2,
+        ], $stock->getRawData());
+    }
+
+    /**
+     * @return void
+     */
+    public function testStockObjectGetRawData(): void
     {
         $stock = new Stock();
         $stock->setStock(20);

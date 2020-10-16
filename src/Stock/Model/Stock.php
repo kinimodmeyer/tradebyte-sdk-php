@@ -1,6 +1,8 @@
 <?php
 namespace Tradebyte\Stock\Model;
 
+use SimpleXMLElement;
+
 /**
  * @package Tradebyte
  */
@@ -46,6 +48,15 @@ class Stock
     public function setStock(int $stock): void
     {
         $this->stock = $stock;
+    }
+
+    /**
+     * @param SimpleXMLElement $xmlElement
+     */
+    public function fillFromSimpleXMLElement(SimpleXMLElement $xmlElement): void
+    {
+        $this->setArticleNumber((string)$xmlElement->A_NR);
+        $this->setStock((int)$xmlElement->A_STOCK);
     }
 
     /**

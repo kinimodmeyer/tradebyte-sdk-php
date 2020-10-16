@@ -5,7 +5,11 @@ $client = new Tradebyte\Client(['credentials' => $credentials]);
 $stockHandler = $client->getStockHandler();
 
 try {
-    $where = ['delta' => $filter['delta'], 'channel' => $filter['channel']];
+    $where = [ 'channel' => $filter['channel']];
+
+    if (isset($filter['delta'])) {
+        $where['delta'] = $filter['delta'];
+    }
 
     /*
      * on the fly

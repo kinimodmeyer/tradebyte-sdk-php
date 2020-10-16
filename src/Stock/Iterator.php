@@ -29,8 +29,7 @@ class Iterator extends Base\Iterator implements \Iterator
                 && $this->xmlReader->name == 'ARTICLE') {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
                 $model = new Stock();
-                $model->setArticleNumber((string)$xmlElement->A_NR);
-                $model->setStock((int)$xmlElement->A_STOCK);
+                $model->fillFromSimpleXMLElement($xmlElement);
                 $this->current = $model;
                 return;
             }
