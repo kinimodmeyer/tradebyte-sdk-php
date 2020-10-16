@@ -69,12 +69,12 @@ class Order
     protected $history;
 
     /**
-     * @var Shipment
+     * @var array
      */
     protected $shipment;
 
     /**
-     * @var Payment
+     * @var array
      */
     protected $payment;
 
@@ -281,33 +281,33 @@ class Order
     }
 
     /**
-     * @return Shipment
+     * @return array
      */
-    public function getShipment(): Shipment
+    public function getShipment(): array
     {
         return $this->shipment;
     }
 
     /**
-     * @param Shipment $shipment
+     * @param array $shipment
      */
-    public function setShipment(Shipment $shipment): void
+    public function setShipment(array $shipment): void
     {
         $this->shipment = $shipment;
     }
 
     /**
-     * @return Payment
+     * @return array
      */
-    public function getPayment(): Payment
+    public function getPayment(): array
     {
         return $this->payment;
     }
 
     /**
-     * @param Payment $payment
+     * @param array $payment
      */
-    public function setPayment(Payment $payment): void
+    public function setPayment(array $payment): void
     {
         $this->payment = $payment;
     }
@@ -362,40 +362,40 @@ class Order
         $this->setTotalItemAmount((float)$xmlElement->ORDER_DATA->TOTAL_ITEM_AMOUNT);
 
         if (isset($xmlElement->SHIPMENT)) {
-            $shipment = new Shipment();
+            $shipment = [];
 
             if (isset($xmlElement->SHIPMENT->IDCODE_SHIP)) {
-                $shipment->setIdcodeShip((string)$xmlElement->SHIPMENT->IDCODE_SHIP);
+                $shipment['idcode_ship'] = (string)$xmlElement->SHIPMENT->IDCODE_SHIP;
             }
 
             if (isset($xmlElement->SHIPMENT->IDCODE_RETURN)) {
-                $shipment->setIdcodeReturn((string)$xmlElement->SHIPMENT->IDCODE_RETURN);
+                $shipment['idcode_return'] = (string)$xmlElement->SHIPMENT->IDCODE_RETURN;
             }
 
             if (isset($xmlElement->SHIPMENT->ROUTING_CODE)) {
-                $shipment->setRoutingCode((string)$xmlElement->SHIPMENT->ROUTING_CODE);
+                $shipment['routing_code'] = (string)$xmlElement->SHIPMENT->ROUTING_CODE;
             }
 
             if (isset($xmlElement->SHIPMENT->PRICE)) {
-                $shipment->setPrice((float)$xmlElement->SHIPMENT->PRICE);
+                $shipment['price'] = (float)$xmlElement->SHIPMENT->PRICE;
             }
 
             $this->setShipment($shipment);
         }
 
         if (isset($xmlElement->PAYMENT)) {
-            $payment = new Payment();
+            $payment = [];
 
             if (isset($xmlElement->PAYMENT->TYPE)) {
-                $payment->setType((string)$xmlElement->PAYMENT->TYPE);
+                $payment['type'] = (string)$xmlElement->PAYMENT->TYPE;
             }
 
             if (isset($xmlElement->PAYMENT->DIRECTDEBIT)) {
-                $payment->setDirectdebit((string)$xmlElement->PAYMENT->DIRECTDEBIT);
+                $payment['directdebit'] = (string)$xmlElement->PAYMENT->DIRECTDEBIT;
             }
 
             if (isset($xmlElement->PAYMENT->COSTS)) {
-                $payment->setCosts((float)$xmlElement->PAYMENT->COSTS);
+                $payment['costs'] = (float)$xmlElement->PAYMENT->COSTS;
             }
 
             $this->setPayment($payment);
@@ -464,8 +464,8 @@ class Order
             'is_approved' => $this->isApproved(),
             'item_count' => $this->getItemCount(),
             'total_item_amount' => $this->getTotalItemAmount(),
-            'shipment' => $this->getShipment()->getRawData(),
-            'payment' => $this->getPayment()->getRawData(),
+            'shipment' => $this->getShipment(),
+            'payment' => $this->getPayment(),
             'ship_to' => $this->getShipTo()->getRawData(),
             'sell_to' => $this->getSellTo()->getRawData(),
         ];

@@ -11,6 +11,7 @@ if (!empty($filter['id'])) {
          */
         $order = $orderHandler->getOrderById($filter['id']);
         echo $order->getId();
+        var_dump($order->getRawData());
 
         /*
          * download mode
