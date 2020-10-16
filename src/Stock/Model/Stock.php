@@ -19,7 +19,7 @@ class Stock
     /**
      * @return string
      */
-    public function getArticleNumber(): string
+    public function getArticleNumber(): ?string
     {
         return $this->articleNumber;
     }
@@ -35,7 +35,7 @@ class Stock
     /**
      * @return int
      */
-    public function getStock(): int
+    public function getStock(): ?int
     {
         return $this->stock;
     }
