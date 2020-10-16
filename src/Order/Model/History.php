@@ -31,10 +31,12 @@ class History
 
     /**
      * @param int $id
+     * @return History
      */
-    public function setId(int $id): void
+    public function setId(int $id): History
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -47,10 +49,12 @@ class History
 
     /**
      * @param string $type
+     * @return History
      */
-    public function setType(string $type): void
+    public function setType(string $type): History
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -63,10 +67,12 @@ class History
 
     /**
      * @param string $createdDate
+     * @return History
      */
-    public function setCreatedDate(string $createdDate): void
+    public function setCreatedDate(string $createdDate): History
     {
         $this->createdDate = $createdDate;
+        return $this;
     }
 
     /**

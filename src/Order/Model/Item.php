@@ -56,10 +56,12 @@ class Item
 
     /**
      * @param int $id
+     * @return Item
      */
-    public function setId(int $id): void
+    public function setId(int $id): Item
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -72,10 +74,12 @@ class Item
 
     /**
      * @param string $channelId
+     * @return Item
      */
-    public function setChannelId(string $channelId): void
+    public function setChannelId(string $channelId): Item
     {
         $this->channelId = $channelId;
+        return $this;
     }
 
     /**
@@ -88,10 +92,12 @@ class Item
 
     /**
      * @param string $sku
+     * @return Item
      */
-    public function setSku(string $sku): void
+    public function setSku(string $sku): Item
     {
         $this->sku = $sku;
+        return $this;
     }
 
     /**
@@ -104,10 +110,12 @@ class Item
 
     /**
      * @param string $ean
+     * @return Item
      */
-    public function setEan(string $ean): void
+    public function setEan(string $ean): Item
     {
         $this->ean = $ean;
+        return $this;
     }
 
     /**
@@ -120,10 +128,12 @@ class Item
 
     /**
      * @param int $quantity
+     * @return Item
      */
-    public function setQuantity(int $quantity): void
+    public function setQuantity(int $quantity): Item
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
@@ -136,10 +146,12 @@ class Item
 
     /**
      * @param float $transferPrice
+     * @return Item
      */
-    public function setTransferPrice(float $transferPrice): void
+    public function setTransferPrice(float $transferPrice): Item
     {
         $this->transferPrice = $transferPrice;
+        return $this;
     }
 
     /**
@@ -152,10 +164,12 @@ class Item
 
     /**
      * @param float $itemPrice
+     * @return Item
      */
-    public function setItemPrice(float $itemPrice): void
+    public function setItemPrice(float $itemPrice): Item
     {
         $this->itemPrice = $itemPrice;
+        return $this;
     }
 
     /**
@@ -168,10 +182,12 @@ class Item
 
     /**
      * @param string $createdDate
+     * @return Item
      */
-    public function setCreatedDate(string $createdDate): void
+    public function setCreatedDate(string $createdDate): Item
     {
         $this->createdDate = $createdDate;
+        return $this;
     }
 
     /**

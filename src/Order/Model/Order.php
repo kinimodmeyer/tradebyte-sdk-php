@@ -69,16 +69,6 @@ class Order
     protected $history;
 
     /**
-     * @var array
-     */
-    protected $shipment;
-
-    /**
-     * @var array
-     */
-    protected $payment;
-
-    /**
      * @var Customer
      */
     protected $shipTo;
@@ -87,6 +77,47 @@ class Order
      * @var Customer
      */
     protected $sellTo;
+
+    /**
+     * @var float
+     */
+    protected $shipmentPrice;
+
+    /**
+     * @var string
+     */
+    protected $shipmentIdcodeShip;
+
+    /**
+     * @var string
+     */
+    protected $shipmentIdcodeReturn;
+
+    /**
+     * @var string
+     */
+    protected $shipmentRoutingCode;
+
+    /**
+     * @var float
+     */
+    protected $paymentCosts;
+
+
+    /**
+     * @var string
+     */
+    protected $paymentType;
+
+    /**
+     * @var string
+     */
+    protected $paymentDirectdebit;
+
+    /**
+     * @var string
+     */
+    protected $customerComment;
 
     /**
      * @return int
@@ -98,10 +129,12 @@ class Order
 
     /**
      * @param int $id
+     * @return Order
      */
-    public function setId(int $id): void
+    public function setId(int $id): Order
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -114,10 +147,12 @@ class Order
 
     /**
      * @param string $orderDate
+     * @return Order
      */
-    public function setOrderDate(string $orderDate): void
+    public function setOrderDate(string $orderDate): Order
     {
         $this->orderDate = $orderDate;
+        return $this;
     }
 
     /**
@@ -130,10 +165,12 @@ class Order
 
     /**
      * @param string $orderCreatedDate
+     * @return Order
      */
-    public function setOrderCreatedDate(string $orderCreatedDate): void
+    public function setOrderCreatedDate(string $orderCreatedDate): Order
     {
         $this->orderCreatedDate = $orderCreatedDate;
+        return $this;
     }
 
     /**
@@ -146,10 +183,12 @@ class Order
 
     /**
      * @param string $channelSign
+     * @return Order
      */
-    public function setChannelSign(string $channelSign): void
+    public function setChannelSign(string $channelSign): Order
     {
         $this->channelSign = $channelSign;
+        return $this;
     }
 
     /**
@@ -162,10 +201,12 @@ class Order
 
     /**
      * @param string $channelId
+     * @return Order
      */
-    public function setChannelId(string $channelId): void
+    public function setChannelId(string $channelId): Order
     {
         $this->channelId = $channelId;
+        return $this;
     }
 
     /**
@@ -178,10 +219,12 @@ class Order
 
     /**
      * @param string $channelNumber
+     * @return Order
      */
-    public function setChannelNumber(string $channelNumber): void
+    public function setChannelNumber(string $channelNumber): Order
     {
         $this->channelNumber = $channelNumber;
+        return $this;
     }
 
     /**
@@ -194,10 +237,12 @@ class Order
 
     /**
      * @param bool $isPaid
+     * @return Order
      */
-    public function setIsPaid(bool $isPaid): void
+    public function setIsPaid(bool $isPaid): Order
     {
         $this->isPaid = $isPaid;
+        return $this;
     }
 
     /**
@@ -210,10 +255,12 @@ class Order
 
     /**
      * @param bool $isApproved
+     * @return Order
      */
-    public function setIsApproved(bool $isApproved): void
+    public function setIsApproved(bool $isApproved): Order
     {
         $this->isApproved = $isApproved;
+        return $this;
     }
 
     /**
@@ -226,10 +273,12 @@ class Order
 
     /**
      * @param int $itemCount
+     * @return Order
      */
-    public function setItemCount(int $itemCount): void
+    public function setItemCount(int $itemCount): Order
     {
         $this->itemCount = $itemCount;
+        return $this;
     }
 
     /**
@@ -242,10 +291,12 @@ class Order
 
     /**
      * @param float $totalItemAmount
+     * @return Order
      */
-    public function setTotalItemAmount(float $totalItemAmount): void
+    public function setTotalItemAmount(float $totalItemAmount): Order
     {
         $this->totalItemAmount = $totalItemAmount;
+        return $this;
     }
 
     /**
@@ -258,10 +309,12 @@ class Order
 
     /**
      * @param Item[] $items
+     * @return Order
      */
-    public function setItems(array $items): void
+    public function setItems(array $items): Order
     {
         $this->items = $items;
+        return $this;
     }
 
     /**
@@ -274,42 +327,12 @@ class Order
 
     /**
      * @param History[] $history
+     * @return Order
      */
-    public function setHistory(array $history): void
+    public function setHistory(array $history): Order
     {
         $this->history = $history;
-    }
-
-    /**
-     * @return array
-     */
-    public function getShipment(): ?array
-    {
-        return $this->shipment;
-    }
-
-    /**
-     * @param array $shipment
-     */
-    public function setShipment(array $shipment): void
-    {
-        $this->shipment = $shipment;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPayment(): ?array
-    {
-        return $this->payment;
-    }
-
-    /**
-     * @param array $payment
-     */
-    public function setPayment(array $payment): void
-    {
-        $this->payment = $payment;
+        return $this;
     }
 
     /**
@@ -322,10 +345,12 @@ class Order
 
     /**
      * @param Customer $shipTo
+     * @return Order
      */
-    public function setShipTo(Customer $shipTo): void
+    public function setShipTo(Customer $shipTo): Order
     {
         $this->shipTo = $shipTo;
+        return $this;
     }
 
     /**
@@ -338,10 +363,156 @@ class Order
 
     /**
      * @param Customer $sellTo
+     * @return Order
      */
-    public function setSellTo(Customer $sellTo): void
+    public function setSellTo(Customer $sellTo): Order
     {
         $this->sellTo = $sellTo;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getShipmentPrice(): ?float
+    {
+        return $this->shipmentPrice;
+    }
+
+    /**
+     * @param float $shipmentPrice
+     * @return Order
+     */
+    public function setShipmentPrice(float $shipmentPrice): Order
+    {
+        $this->shipmentPrice = $shipmentPrice;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShipmentIdcodeShip(): ?string
+    {
+        return $this->shipmentIdcodeShip;
+    }
+
+    /**
+     * @param string $shipmentIdcodeShip
+     * @return Order
+     */
+    public function setShipmentIdcodeShip(string $shipmentIdcodeShip): Order
+    {
+        $this->shipmentIdcodeShip = $shipmentIdcodeShip;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShipmentIdcodeReturn(): ?string
+    {
+        return $this->shipmentIdcodeReturn;
+    }
+
+    /**
+     * @param string $shipmentIdcodeReturn
+     * @return Order
+     */
+    public function setShipmentIdcodeReturn(string $shipmentIdcodeReturn): Order
+    {
+        $this->shipmentIdcodeReturn = $shipmentIdcodeReturn;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShipmentRoutingCode(): ?string
+    {
+        return $this->shipmentRoutingCode;
+    }
+
+    /**
+     * @param string $shipmentRoutingCode
+     * @return Order
+     */
+    public function setShipmentRoutingCode(string $shipmentRoutingCode): Order
+    {
+        $this->shipmentRoutingCode = $shipmentRoutingCode;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPaymentCosts(): ?float
+    {
+        return $this->paymentCosts;
+    }
+
+    /**
+     * @param float $paymentCosts
+     * @return Order
+     */
+    public function setPaymentCosts(float $paymentCosts): Order
+    {
+        $this->paymentCosts = $paymentCosts;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentType(): ?string
+    {
+        return $this->paymentType;
+    }
+
+    /**
+     * @param string $paymentType
+     * @return Order
+     */
+    public function setPaymentType(string $paymentType): Order
+    {
+        $this->paymentType = $paymentType;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentDirectdebit(): ?string
+    {
+        return $this->paymentDirectdebit;
+    }
+
+    /**
+     * @param string $paymentDirectdebit
+     * @return Order
+     */
+    public function setPaymentDirectdebit(string $paymentDirectdebit): Order
+    {
+        $this->paymentDirectdebit = $paymentDirectdebit;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomerComment(): ?string
+    {
+        return $this->customerComment;
+    }
+
+    /**
+     * @param string $customerComment
+     * @return Order
+     */
+    public function setCustomerComment(string $customerComment): Order
+    {
+        $this->customerComment = $customerComment;
+        return $this;
     }
 
     /**
@@ -356,69 +527,72 @@ class Order
         $this->setChannelSign((string)$xmlElement->ORDER_DATA->CHANNEL_SIGN);
         $this->setChannelId((string)$xmlElement->ORDER_DATA->CHANNEL_ID);
         $this->setChannelNumber((string)$xmlElement->ORDER_DATA->CHANNEL_NO);
-        $this->setIsPaid((bool)$xmlElement->ORDER_DATA->PAID);
-        $this->setIsApproved((bool)$xmlElement->ORDER_DATA->APPROVED);
+        $this->setIsPaid((bool)(int)$xmlElement->ORDER_DATA->PAID);
+        $this->setIsApproved((bool)(int)$xmlElement->ORDER_DATA->APPROVED);
+        $this->setCustomerComment((string)$xmlElement->ORDER_DATA->CUSTOMER_COMMENT);
         $this->setItemCount((int)$xmlElement->ORDER_DATA->ITEM_COUNT);
         $this->setTotalItemAmount((float)$xmlElement->ORDER_DATA->TOTAL_ITEM_AMOUNT);
 
         if (isset($xmlElement->SHIPMENT)) {
-            $shipment = [];
-
             if (isset($xmlElement->SHIPMENT->IDCODE_SHIP)) {
-                $shipment['idcode_ship'] = (string)$xmlElement->SHIPMENT->IDCODE_SHIP;
+                $this->setShipmentIdcodeShip((string)$xmlElement->SHIPMENT->IDCODE_SHIP);
             }
 
             if (isset($xmlElement->SHIPMENT->IDCODE_RETURN)) {
-                $shipment['idcode_return'] = (string)$xmlElement->SHIPMENT->IDCODE_RETURN;
+                $this->setShipmentIdcodeReturn((string)$xmlElement->SHIPMENT->IDCODE_RETURN);
             }
 
             if (isset($xmlElement->SHIPMENT->ROUTING_CODE)) {
-                $shipment['routing_code'] = (string)$xmlElement->SHIPMENT->ROUTING_CODE;
+                $this->setShipmentRoutingCode((string)$xmlElement->SHIPMENT->ROUTING_CODE);
             }
 
             if (isset($xmlElement->SHIPMENT->PRICE)) {
-                $shipment['price'] = (float)$xmlElement->SHIPMENT->PRICE;
+                $this->setShipmentPrice((float)$xmlElement->SHIPMENT->PRICE);
             }
-
-            $this->setShipment($shipment);
         }
 
         if (isset($xmlElement->PAYMENT)) {
-            $payment = [];
-
             if (isset($xmlElement->PAYMENT->TYPE)) {
-                $payment['type'] = (string)$xmlElement->PAYMENT->TYPE;
+                $this->setPaymentType((string)$xmlElement->PAYMENT->TYPE);
             }
 
             if (isset($xmlElement->PAYMENT->DIRECTDEBIT)) {
-                $payment['directdebit'] = (string)$xmlElement->PAYMENT->DIRECTDEBIT;
+                $this->setPaymentDirectdebit((string)$xmlElement->PAYMENT->DIRECTDEBIT);
             }
 
             if (isset($xmlElement->PAYMENT->COSTS)) {
-                $payment['costs'] = (float)$xmlElement->PAYMENT->COSTS;
+                $this->setPaymentCosts((float)$xmlElement->PAYMENT->COSTS);
             }
-
-            $this->setPayment($payment);
         }
 
         foreach (['sell_to', 'ship_to'] as $customerType) {
             $upperCustomerType = strtoupper($customerType);
-            $customer = new Customer();
-            $customer->setId((int)$xmlElement->{$upperCustomerType}->TB_ID);
-            $customer->setChannelNumber((string)$xmlElement->{$upperCustomerType}->CHANNEL_NO);
-            $customer->setFirstname((string)$xmlElement->{$upperCustomerType}->FIRSTNAME);
-            $customer->setLastname((string)$xmlElement->{$upperCustomerType}->LASTNAME);
-            $customer->setName((string)$xmlElement->{$upperCustomerType}->NAME);
-            $customer->setStreetNumber((string)$xmlElement->{$upperCustomerType}->STREET_NO);
-            $customer->setZip((string)$xmlElement->{$upperCustomerType}->ZIP);
-            $customer->setCity((string)$xmlElement->{$upperCustomerType}->CITY);
-            $customer->setCountry((string)$xmlElement->{$upperCustomerType}->COUNTRY);
-            $customer->setEmail((string)$xmlElement->{$upperCustomerType}->EMAIL);
 
-            if ($customerType == 'sell_to') {
-                $this->setSellTo($customer);
-            } else {
-                $this->setShipTo($customer);
+            if (isset($xmlElement->{$upperCustomerType})) {
+                $customer = new Customer();
+                $customer->setId((int)$xmlElement->{$upperCustomerType}->TB_ID);
+                $customer->setChannelNumber((string)$xmlElement->{$upperCustomerType}->CHANNEL_NO);
+                $customer->setTitle((string)$xmlElement->{$upperCustomerType}->TITLE);
+                $customer->setFirstname((string)$xmlElement->{$upperCustomerType}->FIRSTNAME);
+                $customer->setLastname((string)$xmlElement->{$upperCustomerType}->LASTNAME);
+                $customer->setName((string)$xmlElement->{$upperCustomerType}->NAME);
+                $customer->setNameExtension((string)$xmlElement->{$upperCustomerType}->NAME_EXTENSION);
+                $customer->setStreetNumber((string)$xmlElement->{$upperCustomerType}->STREET_NO);
+                $customer->setStreetExtension((string)$xmlElement->{$upperCustomerType}->STREET_EXTENSION);
+                $customer->setZip((string)$xmlElement->{$upperCustomerType}->ZIP);
+                $customer->setCity((string)$xmlElement->{$upperCustomerType}->CITY);
+                $customer->setCountry((string)$xmlElement->{$upperCustomerType}->COUNTRY);
+                $customer->setPhonePrivate((string)$xmlElement->{$upperCustomerType}->PHONE_PRIVATE);
+                $customer->setPhoneOffice((string)$xmlElement->{$upperCustomerType}->PHONE_OFFICE);
+                $customer->setPhoneMobile((string)$xmlElement->{$upperCustomerType}->PHONE_MOBILE);
+                $customer->setEmail((string)$xmlElement->{$upperCustomerType}->EMAIL);
+                $customer->setVatId((string)$xmlElement->{$upperCustomerType}->VAT_ID);
+
+                if ($customerType == 'sell_to') {
+                    $this->setSellTo($customer);
+                } else {
+                    $this->setShipTo($customer);
+                }
             }
         }
 
@@ -462,12 +636,18 @@ class Order
             'channel_number' => $this->getChannelNumber(),
             'is_paid' => $this->isPaid(),
             'is_approved' => $this->isApproved(),
+            'customer_comment' => $this->getCustomerComment(),
             'item_count' => $this->getItemCount(),
             'total_item_amount' => $this->getTotalItemAmount(),
-            'shipment' => $this->getShipment(),
-            'payment' => $this->getPayment(),
+            'shipment_idcode_return' => $this->getShipmentIdcodeReturn(),
+            'shipment_idcode_ship' => $this->getShipmentIdcodeShip(),
+            'shipment_routing_code' => $this->getShipmentRoutingCode(),
+            'shipment_price' => $this->getShipmentPrice(),
+            'payment_costs' => $this->getPaymentCosts(),
+            'payment_directdebit' => $this->getPaymentDirectdebit(),
+            'payment_type' => $this->getPaymentType(),
             'ship_to' => $this->getShipTo() ? $this->getShipTo()->getRawData() : null,
-            'sell_to' => $this->getShipTo() ? $this->getSellTo()->getRawData() : null,
+            'sell_to' => $this->getSellTo() ? $this->getSellTo()->getRawData() : null,
             'history' => null,
             'items' => null
         ];
