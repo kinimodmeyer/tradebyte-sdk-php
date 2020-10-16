@@ -11,7 +11,7 @@ if (!empty($filter['channel'])) {
              * on the fly mode
              */
             $productModel = $productHandler->getProductById($filter['id'], $filter['channel']);
-            echo $productModel->getId()."\n";
+            var_dump($productModel->getRawData());
 
             /*
              * download mode

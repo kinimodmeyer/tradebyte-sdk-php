@@ -82,6 +82,31 @@ class Article
     protected $orderInterval;
 
     /**
+     * @var array
+     */
+    protected $supSupplier;
+
+    /**
+     * @var array
+     */
+    protected $variants;
+
+    /**
+     * @var array
+     */
+    protected $prices;
+
+    /**
+     * @var array
+     */
+    protected $parcel;
+
+    /**
+     * @var array
+     */
+    protected $media;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -322,6 +347,86 @@ class Article
     }
 
     /**
+     * @return array
+     */
+    public function getSupSupplier(): ?array
+    {
+        return $this->supSupplier;
+    }
+
+    /**
+     * @param array $supSupplier
+     */
+    public function setSupSupplier(array $supSupplier): void
+    {
+        $this->supSupplier = $supSupplier;
+    }
+
+    /**
+     * @return array
+     */
+    public function getVariants(): ?array
+    {
+        return $this->variants;
+    }
+
+    /**
+     * @param array $variants
+     */
+    public function setVariants(array $variants): void
+    {
+        $this->variants = $variants;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPrices(): ?array
+    {
+        return $this->prices;
+    }
+
+    /**
+     * @param array $prices
+     */
+    public function setPrices(array $prices): void
+    {
+        $this->prices = $prices;
+    }
+
+    /**
+     * @return array
+     */
+    public function getParcel(): ?array
+    {
+        return $this->parcel;
+    }
+
+    /**
+     * @param array $parcel
+     */
+    public function setParcel(array $parcel): void
+    {
+        $this->parcel = $parcel;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMedia(): ?array
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param array $media
+     */
+    public function setMedia(array $media): void
+    {
+        $this->media = $media;
+    }
+
+    /**
      * @return mixed[]
      */
     public function getRawData(): array
@@ -329,18 +434,24 @@ class Article
         return [
             'id' => $this->getId(),
             'number' => $this->getNumber(),
-            'prod_number' => $this->getProdNumber(),
+            'sup_supplier' => $this->getSupSupplier(),
             'change_date' => $this->getChangeDate(),
             'created_date' => $this->getCreatedDate(),
-            'stock' => $this->getStock(),
+            'active' => $this->isActive(),
             'ean' => $this->getEan(),
-            'order_max' => $this->getOrderMax(),
-            'order_min' => $this->getOrderMin(),
-            'order_interval' => $this->getOrderInterval(),
+            'prod_number' => $this->getProdNumber(),
+            'variants' => $this->getVariants(),
+            'prices' => $this->getPrices(),
+            'media' => $this->getMedia(),
+            'unit' => $this->getUnit(),
+            'stock' => $this->getStock(),
             'delivery_time' => $this->getDeliveryTime(),
             'replacement' => $this->getReplacement(),
             'replacement_time' => $this->getReplacementTime(),
-            'unit' => $this->getUnit(),
+            'order_min' => $this->getOrderMin(),
+            'order_max' => $this->getOrderMax(),
+            'order_interval' => $this->getOrderInterval(),
+            'parcel' => $this->getParcel(),
         ];
     }
 }
