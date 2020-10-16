@@ -1,8 +1,6 @@
 <?php
 namespace Tradebyte\Order\Model;
 
-use Cassandra\Custom;
-
 /**
  * @package Tradebyte
  */
