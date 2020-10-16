@@ -50,3 +50,11 @@ $ php examples/products.php channel=1370 id=123
 $ php examples/orders.php channel=1370 id=123
 $ php examples/stock.php channel=1370 delta=123
 ```
+
+## Tests
+
+execute the test with the following:
+
+```bash
+$ ./vendor/bin/phpunit tests
+```

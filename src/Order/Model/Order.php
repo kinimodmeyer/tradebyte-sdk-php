@@ -91,7 +91,7 @@ class Order
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -107,7 +107,7 @@ class Order
     /**
      * @return string
      */
-    public function getOrderDate(): string
+    public function getOrderDate(): ?string
     {
         return $this->orderDate;
     }
@@ -123,7 +123,7 @@ class Order
     /**
      * @return string
      */
-    public function getOrderCreatedDate(): string
+    public function getOrderCreatedDate(): ?string
     {
         return $this->orderCreatedDate;
     }
@@ -139,7 +139,7 @@ class Order
     /**
      * @return string
      */
-    public function getChannelSign(): string
+    public function getChannelSign(): ?string
     {
         return $this->channelSign;
     }
@@ -155,7 +155,7 @@ class Order
     /**
      * @return string
      */
-    public function getChannelId(): string
+    public function getChannelId(): ?string
     {
         return $this->channelId;
     }
@@ -171,7 +171,7 @@ class Order
     /**
      * @return string
      */
-    public function getChannelNumber(): string
+    public function getChannelNumber(): ?string
     {
         return $this->channelNumber;
     }
@@ -187,7 +187,7 @@ class Order
     /**
      * @return bool
      */
-    public function isPaid(): bool
+    public function isPaid(): ?bool
     {
         return $this->isPaid;
     }
@@ -203,7 +203,7 @@ class Order
     /**
      * @return bool
      */
-    public function isApproved(): bool
+    public function isApproved(): ?bool
     {
         return $this->isApproved;
     }
@@ -219,7 +219,7 @@ class Order
     /**
      * @return int
      */
-    public function getItemCount(): int
+    public function getItemCount(): ?int
     {
         return $this->itemCount;
     }
@@ -235,7 +235,7 @@ class Order
     /**
      * @return float
      */
-    public function getTotalItemAmount(): float
+    public function getTotalItemAmount(): ?float
     {
         return $this->totalItemAmount;
     }
@@ -251,7 +251,7 @@ class Order
     /**
      * @return Item[]
      */
-    public function getItems(): array
+    public function getItems(): ?array
     {
         return $this->items;
     }
@@ -267,7 +267,7 @@ class Order
     /**
      * @return History[]
      */
-    public function getHistory(): array
+    public function getHistory(): ?array
     {
         return $this->history;
     }
@@ -283,7 +283,7 @@ class Order
     /**
      * @return array
      */
-    public function getShipment(): array
+    public function getShipment(): ?array
     {
         return $this->shipment;
     }
@@ -299,7 +299,7 @@ class Order
     /**
      * @return array
      */
-    public function getPayment(): array
+    public function getPayment(): ?array
     {
         return $this->payment;
     }
@@ -315,7 +315,7 @@ class Order
     /**
      * @return Customer
      */
-    public function getShipTo(): Customer
+    public function getShipTo(): ?Customer
     {
         return $this->shipTo;
     }
@@ -331,7 +331,7 @@ class Order
     /**
      * @return Customer
      */
-    public function getSellTo(): Customer
+    public function getSellTo(): ?Customer
     {
         return $this->sellTo;
     }
@@ -466,16 +466,26 @@ class Order
             'total_item_amount' => $this->getTotalItemAmount(),
             'shipment' => $this->getShipment(),
             'payment' => $this->getPayment(),
-            'ship_to' => $this->getShipTo()->getRawData(),
-            'sell_to' => $this->getSellTo()->getRawData(),
+            'ship_to' => $this->getShipTo() ? $this->getShipTo()->getRawData() : null,
+            'sell_to' => $this->getShipTo() ? $this->getSellTo()->getRawData() : null,
+            'history' => null,
+            'items' => null
         ];
 
-        foreach ($this->getHistory() as $history) {
-            $data['history'][] = $history->getRawData();
+        $history = $this->getHistory();
+
+        if ($history) {
+            foreach ($this->getHistory() as $history) {
+                $data['history'][] = $history->getRawData();
+            }
         }
 
-        foreach ($this->getItems() as $item) {
-            $data['items'][] = $item->getRawData();
+        $items = $this->getItems();
+
+        if ($items) {
+            foreach ($this->getItems() as $item) {
+                $data['items'][] = $item->getRawData();
+            }
         }
 
         return $data;
