@@ -24,7 +24,7 @@ class History
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -40,7 +40,7 @@ class History
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -56,7 +56,7 @@ class History
     /**
      * @return string
      */
-    public function getCreatedDate(): string
+    public function getCreatedDate(): ?string
     {
         return $this->createdDate;
     }

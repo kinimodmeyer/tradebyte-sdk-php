@@ -49,7 +49,7 @@ class Item
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -65,7 +65,7 @@ class Item
     /**
      * @return string
      */
-    public function getChannelId(): string
+    public function getChannelId(): ?string
     {
         return $this->channelId;
     }
@@ -81,7 +81,7 @@ class Item
     /**
      * @return string
      */
-    public function getSku(): string
+    public function getSku(): ?string
     {
         return $this->sku;
     }
@@ -97,7 +97,7 @@ class Item
     /**
      * @return string
      */
-    public function getEan(): string
+    public function getEan(): ?string
     {
         return $this->ean;
     }
@@ -113,7 +113,7 @@ class Item
     /**
      * @return int
      */
-    public function getQuantity(): int
+    public function getQuantity(): ?int
     {
         return $this->quantity;
     }
@@ -129,7 +129,7 @@ class Item
     /**
      * @return float
      */
-    public function getTransferPrice(): float
+    public function getTransferPrice(): ?float
     {
         return $this->transferPrice;
     }
@@ -145,7 +145,7 @@ class Item
     /**
      * @return float
      */
-    public function getItemPrice(): float
+    public function getItemPrice(): ?float
     {
         return $this->itemPrice;
     }
@@ -161,7 +161,7 @@ class Item
     /**
      * @return string
      */
-    public function getCreatedDate(): string
+    public function getCreatedDate(): ?string
     {
         return $this->createdDate;
     }

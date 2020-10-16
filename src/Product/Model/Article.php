@@ -109,7 +109,7 @@ class Article
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -125,7 +125,7 @@ class Article
     /**
      * @return string
      */
-    public function getNumber(): string
+    public function getNumber(): ?string
     {
         return $this->number;
     }
@@ -141,7 +141,7 @@ class Article
     /**
      * @return string
      */
-    public function getChangeDate(): string
+    public function getChangeDate(): ?string
     {
         return $this->changeDate;
     }
@@ -157,7 +157,7 @@ class Article
     /**
      * @return string
      */
-    public function getCreatedDate(): string
+    public function getCreatedDate(): ?string
     {
         return $this->createdDate;
     }
@@ -173,7 +173,7 @@ class Article
     /**
      * @return bool
      */
-    public function isActive(): bool
+    public function isActive(): ?bool
     {
         return $this->isActive;
     }
@@ -189,7 +189,7 @@ class Article
     /**
      * @return string
      */
-    public function getEan(): string
+    public function getEan(): ?string
     {
         return $this->ean;
     }
@@ -205,7 +205,7 @@ class Article
     /**
      * @return string
      */
-    public function getProdNumber(): string
+    public function getProdNumber(): ?string
     {
         return $this->prodNumber;
     }
@@ -221,7 +221,7 @@ class Article
     /**
      * @return string
      */
-    public function getUnit(): string
+    public function getUnit(): ?string
     {
         return $this->unit;
     }
@@ -237,7 +237,7 @@ class Article
     /**
      * @return int
      */
-    public function getStock(): int
+    public function getStock(): ?int
     {
         return $this->stock;
     }
@@ -253,7 +253,7 @@ class Article
     /**
      * @return int
      */
-    public function getDeliveryTime(): int
+    public function getDeliveryTime(): ?int
     {
         return $this->deliveryTime;
     }
@@ -269,7 +269,7 @@ class Article
     /**
      * @return int
      */
-    public function getReplacement(): int
+    public function getReplacement(): ?int
     {
         return $this->replacement;
     }
@@ -285,7 +285,7 @@ class Article
     /**
      * @return int
      */
-    public function getReplacementTime(): int
+    public function getReplacementTime(): ?int
     {
         return $this->replacementTime;
     }
@@ -301,7 +301,7 @@ class Article
     /**
      * @return int
      */
-    public function getOrderMin(): int
+    public function getOrderMin(): ?int
     {
         return $this->orderMin;
     }
@@ -317,7 +317,7 @@ class Article
     /**
      * @return int
      */
-    public function getOrderMax(): int
+    public function getOrderMax(): ?int
     {
         return $this->orderMax;
     }
@@ -333,7 +333,7 @@ class Article
     /**
      * @return int
      */
-    public function getOrderInterval(): int
+    public function getOrderInterval(): ?int
     {
         return $this->orderInterval;
     }

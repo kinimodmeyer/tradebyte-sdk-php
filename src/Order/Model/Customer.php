@@ -59,7 +59,7 @@ class Customer
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -75,7 +75,7 @@ class Customer
     /**
      * @return string
      */
-    public function getChannelNumber(): string
+    public function getChannelNumber(): ?string
     {
         return $this->channelNumber;
     }
@@ -91,7 +91,7 @@ class Customer
     /**
      * @return string
      */
-    public function getFirstname(): string
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
@@ -107,7 +107,7 @@ class Customer
     /**
      * @return string
      */
-    public function getLastname(): string
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
@@ -123,7 +123,7 @@ class Customer
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -139,7 +139,7 @@ class Customer
     /**
      * @return string
      */
-    public function getStreetNumber(): string
+    public function getStreetNumber(): ?string
     {
         return $this->streetNumber;
     }
@@ -155,7 +155,7 @@ class Customer
     /**
      * @return string
      */
-    public function getZip(): string
+    public function getZip(): ?string
     {
         return $this->zip;
     }
@@ -171,7 +171,7 @@ class Customer
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -187,7 +187,7 @@ class Customer
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
@@ -203,7 +203,7 @@ class Customer
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }

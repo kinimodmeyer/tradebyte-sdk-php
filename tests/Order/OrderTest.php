@@ -2,6 +2,7 @@
 namespace Tradebyte\Order;
 
 use Tradebyte\Base;
+use Tradebyte\Order\Model\Item;
 use Tradebyte\Order\Model\Order;
 
 /**
@@ -13,6 +14,11 @@ class OrderTest extends Base
     {
         $order = new Order();
         $order->setId(1);
+
+        $item = new Item();
+        $item->setId(1);
+        $order->setItems([$item]);
+
         $this->assertSame([
             'id' => 1,
             'order_date' => null,
@@ -29,7 +35,18 @@ class OrderTest extends Base
             'ship_to' => null,
             'sell_to' => null,
             'history' => null,
-            'items' => null,
+            'items' => [
+                [
+                    'id' => 1,
+                    'created_date' => null,
+                    'channel_id' => null,
+                    'ean' => null,
+                    'item_price' => null,
+                    'quantity' => null,
+                    'sku' => null,
+                    'transfer_price' => null
+                ]
+            ],
         ], $order->getRawData());
     }
 
