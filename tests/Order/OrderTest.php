@@ -1,21 +1,20 @@
 <?php
-namespace Tradebyte\Order\Model;
+namespace Tradebyte\Order;
 
 use Tradebyte\Base;
+use Tradebyte\Order\Model\Order;
 
 /**
  * @package Tradebyte
  */
 class OrderTest extends Base
 {
-    public function testGetRawData()
+    public function testOrderObjectGetRawData()
     {
         $order = new Order();
-        $order->setId(12);
-
-        $this->assertEquals(12, $order->getId());
+        $order->setId(1);
         $this->assertSame([
-            'id' => 12,
+            'id' => 1,
             'order_date' => null,
             'order_created_date' => null,
             'channel_sign' => null,

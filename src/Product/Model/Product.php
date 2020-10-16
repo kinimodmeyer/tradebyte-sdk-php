@@ -71,7 +71,7 @@ class Product
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -87,7 +87,7 @@ class Product
     /**
      * @return string
      */
-    public function getNumber(): string
+    public function getNumber(): ?string
     {
         return $this->number;
     }
@@ -103,7 +103,7 @@ class Product
     /**
      * @return int
      */
-    public function getChangeDate(): int
+    public function getChangeDate(): ?int
     {
         return $this->changeDate;
     }
@@ -119,7 +119,7 @@ class Product
     /**
      * @return int
      */
-    public function getCreatedDate(): int
+    public function getCreatedDate(): ?int
     {
         return $this->createdDate;
     }
@@ -135,7 +135,7 @@ class Product
     /**
      * @return string
      */
-    public function getBrand(): string
+    public function getBrand(): ?string
     {
         return $this->brand;
     }
@@ -151,7 +151,7 @@ class Product
     /**
      * @return Article[]
      */
-    public function getArticles(): array
+    public function getArticles(): ?array
     {
         return $this->articles;
     }
@@ -199,7 +199,7 @@ class Product
     /**
      * @return array
      */
-    public function getName(): array
+    public function getName(): ?array
     {
         return $this->name;
     }
@@ -215,7 +215,7 @@ class Product
     /**
      * @return array
      */
-    public function getText(): array
+    public function getText(): ?array
     {
         return $this->text;
     }
@@ -455,10 +455,15 @@ class Product
             'brand' => $this->getBrand(),
             'media' => $this->getMedia(),
             'variantfields' => $this->getVariantfields(),
+            'articles' => null
         ];
 
-        foreach ($this->getArticles() as $article) {
-            $data['articles'][] = $article->getRawData();
+        $articles = $this->getArticles();
+
+        if ($articles) {
+            foreach ($articles as $article) {
+                $data['articles'][] = $article->getRawData();
+            }
         }
 
         return $data;
