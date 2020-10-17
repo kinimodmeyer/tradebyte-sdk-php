@@ -9,17 +9,17 @@ class History
     /**
      * @var int
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      */
-    protected $type;
+    private $type;
 
     /**
      * @var string
      */
-    protected $createdDate;
+    private $createdDate;
 
     /**
      * @return int

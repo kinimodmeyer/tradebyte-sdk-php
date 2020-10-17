@@ -13,7 +13,7 @@ class StockTest extends Base
     /**
      * @return void
      */
-    public function testOpenTbstockLocal(): void
+    public function testGetTbstockLocal(): void
     {
         $stockHandler = (new Client())->getStockHandler();
         $catalog = $stockHandler->getTbstockLocal(__DIR__.'/../files/stock.xml');

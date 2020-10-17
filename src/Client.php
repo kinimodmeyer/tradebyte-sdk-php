@@ -58,6 +58,14 @@ class Client
     }
 
     /**
+     * @return Message\Handler
+     */
+    public function getMessageHandler(): Message\Handler
+    {
+        return new Message\Handler($this);
+    }
+
+    /**
      * @return Product\Handler
      */
     public function getProductHandler(): Product\Handler
