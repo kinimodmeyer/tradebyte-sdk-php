@@ -50,7 +50,7 @@ class Handler
     }
 
     /**
-     * @param mixed[] $stockArray
+     * @param Stock[] $stockArray
      * @return string
      */
     public function updateStock(array $stockArray)
@@ -58,7 +58,7 @@ class Handler
         $postData  = '<?xml version="1.0" encoding="UTF-8"?><TBCATALOG><ARTICLEDATA>';
 
         foreach ($stockArray as $stock) {
-            $postData .= '<ARTICLE><A_NR>'.$stock['article_number'].'</A_NR><A_STOCK>'.$stock['stock'].'</A_STOCK></ARTICLE>';
+            $postData .= '<ARTICLE><A_NR>'.$stock->getArticleNumber().'</A_NR><A_STOCK>'.$stock->getStock().'</A_STOCK></ARTICLE>';
         }
 
         $postData .= '</ARTICLEDATA></TBCATALOG>';

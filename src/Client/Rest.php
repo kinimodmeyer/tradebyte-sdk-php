@@ -157,8 +157,8 @@ class Rest
         $response =  file_get_contents($this->getCreatedURI($url, []), false, stream_context_create($context));
         $statusLine = $http_response_header[0];
 
-        if (!in_array($this->getStatusCode($statusLine), [200, 204])) {
-            throw new \RuntimeException('unexpected response status: '.$statusLine);
+        if (!in_array($this->getStatusCode($statusLine), [200, 201, 204])) {
+            throw new \RuntimeException($statusLine.' / '.$response);
         }
 
         return $response;

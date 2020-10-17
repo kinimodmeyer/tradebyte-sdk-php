@@ -28,10 +28,12 @@ class Stock
 
     /**
      * @param string $articleNumber
+     * @return Stock
      */
-    public function setArticleNumber(string $articleNumber): void
+    public function setArticleNumber(string $articleNumber): Stock
     {
         $this->articleNumber = $articleNumber;
+        return $this;
     }
 
     /**
@@ -44,10 +46,12 @@ class Stock
 
     /**
      * @param int $stock
+     * @return Stock
      */
-    public function setStock(int $stock): void
+    public function setStock(int $stock): Stock
     {
         $this->stock = $stock;
+        return $this;
     }
 
     /**

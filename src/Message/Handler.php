@@ -95,4 +95,35 @@ class Handler
         $this->client->getRestClient()->postXML('messages/'.$messageId.'/exported');
         return true;
     }
+
+    /**
+     * @param string $filePath
+     * @todo implement
+     */
+    public function addMessagesFromFile(string $filePath)
+    {
+        //implement
+    }
+
+    /**
+     * @param Message[] $stockArray
+     * @return string
+     * @todo change to XMLWriter and add all fields
+     */
+    public function addMessages(array $stockArray)
+    {
+        $postData  = '<?xml version="1.0" encoding="UTF-8"?><MESSAGES_LIST>';
+
+        foreach ($stockArray as $message) {
+            $postData .= '<MESSAGE>
+                            <MESSAGE_TYPE>' . $message->getType() . '</MESSAGE_TYPE>
+                            <TB_ORDER_ID>' . $message->getOrderId() . '</TB_ORDER_ID>
+                            <TB_ORDER_ITEM_ID>' . $message->getOrderItemId() . '</TB_ORDER_ITEM_ID>
+                            <QUANTITY>' . $message->getQuantity() . '</QUANTITY>
+                        </MESSAGE>';
+        }
+
+        $postData .= '</MESSAGES_LIST>';
+        return $this->client->getRestClient()->postXML('messages/', $postData);
+    }
 }
