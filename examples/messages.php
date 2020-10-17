@@ -14,7 +14,7 @@ foreach ($messageList->getMessages() as $message) {
     echo $message->getId();
 
     /*
-     * acknowledge order received.
+     * acknowledge message received.
      *
      * try {
      *     $messageHandler->updateMessageExported($message->getId());

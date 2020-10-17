@@ -20,6 +20,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 - [x] stock list
 - [ ] stock push
 - [x] message list
+- [x] message single
 - [x] message set exported
 
 ## Requirements
