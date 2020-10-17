@@ -16,12 +16,13 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 - [ ] order push
 - [x] product list
 - [x] product single
-- [ ] import push
 - [x] stock list
-- [ ] stock push
+- [x] stock push
 - [x] message list
 - [x] message single
+- [ ] message push
 - [x] message set exported
+- [ ] import push
 
 ## Requirements
 
