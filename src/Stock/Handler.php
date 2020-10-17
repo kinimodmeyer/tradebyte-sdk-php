@@ -2,6 +2,7 @@
 namespace Tradebyte\Stock;
 
 use Tradebyte\Client;
+use XMLWriter;
 
 /**
  * @package Tradebyte
@@ -55,13 +56,21 @@ class Handler
      */
     public function updateStock(array $stockArray)
     {
-        $postData  = '<?xml version="1.0" encoding="UTF-8"?><TBCATALOG><ARTICLEDATA>';
+        $writer = new XMLWriter();
+        $writer->openMemory();
+        $writer->startElement('TBCATALOG');
+        $writer->startElement('ARTICLEDATA');
 
         foreach ($stockArray as $stock) {
-            $postData .= '<ARTICLE><A_NR>'.$stock->getArticleNumber().'</A_NR><A_STOCK>'.$stock->getStock().'</A_STOCK></ARTICLE>';
+            $writer->startElement('ARTICLE');
+            $writer->writeElement('A_NR', $stock->getArticleNumber());
+            $writer->writeElement('A_STOCK', $stock->getStock());
+            $writer->endElement();
         }
 
-        $postData .= '</ARTICLEDATA></TBCATALOG>';
-        return $this->client->getRestClient()->postXML('articles/stock', $postData);
+        $writer->endElement();
+        $writer->endElement();
+
+        return $this->client->getRestClient()->postXML('articles/stock', $writer->outputMemory());
     }
 }
