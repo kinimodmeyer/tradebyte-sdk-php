@@ -21,20 +21,22 @@ class Client
     /**
      * @param mixed[] $options
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->options = $options;
 
-        $restClient = new Client\Rest();
-        $restClient->setAccountNumber((int)$this->options['credentials']['account_number']);
-        $restClient->setAccountUser($this->options['credentials']['account_user']);
-        $restClient->setAccountPassword($this->options['credentials']['account_password']);
+        if (isset($this->options['credentials'])) {
+            $restClient = new Client\Rest();
+            $restClient->setAccountNumber((int)$this->options['credentials']['account_number']);
+            $restClient->setAccountUser($this->options['credentials']['account_user']);
+            $restClient->setAccountPassword($this->options['credentials']['account_password']);
 
-        if (!empty($this->options['base_url'])) {
-            $restClient->setBaseURL($this->options['base_url']);
+            if (!empty($this->options['base_url'])) {
+                $restClient->setBaseURL($this->options['base_url']);
+            }
+
+            $this->restClient = $restClient;
         }
-
-        $this->restClient = $restClient;
     }
 
     /**

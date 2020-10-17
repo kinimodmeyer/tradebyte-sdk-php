@@ -2,6 +2,7 @@
 namespace Tradebyte\Stock;
 
 use Tradebyte\Base;
+use Tradebyte\Client;
 use Tradebyte\Stock\Model\Stock;
 
 /**
@@ -12,20 +13,17 @@ class StockTest extends Base
     /**
      * @return void
      */
-    public function testOrderFillFromXml(): void
+    public function testOpenChannelStockFile(): void
     {
-        $stock = new Stock();
-        $xml = '<?xml version="1.0" encoding="UTF-8"?>
-                <ARTICLE>
-                    <A_NR>a_nr_test</A_NR>
-                    <A_STOCK>2</A_STOCK>
-                </ARTICLE>';
-        $stock->fillFromSimpleXMLElement(simplexml_load_string($xml));
+        $stockHandler = (new Client())->getStockHandler();
+        $stock = $stockHandler->openChannelStockFile(__DIR__.'/../files/stock.xml');
+        $stock->rewind();
+        $stockModel = $stock->current();
 
         $this->assertSame([
             'article_number' => 'a_nr_test',
             'stock' => 2,
-        ], $stock->getRawData());
+        ], $stockModel->getRawData());
     }
 
     /**
@@ -41,5 +39,4 @@ class StockTest extends Base
             'stock' => 20,
         ], $stock->getRawData());
     }
-
 }
