@@ -29,3 +29,10 @@ foreach ($catalog->getStock() as $stock) {
 }
 
 $catalog->close();
+
+/*
+ * update stock
+ */
+$stockHandler->updateStock([
+    [ 'article_number' => '12345', 'stock' => 4]
+]);

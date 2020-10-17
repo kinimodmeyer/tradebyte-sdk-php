@@ -48,4 +48,20 @@ class Handler
     {
         return $this->client->getRestClient()->downloadFile($filePath, 'stock/', $filter);
     }
+
+    /**
+     * @param mixed[] $stockArray
+     * @return string
+     */
+    public function updateStock(array $stockArray)
+    {
+        $postData  = '<?xml version="1.0" encoding="UTF-8"?><TBCATALOG><ARTICLEDATA>';
+
+        foreach ($stockArray as $stock) {
+            $postData .= '<ARTICLE><A_NR>'.$stock['article_number'].'</A_NR><A_STOCK>'.$stock['stock'].'</A_STOCK></ARTICLE>';
+        }
+
+        $postData .= '</ARTICLEDATA></TBCATALOG>';
+        return $this->client->getRestClient()->postXML('articles/stock', $postData);
+    }
 }

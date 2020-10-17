@@ -136,10 +136,10 @@ class Rest
 
     /**
      * @param string $url
-     * @param array $filter
+     * @param string $postData
      * @return string
      */
-    public function postXML(string $url, array $filter = []): string
+    public function postXML(string $url, string $postData): string
     {
         $context = [
             'http' => [
@@ -148,15 +148,16 @@ class Rest
                     ."\r\n".'Content-Type: application/xml'
                     ."\r\n".'Accept: application/xml'
                     ."\r\n".'User-Agent: Tradebyte-SDK',
+                'content' => $postData,
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
         ];
 
-        $response =  file_get_contents($this->getCreatedURI($url, $filter), false, stream_context_create($context));
+        $response =  file_get_contents($this->getCreatedURI($url, []), false, stream_context_create($context));
         $statusLine = $http_response_header[0];
 
-        if ($this->getStatusCode($statusLine) !== 200) {
+        if (!in_array($this->getStatusCode($statusLine), [200, 204])) {
             throw new \RuntimeException('unexpected response status: '.$statusLine);
         }
 
