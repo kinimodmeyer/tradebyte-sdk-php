@@ -1,6 +1,8 @@
 <?php
 namespace Tradebyte;
 
+use Tradebyte\Product\Tbcat;
+
 /**
  * Entry point of the library.
  *

@@ -3,59 +3,37 @@ require __DIR__.'/loader.php';
 
 $client = new Tradebyte\Client(['credentials' => $credentials]);
 $orderHandler = $client->getOrderHandler();
+$params = [];
 
-if (!empty($filter['id'])) {
-    try {
-        /*
-         * on the fly mode
-         */
-        $order = $orderHandler->getOrderById($filter['id']);
-        echo $order->getId();
-        var_dump($order->getRawData());
+/*
+ * on the fly mode
+ */
+$orderList = $orderHandler->getTborderList($params);
 
-        /*
-         * download mode
-         */
-        $orderHandler->downloadOrderById(__DIR__.'/files/order_'.$filter['id'].'.xml', $filter['id']);
-        $order = $orderHandler->openOrderFile(__DIR__.'/files/order_'.$filter['id'].'.xml');
-        echo $order->getId();
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-} else {
-    try {
-        /*
-         * on the fly mode
-         */
-        foreach ($orderHandler->getOrdersBy() as $order) {
-            echo 'order:' . $order->getId();
+foreach ($orderList->getOrders() as $order) {
+    echo $order->getId();
 
-            foreach ($order->getItems() as $item) {
-                echo $item->getEan().',';
-            }
-
-            /*
-             * acknowledge order received.
-             *
-             * try {
-             *     $orderHandler->updateOrderExported($order->getId());
-             * } catch (Exception $e) {
-             *     echo $e->getMessage();
-             *  }
-             */
-
-            echo "\n";
-        }
-
-        /*
-         * download mode
-         */
-        $orderHandler->downloadOrdersBy(__DIR__.'/files/order.xml');
-
-        foreach ($orderHandler->openOrdersFile(__DIR__.'/files/order.xml') as $order) {
-            echo $order->getId()."\n";
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
+    /*
+     * acknowledge order received.
+     *
+     * try {
+     *     $orderHandler->updateOrderExported($order->getId());
+     * } catch (Exception $e) {
+     *     echo $e->getMessage();
+     *  }
+     */
 }
+
+$orderList->close();
+
+/*
+ * download mode
+ */
+$orderHandler->downloadTborderList(__DIR__.'/files/orders.xml', $params);
+$orderList = $orderHandler->getTborderListLocal(__DIR__.'/files/orders.xml');
+
+foreach ($orderList->getOrders() as $order) {
+    echo $order->getId();
+}
+
+$orderList->close();

@@ -46,6 +46,11 @@ class Iterator
     protected $openLocalFilepath = false;
 
     /**
+     * @var bool
+     */
+    protected $isOpen = false;
+
+    /**
      * @param Client $client
      * @param string $url
      * @param mixed[] $filter
@@ -87,6 +92,21 @@ class Iterator
     public function rewind()
     {
         $this->i = 0;
+        $this->isOpen = false;
+        $this->open();
         $this->next();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsOpen(): bool
+    {
+        return $this->isOpen;
+    }
+
+    public function close(): void
+    {
+        $this->xmlReader->close();
     }
 }

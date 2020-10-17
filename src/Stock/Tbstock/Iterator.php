@@ -1,7 +1,7 @@
 <?php
-namespace Tradebyte\Order\Orderlist;
+namespace Tradebyte\Stock\Tbstock;
 
-use Tradebyte\Order\Model\Order;
+use Tradebyte\Stock\Model\Stock;
 use XMLReader;
 use Tradebyte\Base;
 
@@ -11,9 +11,26 @@ use Tradebyte\Base;
 class Iterator extends Base\Iterator implements \Iterator
 {
     /**
-     * @return Order
+     * @var string
      */
-    public function current(): Order
+    protected $changeDate;
+
+    /**
+     * @return string
+     */
+    public function getChangeDate(): ?string
+    {
+        if (!$this->getIsOpen()) {
+            $this->open();
+        }
+
+        return $this->changeDate;
+    }
+
+    /**
+     * @return Stock
+     */
+    public function current(): Stock
     {
         return $this->current;
     }
@@ -26,9 +43,9 @@ class Iterator extends Base\Iterator implements \Iterator
         while ($this->xmlReader->read()) {
             if ($this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth === 1
-                && $this->xmlReader->name == 'ORDER') {
+                && $this->xmlReader->name == 'ARTICLE') {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
-                $model = new Order();
+                $model = new Stock();
                 $model->fillFromSimpleXMLElement($xmlElement);
                 $this->current = $model;
                 return;
@@ -38,13 +55,10 @@ class Iterator extends Base\Iterator implements \Iterator
         $this->current = null;
     }
 
-    /**
-     * @return void
-     */
-    public function rewind()
+    public function open()
     {
-        if ($this->xmlReader) {
-            $this->xmlReader->close();
+        if ($this->getIsOpen()) {
+            $this->close();
         }
 
         if ($this->openLocalFilepath) {
@@ -54,6 +68,15 @@ class Iterator extends Base\Iterator implements \Iterator
             $this->xmlReader = $this->client->getRestClient()->getXML($this->url, $this->filter);
         }
 
-        parent::rewind();
+        while ($this->xmlReader->read()) {
+            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+                && $this->xmlReader->depth == 0
+                && $this->xmlReader->name == 'TBSTOCK') {
+                $this->changeDate = $this->xmlReader->getAttribute('changedate');
+                break;
+            }
+        }
+
+        $this->isOpen = true;
     }
 }

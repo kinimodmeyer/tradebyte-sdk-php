@@ -2,6 +2,7 @@
 namespace Tradebyte\Order;
 
 use Tradebyte\Base;
+use Tradebyte\Client;
 use Tradebyte\Order\Model\Customer;
 use Tradebyte\Order\Model\History;
 use Tradebyte\Order\Model\Item;
@@ -15,26 +16,10 @@ class OrderTest extends Base
     /**
      * @return void
      */
-    public function testOrderFillFromXml(): void
+    public function testGetTboderLocal(): void
     {
-        $order = new Order();
-        $xml = '<ORDER xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-                    <ORDER_DATA>
-                        <ORDER_DATE>2018-11-07</ORDER_DATE>
-                        <TB_ID>1</TB_ID>
-                        <CHANNEL_SIGN>channel_sign_test</CHANNEL_SIGN>
-                        <CHANNEL_ID>channel_id_test</CHANNEL_ID>
-                        <CHANNEL_NO>channel_no_test</CHANNEL_NO>
-                        <PAID>1</PAID>
-                        <APPROVED>0</APPROVED>
-                        <CUSTOMER_COMMENT>customer_comment_test</CUSTOMER_COMMENT>
-                        <ITEM_COUNT>1</ITEM_COUNT>
-                        <TOTAL_ITEM_AMOUNT>1.00</TOTAL_ITEM_AMOUNT>
-                        <DATE_CREATED>2018-11-07T10:35:57</DATE_CREATED>
-                    </ORDER_DATA>
-                </ORDER>';
-        $order->fillFromSimpleXMLElement(simplexml_load_string($xml));
-
+        $orderHandler = (new Client())->getOrderHandler();
+        $orderModel = $orderHandler->getTborderLocal(__DIR__.'/../files/orders.xml');
         $expectedSubset = [
             'id' => 1,
             'order_date' => '2018-11-07',
@@ -48,7 +33,7 @@ class OrderTest extends Base
             'total_item_amount' => 1.0,
             'order_created_date' => '2018-11-07T10:35:57'
         ];
-        $actualArray = $order->getRawData();
+        $actualArray = $orderModel->getRawData();
 
         foreach ($expectedSubset as $key => $value) {
             $this->assertArrayHasKey($key, $actualArray);

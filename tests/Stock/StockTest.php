@@ -13,17 +13,20 @@ class StockTest extends Base
     /**
      * @return void
      */
-    public function testOpenChannelStockFile(): void
+    public function testOpenTbstockLocal(): void
     {
         $stockHandler = (new Client())->getStockHandler();
-        $stock = $stockHandler->openChannelStockFile(__DIR__.'/../files/stock.xml');
-        $stock->rewind();
-        $stockModel = $stock->current();
+        $catalog = $stockHandler->getTbstockLocal(__DIR__.'/../files/stock.xml');
+        $stockIterator = $catalog->getStock();
+        $stockIterator->rewind();
+        $stockModel = $stockIterator->current();
 
         $this->assertSame([
             'article_number' => 'a_nr_test',
             'stock' => 2,
         ], $stockModel->getRawData());
+
+        $this->assertEquals('1602870040', $catalog->getChangeDate());
     }
 
     /**

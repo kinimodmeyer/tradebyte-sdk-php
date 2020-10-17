@@ -19,7 +19,6 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 - [ ] import push
 - [x] stock list
 - [ ] stock push
-- [ ] stock upload
 - [ ] message list
 - [ ] message ack
 

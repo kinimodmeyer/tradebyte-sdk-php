@@ -1,7 +1,7 @@
 <?php
-namespace Tradebyte\Stock;
+namespace Tradebyte\Order\Tborder;
 
-use Tradebyte\Stock\Model\Stock;
+use Tradebyte\Order\Model\Order;
 use XMLReader;
 use Tradebyte\Base;
 
@@ -11,9 +11,9 @@ use Tradebyte\Base;
 class Iterator extends Base\Iterator implements \Iterator
 {
     /**
-     * @return Stock
+     * @return Order
      */
-    public function current(): Stock
+    public function current(): Order
     {
         return $this->current;
     }
@@ -26,9 +26,9 @@ class Iterator extends Base\Iterator implements \Iterator
         while ($this->xmlReader->read()) {
             if ($this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth === 1
-                && $this->xmlReader->name == 'ARTICLE') {
+                && $this->xmlReader->name == 'ORDER') {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
-                $model = new Stock();
+                $model = new Order();
                 $model->fillFromSimpleXMLElement($xmlElement);
                 $this->current = $model;
                 return;
@@ -38,13 +38,10 @@ class Iterator extends Base\Iterator implements \Iterator
         $this->current = null;
     }
 
-    /**
-     * @return void
-     */
-    public function rewind()
+    public function open()
     {
-        if ($this->xmlReader) {
-            $this->xmlReader->close();
+        if ($this->getIsOpen()) {
+            $this->close();
         }
 
         if ($this->openLocalFilepath) {
@@ -54,6 +51,6 @@ class Iterator extends Base\Iterator implements \Iterator
             $this->xmlReader = $this->client->getRestClient()->getXML($this->url, $this->filter);
         }
 
-        parent::rewind();
+        $this->isOpen = true;
     }
 }

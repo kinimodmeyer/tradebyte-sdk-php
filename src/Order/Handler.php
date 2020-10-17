@@ -2,6 +2,7 @@
 namespace Tradebyte\Order;
 
 use Tradebyte\Client;
+use Tradebyte\Order\Model\Order;
 
 /**
  * Handles all order data specific task.
@@ -24,59 +25,29 @@ class Handler
     }
 
     /**
-     * @param string $filePath
-     * @param array $params
-     * @return bool
-     */
-    public function downloadOrdersBy(string $filePath, array $params = []): bool
-    {
-        return $this->client->getRestClient()->downloadFile($filePath, 'orders/', $params);
-    }
-
-    /**
-     * @param string $filePath
-     * @return Orderlist\Iterator
-     */
-    public function openOrdersFile(string $filePath) : Orderlist\Iterator
-    {
-        $iterator = new Orderlist\Iterator($this->client, $filePath);
-        $iterator->setOpenLocalFilepath(true);
-
-        return $iterator;
-    }
-
-    /**
-     * @param string $filePath
-     * @return Model\Order
-     */
-    public function openOrderFile(string $filePath) : Model\Order
-    {
-        $iterator = new Orderlist\Iterator($this->client, $filePath);
-        $iterator->setOpenLocalFilepath(true);
-        $iterator->rewind();
-
-        return $iterator->current();
-    }
-
-    /**
-     * @param array $params
-     * @return Orderlist\Iterator
-     */
-    public function getOrdersBy(array $params = []): Orderlist\Iterator
-    {
-        return new Orderlist\Iterator($this->client, 'orders/', $params);
-    }
-
-    /**
      * @param int $orderId
-     * @return Model\Order
+     * @return Order
      */
-    public function getOrderById(int $orderId): Model\Order
+    public function getTborder(int $orderId): Order
     {
-        $iterator = new Orderlist\Iterator($this->client, 'orders/'.$orderId);
-        $iterator->rewind();
+        $catalog = new Tborderlist($this->client, 'orders/'.(int)$orderId, []);
+        $orderIterator = $catalog->getOrders();
+        $orderIterator->rewind();
 
-        return $iterator->current();
+        return $orderIterator->current();
+    }
+
+    /**
+     * @param string $filePath
+     * @return Order
+     */
+    public function getTborderLocal(string $filePath): Order
+    {
+        $catalog = new Tborderlist($this->client, $filePath, [], true);
+        $orderIterator = $catalog->getOrders();
+        $orderIterator->rewind();
+
+        return $orderIterator->current();
     }
 
     /**
@@ -84,9 +55,37 @@ class Handler
      * @param int $orderId
      * @return bool
      */
-    public function downloadOrderById(string $filePath, int $orderId): bool
+    public function downloadTborder(string $filePath, int $orderId): bool
     {
-        return $this->client->getRestClient()->downloadFile($filePath, 'orders/'.$orderId);
+        return $this->client->getRestClient()->downloadFile($filePath, 'orders/'.(int)$orderId, []);
+    }
+
+    /**
+     * @param mixed[] $filter
+     * @return Tborderlist
+     */
+    public function getTborderList($filter = []): Tborderlist
+    {
+        return new Tborderlist($this->client, 'orders/', $filter);
+    }
+
+    /**
+     * @param string $filePath
+     * @return Tborderlist
+     */
+    public function getTborderListLocal(string $filePath): Tborderlist
+    {
+        return new Tborderlist($this->client, $filePath, [], true);
+    }
+
+    /**
+     * @param string $filePath
+     * @param array $filter
+     * @return bool
+     */
+    public function downloadTborderList(string $filePath, array $filter = []): bool
+    {
+        return $this->client->getRestClient()->downloadFile($filePath, 'orders/', $filter);
     }
 
     /**

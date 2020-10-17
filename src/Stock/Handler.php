@@ -22,12 +22,21 @@ class Handler
     }
 
     /**
-     * @param array $filter
-     * @return Iterator
+     * @param mixed[] $filter
+     * @return Tbstock
      */
-    public function getChannelStockBy(array $filter = []): Iterator
+    public function getTbstock($filter = []): Tbstock
     {
-        return new Iterator($this->client, 'stock/', $filter);
+        return new Tbstock($this->client, 'stock/', $filter);
+    }
+
+    /**
+     * @param string $filePath
+     * @return Tbstock
+     */
+    public function getTbstockLocal(string $filePath): Tbstock
+    {
+        return new Tbstock($this->client, $filePath, [], true);
     }
 
     /**
@@ -35,20 +44,8 @@ class Handler
      * @param array $filter
      * @return bool
      */
-    public function downloadChannelStockBy(string $filePath, array $filter = []): bool
+    public function downloadTbstock(string $filePath, array $filter = []): bool
     {
         return $this->client->getRestClient()->downloadFile($filePath, 'stock/', $filter);
-    }
-
-    /**
-     * @param string $filePath
-     * @return Iterator
-     */
-    public function openChannelStockFile(string $filePath) : Iterator
-    {
-        $iterator = new Iterator($this->client, $filePath);
-        $iterator->setOpenLocalFilepath(true);
-
-        return $iterator;
     }
 }

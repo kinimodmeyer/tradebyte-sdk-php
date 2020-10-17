@@ -12,6 +12,23 @@ use Tradebyte\Base;
 class Iterator extends Base\Iterator implements \Iterator
 {
     /**
+     * @var string
+     */
+    protected $supplierName;
+
+    /**
+     * @return string
+     */
+    public function getSupplierName(): ?string
+    {
+        if (!$this->getIsOpen()) {
+            $this->open();
+        }
+
+        return $this->supplierName;
+    }
+
+    /**
      * @return Product
      */
     public function current(): Product
@@ -39,13 +56,10 @@ class Iterator extends Base\Iterator implements \Iterator
         $this->current = null;
     }
 
-    /**
-     * @return void
-     */
-    public function rewind()
+    public function open()
     {
-        if ($this->xmlReader) {
-            $this->xmlReader->close();
+        if ($this->getIsOpen()) {
+            $this->close();
         }
 
         if ($this->openLocalFilepath) {
@@ -55,6 +69,16 @@ class Iterator extends Base\Iterator implements \Iterator
             $this->xmlReader = $this->client->getRestClient()->getXML($this->url, $this->filter);
         }
 
-        parent::rewind();
+        while ($this->xmlReader->read()) {
+            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+                && $this->xmlReader->depth == 1
+                && $this->xmlReader->name == 'SUPPLIER') {
+                $xmlElement = new SimpleXMLElement($this->xmlReader->readOuterXML());
+                $this->supplierName = (string)$xmlElement->NAME;
+                break;
+            }
+        }
+
+        $this->isOpen = true;
     }
 }
