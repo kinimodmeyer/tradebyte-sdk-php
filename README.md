@@ -14,7 +14,6 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 - [x] order single
 - [x] order set exported
 - [x] order push
-- [ ] order push file
 - [x] product list
 - [x] product single
 - [x] stock list
