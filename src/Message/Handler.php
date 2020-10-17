@@ -3,6 +3,7 @@ namespace Tradebyte\Message;
 
 use Tradebyte\Client;
 use Tradebyte\Message\Model\Message;
+use XMLWriter;
 
 /**
  * @package Tradebyte
@@ -108,22 +109,24 @@ class Handler
     /**
      * @param Message[] $stockArray
      * @return string
-     * @todo change to XMLWriter and add all fields
+     * @todo add all fields
      */
     public function addMessages(array $stockArray)
     {
-        $postData  = '<?xml version="1.0" encoding="UTF-8"?><MESSAGES_LIST>';
+        $writer = new XMLWriter();
+        $writer->openMemory();
+        $writer->startElement('MESSAGES_LIST');
 
         foreach ($stockArray as $message) {
-            $postData .= '<MESSAGE>
-                            <MESSAGE_TYPE>' . $message->getType() . '</MESSAGE_TYPE>
-                            <TB_ORDER_ID>' . $message->getOrderId() . '</TB_ORDER_ID>
-                            <TB_ORDER_ITEM_ID>' . $message->getOrderItemId() . '</TB_ORDER_ITEM_ID>
-                            <QUANTITY>' . $message->getQuantity() . '</QUANTITY>
-                        </MESSAGE>';
+            $writer->startElement('MESSAGE');
+            $writer->writeElement('MESSAGE_TYPE', $message->getType());
+            $writer->writeElement('TB_ORDER_ID', $message->getOrderId());
+            $writer->writeElement('TB_ORDER_ITEM_ID', $message->getOrderItemId());
+            $writer->writeElement('QUANTITY', $message->getQuantity());
+            $writer->endElement();
         }
 
-        $postData .= '</MESSAGES_LIST>';
-        return $this->client->getRestClient()->postXML('messages/', $postData);
+        $writer->endElement();
+        return $this->client->getRestClient()->postXML('messages/', $writer->outputMemory());
     }
 }

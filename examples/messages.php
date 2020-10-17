@@ -38,9 +38,11 @@ foreach ($messageList->getMessages() as $message) {
 
 $messageList->close();
 
+/*
 $message = (new Tradebyte\Message\Model\Message())
     ->setType('SHIP')
     ->setOrderId(1)
     ->setOrderItemId(1)
     ->setQuantity(1);
 $messageHandler->addMessages([$message]);
+*/
