@@ -99,19 +99,18 @@ class Handler
 
     /**
      * @param string $filePath
-     * @todo implement
+     * @return string
      */
-    public function addMessagesFromFile(string $filePath)
+    public function addMessagesFromTbmessagesListLocal(string $filePath): string
     {
-        //implement
+        return $this->client->getRestClient()->postXML('messages/', file_get_contents($filePath));
     }
 
     /**
      * @param Message[] $stockArray
      * @return string
-     * @todo add all fields
      */
-    public function addMessages(array $stockArray)
+    public function addMessages(array $stockArray): string
     {
         $writer = new XMLWriter();
         $writer->openMemory();

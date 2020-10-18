@@ -21,7 +21,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 - [x] message list
 - [x] message single
 - [x] message push
-- [ ] message push file
+- [x] message push file
 - [x] message set exported
 - [ ] import push
 
