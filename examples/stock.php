@@ -8,7 +8,7 @@ $params = [ 'channel' => $filter['channel'], 'delta' => $filter['delta']];
 /*
  * on the fly mode
  */
-$catalog = $stockHandler->getTbstock($params);
+$catalog = $stockHandler->getStockList($params);
 echo $catalog->getChangeDate();
 
 foreach ($catalog->getStock() as $stock) {
@@ -20,8 +20,8 @@ $catalog->close();
 /*
  * download mode
  */
-$stockHandler->downloadTbstock(__DIR__.'/files/stock.xml', $params);
-$catalog = $stockHandler->getTbstockLocal(__DIR__.'/files/stock.xml');
+$stockHandler->downloadStockList(__DIR__.'/files/stock.xml', $params);
+$catalog = $stockHandler->getStockListFromFile(__DIR__.'/files/stock.xml');
 echo $catalog->getChangeDate();
 
 foreach ($catalog->getStock() as $stock) {

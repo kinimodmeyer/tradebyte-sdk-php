@@ -8,7 +8,7 @@ $params = [];
 /*
  * on the fly mode
  */
-$messageList = $messageHandler->getTbmessageList($params);
+$messageList = $messageHandler->getMessageList($params);
 
 foreach ($messageList->getMessages() as $message) {
     echo $message->getId();
@@ -29,8 +29,8 @@ $messageList->close();
 /*
  * download mode
  */
-$messageHandler->downloadTbmessagesList(__DIR__.'/files/messages.xml', $params);
-$messageList = $messageHandler->getTbmessageListLocal(__DIR__.'/files/messages.xml');
+$messageHandler->downloadMessageList(__DIR__.'/files/messages.xml', $params);
+$messageList = $messageHandler->getMessageListFromFile(__DIR__.'/files/messages.xml');
 
 foreach ($messageList->getMessages() as $message) {
     echo $message->getId();

@@ -7,7 +7,7 @@ $orderHandler = $client->getOrderHandler();
 /*
  * on the fly mode
  */
-$orderList = $orderHandler->getTborderList($filter);
+$orderList = $orderHandler->getOrderList($filter);
 
 foreach ($orderList->getOrders() as $order) {
     echo $order->getId();
@@ -28,8 +28,8 @@ $orderList->close();
 /*
  * download mode
  */
-$orderHandler->downloadTborderList(__DIR__.'/files/orders.xml', $filter);
-$orderList = $orderHandler->getTborderListLocal(__DIR__.'/files/orders.xml');
+$orderHandler->downloadOrderList(__DIR__.'/files/orders.xml', $filter);
+$orderList = $orderHandler->getOrderListFromFile(__DIR__.'/files/orders.xml');
 
 foreach ($orderList->getOrders() as $order) {
     echo $order->getId();
