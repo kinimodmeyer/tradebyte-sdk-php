@@ -160,10 +160,7 @@ class Handler
             $writer->writeElement('PAID', $order->isPaid());
         }
 
-        if ($order->isApproved() !== null) {
-            $writer->writeElement('APPROVED', $order->isApproved());
-        }
-
+        $writer->writeElement('APPROVED', $order->isApproved());
         $writer->writeElement('ITEM_COUNT', $order->getItemCount());
         $writer->writeElement('TOTAL_ITEM_AMOUNT', $order->getTotalItemAmount());
 
@@ -172,50 +169,72 @@ class Handler
         }
 
         $writer->endElement();
+
+        if ($order->getSellTo() !== null) {
+            $customer = $order->getSellTo();
+            $writer->startElement('SELL_TO');
+
+            if ($customer->getChannelNumber() !== null) {
+                $writer->writeElement('CHANNEL_NO', $customer->getChannelNumber());
+            }
+
+            $writer->writeElement('FIRSTNAME', $customer->getFirstname());
+            $writer->writeElement('LASTNAME', $customer->getLastname());
+
+            if ($customer->getName() !== null) {
+                $writer->writeElement('NAME', $customer->getName());
+            }
+
+            $writer->writeElement('STREET_NO', $customer->getStreetNumber());
+            $writer->writeElement('ZIP', $customer->getZip());
+            $writer->writeElement('CITY', $customer->getCity());
+            $writer->writeElement('COUNTRY', $customer->getCountry());
+            $writer->endElement();
+        }
+
+        $customer = $order->getShipTo();
+        $writer->startElement('SHIP_TO');
+
+        if ($customer->getChannelNumber() !== null) {
+            $writer->writeElement('CHANNEL_NO', $customer->getChannelNumber());
+        }
+
+        $writer->writeElement('FIRSTNAME', $customer->getFirstname());
+        $writer->writeElement('LASTNAME', $customer->getLastname());
+
+        if ($customer->getName() !== null) {
+            $writer->writeElement('NAME', $customer->getName());
+        }
+
+        $writer->writeElement('STREET_NO', $customer->getStreetNumber());
+        $writer->writeElement('ZIP', $customer->getZip());
+        $writer->writeElement('CITY', $customer->getCity());
+        $writer->writeElement('COUNTRY', $customer->getCountry());
         $writer->endElement();
 
-        if ($order->getSellTo()) {
-            $postData .= '<SELL_TO>
-                                <CHANNEL_NO>' . $order->getSellTo()->getChannelNumber() . '</CHANNEL_NO>
-                                <FIRSTNAME>' . $order->getSellTo()->getFirstname() . '</FIRSTNAME>
-                                <LASTNAME>' . $order->getSellTo()->getLastname() . '</LASTNAME>
-                                <NAME>' . $order->getSellTo()->getName() . '</NAME>
-                                <STREET_NO>' . $order->getSellTo()->getStreetNumber() . '</STREET_NO>
-                                <ZIP>' . $order->getSellTo()->getZip() . '</ZIP>
-                                <CITY>' . $order->getSellTo()->getCity() . '</CITY>
-                                <COUNTRY>' . $order->getSellTo()->getCountry() . '</COUNTRY>
-                                <EMAIL>' . $order->getSellTo()->getEmail() . '</EMAIL>
-                            </SELL_TO>';
-        }
-
-        if ($order->getShipTo()) {
-            $postData .= '<SHIP_TO>
-                                <CHANNEL_NO>' . $order->getShipTo()->getChannelNumber() . '</CHANNEL_NO>
-                                <FIRSTNAME>' . $order->getShipTo()->getFirstname() . '</FIRSTNAME>
-                                <LASTNAME>' . $order->getShipTo()->getLastname() . '</LASTNAME>
-                                <NAME>' . $order->getShipTo()->getName() . '</NAME>
-                                <STREET_NO>' . $order->getShipTo()->getStreetNumber() . '</STREET_NO>
-                                <ZIP>' . $order->getShipTo()->getZip() . '</ZIP>
-                                <CITY>' . $order->getShipTo()->getCity() . '</CITY>
-                                <COUNTRY>' . $order->getShipTo()->getCountry() . '</COUNTRY>
-                                <EMAIL>' . $order->getShipTo()->getEmail() . '</EMAIL>
-                            </SHIP_TO>';
-        }
-
-        $postData .= '<ITEMS>';
+        $writer->startElement('ITEMS');
 
         foreach ($order->getItems() as $item) {
-            $postData .= '<ITEM>
-                    <CHANNEL_ID>'.$item->getChannelId().'</CHANNEL_ID>
-                    <SKU>'.$item->getSku().'</SKU>
-                    <QUANTITY>'.$item->getQuantity().'</QUANTITY>
-                    <TRANSFER_PRICE>'.$item->getTransferPrice().'</TRANSFER_PRICE>
-                    <ITEM_PRICE>'.$item->getItemPrice().'</ITEM_PRICE>
-                    <DATE_CREATED>'.$item->getCreatedDate().'</DATE_CREATED>
-                </ITEM>';
+            $writer->startElement('ITEM');
+            $writer->writeElement('CHANNEL_ID', $item->getChannelId());
+            $writer->writeElement('SKU', $item->getSku());
+            $writer->writeElement('QUANTITY', $item->getQuantity());
+
+            if ($item->getTransferPrice() !== null) {
+                $writer->writeElement('TRANSFER_PRICE', $item->getTransferPrice());
+            }
+
+            $writer->writeElement('ITEM_PRICE', $item->getItemPrice());
+
+            if ($item->getCreatedDate() !== null) {
+                $writer->writeElement('DATE_CREATED', $item->getCreatedDate());
+            }
+
+            $writer->endElement();
         }
 
-        $postData .= '</ITEMS></ORDER>';
+        $writer->endElement();
+        $writer->endElement();
 
         return $this->client->getRestClient()->postXML('orders/?channel='.(int)$channelId, $writer->outputMemory());
     }
