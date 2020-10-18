@@ -44,6 +44,16 @@ class Message
     protected $channelOrderId;
 
     /**
+     * @var string
+     */
+    protected $channelOrderItemId;
+
+    /**
+     * @var string
+     */
+    protected $channelSku;
+
+    /**
      * @var int
      */
     protected $quantity;
@@ -59,6 +69,41 @@ class Message
     protected $idcode;
 
     /**
+     * @var string
+     */
+    protected $idcodeReturnProposal;
+
+    /**
+     * @var string
+     */
+    protected $deduction;
+
+    /**
+     * @var string
+     */
+    protected $comment;
+
+    /**
+     * @var string
+     */
+    protected $returnCause;
+
+    /**
+     * @var string
+     */
+    protected $returnState;
+
+    /**
+     * @var string
+     */
+    protected $service;
+
+    /**
+     * @var string
+     */
+    protected $estShipDate;
+
+    /**
      * @var bool
      */
     protected $isProcessed;
@@ -72,6 +117,11 @@ class Message
      * @var string
      */
     protected $createdDate;
+
+    /**
+     * @var string
+     */
+    protected $deliveryInformation;
 
     /**
      * @return int
@@ -308,6 +358,186 @@ class Message
     }
 
     /**
+     * @return string
+     */
+    public function getChannelOrderItemId(): ?string
+    {
+        return $this->channelOrderItemId;
+    }
+
+    /**
+     * @param string $channelOrderItemId
+     * @return Message
+     */
+    public function setChannelOrderItemId(string $channelOrderItemId): Message
+    {
+        $this->channelOrderItemId = $channelOrderItemId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChannelSku(): ?string
+    {
+        return $this->channelSku;
+    }
+
+    /**
+     * @param string $channelSku
+     * @return Message
+     */
+    public function setChannelSku(string $channelSku): Message
+    {
+        $this->channelSku = $channelSku;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdcodeReturnProposal(): ?string
+    {
+        return $this->idcodeReturnProposal;
+    }
+
+    /**
+     * @param string $idcodeReturnProposal
+     * @return Message
+     */
+    public function setIdcodeReturnProposal(string $idcodeReturnProposal): Message
+    {
+        $this->idcodeReturnProposal = $idcodeReturnProposal;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeduction(): ?string
+    {
+        return $this->deduction;
+    }
+
+    /**
+     * @param string $deduction
+     * @return Message
+     */
+    public function setDeduction(string $deduction): Message
+    {
+        $this->deduction = $deduction;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     * @return Message
+     */
+    public function setComment(string $comment): Message
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReturnCause(): ?string
+    {
+        return $this->returnCause;
+    }
+
+    /**
+     * @param string $returnCause
+     * @return Message
+     */
+    public function setReturnCause(string $returnCause): Message
+    {
+        $this->returnCause = $returnCause;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReturnState(): ?string
+    {
+        return $this->returnState;
+    }
+
+    /**
+     * @param string $returnState
+     * @return Message
+     */
+    public function setReturnState(string $returnState): Message
+    {
+        $this->returnState = $returnState;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getService(): ?string
+    {
+        return $this->service;
+    }
+
+    /**
+     * @param string $service
+     * @return Message
+     */
+    public function setService(string $service): Message
+    {
+        $this->service = $service;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEstShipDate(): ?string
+    {
+        return $this->estShipDate;
+    }
+
+    /**
+     * @param string $estShipDate
+     * @return Message
+     */
+    public function setEstShipDate(string $estShipDate): Message
+    {
+        $this->estShipDate = $estShipDate;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeliveryInformation(): ?string
+    {
+        return $this->deliveryInformation;
+    }
+
+    /**
+     * @param string $deliveryInformation
+     * @return Message
+     */
+    public function setDeliveryInformation(string $deliveryInformation): Message
+    {
+        $this->deliveryInformation = $deliveryInformation;
+        return $this;
+    }
+
+    /**
      * @param SimpleXMLElement $xmlElement
      * @return void
      */
@@ -320,12 +550,22 @@ class Message
         $this->setSku((string)$xmlElement->SKU);
         $this->setChannelSign((string)$xmlElement->CHANNEL_SIGN);
         $this->setChannelOrderId((string)$xmlElement->CHANNEL_ORDER_ID);
+        $this->setChannelOrderItemId((string)$xmlElement->CHANNEL_ORDER_ITEM_ID);
+        $this->setChannelSku((string)$xmlElement->CHANNEL_SKU);
         $this->setQuantity((int)$xmlElement->QUANTITY);
         $this->setCarrierParcelType((string)$xmlElement->CARRIER_PARCEL_TYPE);
         $this->setIdcode((string)$xmlElement->IDCODE);
+        $this->setIdcodeReturnProposal((string)$xmlElement->IDCODE_RETURN_PROPOSAL);
+        $this->setDeduction((string)$xmlElement->DEDUCTION);
+        $this->setComment((string)$xmlElement->COMMENT);
+        $this->setReturnCause((string)$xmlElement->RETURN_CAUSE);
+        $this->setReturnState((string)$xmlElement->RETURN_STATE);
+        $this->setService((string)$xmlElement->SERVICE);
+        $this->setEstShipDate((string)$xmlElement->EST_SHIP_DATE);
         $this->setIsProcessed((bool)(int)$xmlElement->PROCESSED);
         $this->setIsExported((bool)(int)$xmlElement->EXPORTED);
         $this->setCreatedDate((string)$xmlElement->DATE_CREATED);
+        $this->setDeliveryInformation((string)$xmlElement->DELIVERY_INFORMATION);
     }
 
     /**
@@ -341,12 +581,22 @@ class Message
             'sku' => $this->getSku(),
             'channel_sign' => $this->getChannelSign(),
             'channel_order_id' => $this->getChannelOrderId(),
+            'channel_order_item_id' => $this->getChannelOrderItemId(),
+            'channel_sku' => $this->getChannelSku(),
             'quantity' => $this->getQuantity(),
             'carrier_parcel_type' => $this->getCarrierParcelType(),
             'idcode' => $this->getIdcode(),
+            'idcode_return_proposal' => $this->getIdcodeReturnProposal(),
+            'deduction' => $this->getDeduction(),
+            'comment' => $this->getComment(),
+            'return_cause' => $this->getReturnCause(),
+            'return_state' => $this->getReturnState(),
+            'service' => $this->getService(),
+            'est_ship_date' => $this->getEstShipDate(),
             'is_processed' => $this->isProcessed(),
             'is_exported' => $this->isExported(),
             'created_date' => $this->getCreatedDate(),
+            'delivery_information' => $this->getDeliveryInformation(),
         ];
     }
 }

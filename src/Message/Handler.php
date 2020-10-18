@@ -119,10 +119,108 @@ class Handler
 
         foreach ($stockArray as $message) {
             $writer->startElement('MESSAGE');
+
+            if ($message->getId() !== null) {
+                $writer->writeElement('MESSAGE_ID', $message->getId());
+            }
+
             $writer->writeElement('MESSAGE_TYPE', $message->getType());
             $writer->writeElement('TB_ORDER_ID', $message->getOrderId());
-            $writer->writeElement('TB_ORDER_ITEM_ID', $message->getOrderItemId());
+
+            if ($message->getOrderItemId() !== null) {
+                $writer->writeElement('TB_ORDER_ITEM_ID', $message->getOrderItemId());
+            }
+
+            if ($message->getSku() !== null) {
+                $writer->writeElement('SKU', $message->getSku());
+            }
+
+            if ($message->getChannelSign() !== null) {
+                $writer->writeElement('CHANNEL_SIGN', $message->getChannelSign());
+            }
+
+            if ($message->getChannelOrderId() !== null) {
+                $writer->writeElement('CHANNEL_ORDER_ID', $message->getChannelOrderId());
+            }
+
+            if ($message->getChannelOrderItemId() !== null) {
+                $writer->writeElement('CHANNEL_ORDER_ITEM_ID', $message->getChannelOrderId());
+            }
+
+            if ($message->getSku() !== null) {
+                $writer->writeElement('SKU', $message->getSku());
+            }
+
+            if ($message->getChannelSign() !== null) {
+                $writer->writeElement('CHANNEL_SIGN', $message->getChannelSign());
+            }
+
+            if ($message->getChannelOrderId() !== null) {
+                $writer->writeElement('CHANNEL_ORDER_ID', $message->getChannelOrderId());
+            }
+
+            if ($message->getChannelOrderItemId() !== null) {
+                $writer->writeElement('CHANNEL_ORDER_ITEM_ID', $message->getChannelOrderItemId());
+            }
+
+            if ($message->getChannelSku() !== null) {
+                $writer->writeElement('CHANNEL_SKU', $message->getChannelSku());
+            }
+
             $writer->writeElement('QUANTITY', $message->getQuantity());
+
+            if ($message->getCarrierParcelType() !== null) {
+                $writer->writeElement('CARRIER_PARCEL_TYPE', $message->getCarrierParcelType());
+            }
+
+            if ($message->getIdcode() !== null) {
+                $writer->writeElement('IDCODE', $message->getIdcode());
+            }
+
+            if ($message->getIdcodeReturnProposal() !== null) {
+                $writer->writeElement('IDCODE_RETURN_PROPOSAL', $message->getIdcodeReturnProposal());
+            }
+
+            if ($message->getDeduction() !== null) {
+                $writer->writeElement('DEDUCTION', $message->getDeduction());
+            }
+
+            if ($message->getComment() !== null) {
+                $writer->writeElement('COMMENT', $message->getComment());
+            }
+
+            if ($message->getReturnCause() !== null) {
+                $writer->writeElement('RETURN_CAUSE', $message->getReturnCause());
+            }
+
+            if ($message->getReturnState() !== null) {
+                $writer->writeElement('RETURN_STATE', $message->getReturnState());
+            }
+
+            if ($message->getService() !== null) {
+                $writer->writeElement('SERVICE', $message->getService());
+            }
+
+            if ($message->getEstShipDate() !== null) {
+                $writer->writeElement('EST_SHIP_DATE', $message->getEstShipDate());
+            }
+
+            if ($message->isProcessed() !== null) {
+                $writer->writeElement('PROCESSED', $message->isProcessed());
+            }
+
+            if ($message->isExported() !== null) {
+                $writer->writeElement('EXPORTED', $message->isExported());
+            }
+
+            if ($message->getCreatedDate() !== null) {
+                $writer->writeElement('DATE_CREATED', $message->getCreatedDate());
+            }
+
+            if ($message->getDeliveryInformation() !== null) {
+                $writer->writeElement('DELIVERY_INFORMATION', $message->getDeliveryInformation());
+            }
+
             $writer->endElement();
         }
 
