@@ -13,10 +13,10 @@ class StockTest extends Base
     /**
      * @return void
      */
-    public function testGetTbstockLocal(): void
+    public function testGetStockListFromFile(): void
     {
         $stockHandler = (new Client())->getStockHandler();
-        $catalog = $stockHandler->getTbstockLocal(__DIR__.'/../files/stock.xml');
+        $catalog = $stockHandler->getStockListFromFile(__DIR__.'/../files/stock.xml');
         $stockIterator = $catalog->getStock();
         $stockIterator->rewind();
         $stockModel = $stockIterator->current();

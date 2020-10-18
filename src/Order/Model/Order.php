@@ -120,6 +120,11 @@ class Order
     protected $customerComment;
 
     /**
+     * @var string
+     */
+    protected $billNumber;
+
+    /**
      * @return int
      */
     public function getId(): ?int
@@ -512,6 +517,24 @@ class Order
     public function setCustomerComment(string $customerComment): Order
     {
         $this->customerComment = $customerComment;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBillNumber(): ?string
+    {
+        return $this->billNumber;
+    }
+
+    /**
+     * @param string $billNumber
+     * @return Order
+     */
+    public function setBillNumber(string $billNumber): Order
+    {
+        $this->billNumber = $billNumber;
         return $this;
     }
 

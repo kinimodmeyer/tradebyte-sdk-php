@@ -13,13 +13,10 @@ class MessageTest extends Base
     /**
      * @return void
      */
-    public function testGetTbmessageLocal(): void
+    public function testGetMessageFromFile(): void
     {
         $messageHandler = (new Client())->getMessageHandler();
-        $catalog = $messageHandler->getTbmessageListLocal(__DIR__.'/../files/messages.xml');
-        $messageIterator = $catalog->getMessages();
-        $messageIterator->rewind();
-        $messageModel = $messageIterator->current();
+        $messageModel = $messageHandler->getMessageFromFile(__DIR__.'/../files/message.xml');
 
         $this->assertSame([
             'id' => 1,

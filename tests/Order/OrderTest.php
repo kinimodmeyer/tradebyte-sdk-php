@@ -16,10 +16,10 @@ class OrderTest extends Base
     /**
      * @return void
      */
-    public function testGetTboderLocal(): void
+    public function testGetOrderFormFile(): void
     {
         $orderHandler = (new Client())->getOrderHandler();
-        $orderModel = $orderHandler->getTborderLocal(__DIR__.'/../files/orders.xml');
+        $orderModel = $orderHandler->getOrderFromFile(__DIR__.'/../files/order.xml');
         $expectedSubset = [
             'id' => 1,
             'order_date' => '2018-11-07',

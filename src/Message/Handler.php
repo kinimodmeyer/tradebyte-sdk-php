@@ -1,8 +1,10 @@
 <?php
 namespace Tradebyte\Message;
 
+use SimpleXMLElement;
 use Tradebyte\Client;
 use Tradebyte\Message\Model\Message;
+use XMLReader;
 use XMLWriter;
 
 /**
@@ -27,7 +29,7 @@ class Handler
      * @param int $messageId
      * @return Message
      */
-    public function getTbmessage(int $messageId): Message
+    public function getMessage(int $messageId): Message
     {
         $catalog = new Tbmessagelist($this->client, 'messages/'.(int)$messageId, []);
         $messageIterator = $catalog->getMessages();
@@ -40,13 +42,13 @@ class Handler
      * @param string $filePath
      * @return Message
      */
-    public function getTbmessageLocal(string $filePath): Message
+    public function getMessageFromFile(string $filePath): Message
     {
-        $catalog = new Tbmessagelist($this->client, $filePath, [], true);
-        $messageIterator = $catalog->getMessages();
-        $messageIterator->rewind();
+        $xmlElement = new SimpleXMLElement(file_get_contents($filePath));
+        $model = new Message();
+        $model->fillFromSimpleXMLElement($xmlElement);
 
-        return $messageIterator->current();
+        return $model;
     }
 
     /**
@@ -54,16 +56,30 @@ class Handler
      * @param int $messageId
      * @return bool
      */
-    public function downloadTbmessage(string $filePath, int $messageId): bool
+    public function downloadMessage(string $filePath, int $messageId): bool
     {
-        return $this->client->getRestClient()->downloadFile($filePath, 'messages/'.(int)$messageId, []);
+        $reader = $this->client->getRestClient()->getXML('messages/'.(int)$messageId, []);
+
+        while ($reader->read()) {
+            if ($reader->nodeType == XMLReader::ELEMENT
+                && $reader->depth === 1
+                && $reader->name == 'MESSAGE') {
+                $filePut = file_put_contents($filePath, $reader->readOuterXml());
+                $reader->close();
+                return $filePut;
+            }
+        }
+
+        $reader->close();
+
+        return false;
     }
 
     /**
      * @param mixed[] $filter
      * @return Tbmessagelist
      */
-    public function getTbmessageList($filter = []): Tbmessagelist
+    public function getMessageList($filter = []): Tbmessagelist
     {
         return new Tbmessagelist($this->client, 'messages/', $filter);
     }
@@ -72,7 +88,7 @@ class Handler
      * @param string $filePath
      * @return Tbmessagelist
      */
-    public function getTbmessageListLocal(string $filePath): Tbmessagelist
+    public function getMessageListFromFile(string $filePath): Tbmessagelist
     {
         return new Tbmessagelist($this->client, $filePath, [], true);
     }
@@ -82,7 +98,7 @@ class Handler
      * @param array $filter
      * @return bool
      */
-    public function downloadTbmessagesList(string $filePath, array $filter = []): bool
+    public function downloadMessageList(string $filePath, array $filter = []): bool
     {
         return $this->client->getRestClient()->downloadFile($filePath, 'messages/', $filter);
     }
@@ -101,7 +117,7 @@ class Handler
      * @param string $filePath
      * @return string
      */
-    public function addMessagesFromTbmessagesListLocal(string $filePath): string
+    public function addMessagesFromMessageListFile(string $filePath): string
     {
         return $this->client->getRestClient()->postXML('messages/', file_get_contents($filePath));
     }

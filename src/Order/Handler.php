@@ -1,8 +1,10 @@
 <?php
 namespace Tradebyte\Order;
 
+use SimpleXMLElement;
 use Tradebyte\Client;
 use Tradebyte\Order\Model\Order;
+use XMLReader;
 use XMLWriter;
 
 /**
@@ -29,7 +31,7 @@ class Handler
      * @param int $orderId
      * @return Order
      */
-    public function getTborder(int $orderId): Order
+    public function getOrder(int $orderId): Order
     {
         $catalog = new Tborderlist($this->client, 'orders/'.(int)$orderId, []);
         $orderIterator = $catalog->getOrders();
@@ -42,13 +44,13 @@ class Handler
      * @param string $filePath
      * @return Order
      */
-    public function getTborderLocal(string $filePath): Order
+    public function getOrderFromFile(string $filePath): Order
     {
-        $catalog = new Tborderlist($this->client, $filePath, [], true);
-        $orderIterator = $catalog->getOrders();
-        $orderIterator->rewind();
+        $xmlElement = new SimpleXMLElement(file_get_contents($filePath));
+        $model = new Order();
+        $model->fillFromSimpleXMLElement($xmlElement);
 
-        return $orderIterator->current();
+        return $model;
     }
 
     /**
@@ -56,16 +58,30 @@ class Handler
      * @param int $orderId
      * @return bool
      */
-    public function downloadTborder(string $filePath, int $orderId): bool
+    public function downloadOrder(string $filePath, int $orderId): bool
     {
-        return $this->client->getRestClient()->downloadFile($filePath, 'orders/'.(int)$orderId, []);
+        $reader = $this->client->getRestClient()->getXML('orders/'.(int)$orderId, []);
+
+        while ($reader->read()) {
+            if ($reader->nodeType == XMLReader::ELEMENT
+                && $reader->depth === 1
+                && $reader->name == 'ORDER') {
+                $filePut = file_put_contents($filePath, $reader->readOuterXml());
+                $reader->close();
+                return $filePut;
+            }
+        }
+
+        $reader->close();
+
+        return false;
     }
 
     /**
      * @param mixed[] $filter
      * @return Tborderlist
      */
-    public function getTborderList($filter = []): Tborderlist
+    public function getOrderList($filter = []): Tborderlist
     {
         return new Tborderlist($this->client, 'orders/', $filter);
     }
@@ -74,7 +90,7 @@ class Handler
      * @param string $filePath
      * @return Tborderlist
      */
-    public function getTborderListLocal(string $filePath): Tborderlist
+    public function getOrderListFromFile(string $filePath): Tborderlist
     {
         return new Tborderlist($this->client, $filePath, [], true);
     }
@@ -84,7 +100,7 @@ class Handler
      * @param array $filter
      * @return bool
      */
-    public function downloadTborderList(string $filePath, array $filter = []): bool
+    public function downloadOrderList(string $filePath, array $filter = []): bool
     {
         return $this->client->getRestClient()->downloadFile($filePath, 'orders/', $filter);
     }
@@ -100,24 +116,63 @@ class Handler
     }
 
     /**
+     * @param string $filePath
+     * @param int $channelId
+     * @return string
+     */
+    public function updateOrderFromFile(string $filePath, int $channelId): string
+    {
+        return $this->client->getRestClient()->postXML('orders/?channel='.(int)$channelId, file_get_contents($filePath));
+    }
+
+    /**
      * @param int $channelId
      * @param Order $order
      * @return string
-     * @todo change to XMLWriter and add all fields
      */
     public function updateOrder(int $channelId, Order $order)
     {
-        $postData  = '<?xml version="1.0" encoding="UTF-8"?>
-                        <ORDER>
-                            <ORDER_DATA>
-                                <ORDER_DATE>'.$order->getOrderDate().'</ORDER_DATE>
-                                <CHANNEL_SIGN>'.$order->getChannelSign().'</CHANNEL_SIGN>
-                                <CHANNEL_ID>'.$order->getChannelId().'</CHANNEL_ID>
-                                <APPROVED>'.$order->isApproved().'</APPROVED>
-                                <ITEM_COUNT>'.$order->getItemCount().'</ITEM_COUNT>
-                                <TOTAL_ITEM_AMOUNT>'.$order->getTotalItemAmount().'</TOTAL_ITEM_AMOUNT>
-                                <DATE_CREATED>'.$order->getOrderCreatedDate().'</DATE_CREATED>
-                            </ORDER_DATA>';
+        $writer = new XMLWriter();
+        $writer->openMemory();
+        $writer->startElement('ORDER');
+        $writer->startElement('ORDER_DATA');
+        $writer->writeElement('ORDER_DATE', $order->getOrderDate());
+
+        if ($order->getId() !== null) {
+            $writer->writeElement('TB_ID', $order->getId());
+        }
+
+        if ($order->getChannelSign() !== null) {
+            $writer->writeElement('CHANNEL_SIGN', $order->getChannelSign());
+        }
+
+        $writer->writeElement('CHANNEL_ID', $order->getChannelId());
+
+        if ($order->getChannelNumber() !== null) {
+            $writer->writeElement('CHANNEL_NO', $order->getChannelNumber());
+        }
+
+        if ($order->getBillNumber() !== null) {
+            $writer->writeElement('BILL_NO', $order->getBillNumber());
+        }
+
+        if ($order->isPaid() !== null) {
+            $writer->writeElement('PAID', $order->isPaid());
+        }
+
+        if ($order->isApproved() !== null) {
+            $writer->writeElement('APPROVED', $order->isApproved());
+        }
+
+        $writer->writeElement('ITEM_COUNT', $order->getItemCount());
+        $writer->writeElement('TOTAL_ITEM_AMOUNT', $order->getTotalItemAmount());
+
+        if ($order->getOrderCreatedDate() !== null) {
+            $writer->writeElement('DATE_CREATED', $order->getOrderCreatedDate());
+        }
+
+        $writer->endElement();
+        $writer->endElement();
 
         if ($order->getSellTo()) {
             $postData .= '<SELL_TO>
@@ -162,6 +217,6 @@ class Handler
 
         $postData .= '</ITEMS></ORDER>';
 
-        return $this->client->getRestClient()->postXML('orders/?channel='.(int)$channelId, $postData);
+        return $this->client->getRestClient()->postXML('orders/?channel='.(int)$channelId, $writer->outputMemory());
     }
 }

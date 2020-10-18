@@ -37,7 +37,6 @@ foreach ($orderList->getOrders() as $order) {
 
 $orderList->close();
 
-/*
 if (!empty($filter['channel'])) {
     $orderHandler->updateOrder(
         $filter['channel'],
@@ -46,4 +45,5 @@ if (!empty($filter['channel'])) {
             ->setChannelSign('test')
     );
 }
-*/
+
+

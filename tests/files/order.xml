@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDER xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <ORDER_DATA>
+        <ORDER_DATE>2018-11-07</ORDER_DATE>
+        <TB_ID>1</TB_ID>
+        <CHANNEL_SIGN>channel_sign_test</CHANNEL_SIGN>
+        <CHANNEL_ID>channel_id_test</CHANNEL_ID>
+        <CHANNEL_NO>channel_no_test</CHANNEL_NO>
+        <PAID>1</PAID>
+        <APPROVED>0</APPROVED>
+        <CUSTOMER_COMMENT>customer_comment_test</CUSTOMER_COMMENT>
+        <ITEM_COUNT>1</ITEM_COUNT>
+        <TOTAL_ITEM_AMOUNT>1.00</TOTAL_ITEM_AMOUNT>
+        <DATE_CREATED>2018-11-07T10:35:57</DATE_CREATED>
+    </ORDER_DATA>
+</ORDER>

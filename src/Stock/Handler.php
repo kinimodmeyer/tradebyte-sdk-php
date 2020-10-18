@@ -26,7 +26,7 @@ class Handler
      * @param mixed[] $filter
      * @return Tbstock
      */
-    public function getTbstock($filter = []): Tbstock
+    public function getStockList($filter = []): Tbstock
     {
         return new Tbstock($this->client, 'stock/', $filter);
     }
@@ -35,7 +35,7 @@ class Handler
      * @param string $filePath
      * @return Tbstock
      */
-    public function getTbstockLocal(string $filePath): Tbstock
+    public function getStockListFromFile(string $filePath): Tbstock
     {
         return new Tbstock($this->client, $filePath, [], true);
     }
@@ -45,7 +45,7 @@ class Handler
      * @param array $filter
      * @return bool
      */
-    public function downloadTbstock(string $filePath, array $filter = []): bool
+    public function downloadStockList(string $filePath, array $filter = []): bool
     {
         return $this->client->getRestClient()->downloadFile($filePath, 'stock/', $filter);
     }
