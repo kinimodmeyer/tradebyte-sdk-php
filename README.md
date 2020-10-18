@@ -1,13 +1,13 @@
 # Tradebyte SDK
 
-SDK to handle all different ways to interact with Tradebyte API. more infromations you will find on [TB.IO](https://tradebyte.io).
+SDK to handle all different ways to interact with Tradebyte API. more informations you will find on [TB.IO](https://tradebyte.io).
 
 #### !!! this repository is in WIP state !!!
 
 ## Features
 
 * the sdk is build that way that it not consume much memory and can even process gigabyte of data. this is done by heavy use of iterators and xml readers.
-* depending on the call you can choose between "on the fly" or "download/re-open" mode.
+* depending on the call you can choose between "on the fly" or "download/re-open" processing.
 * the following data end-points are implemented:
 
 - [x] order list
