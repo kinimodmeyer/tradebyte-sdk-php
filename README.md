@@ -23,7 +23,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
 - [x] message push
 - [x] message push file
 - [x] message set exported
-- [ ] import push
+- [x] import push
 
 ## Requirements
 
@@ -31,6 +31,7 @@ SDK to handle all different ways to interact with Tradebyte API. more infromatio
   * see https://tb-io.tradebyte.org/how-to/generate-rest-api-credentials-in-tb-one/
 * PHP >= 7.3
 * Composer
+* cURL
 
 ## Install
 

@@ -21,6 +21,7 @@
     "php": "^7.3",
     "ext-xmlreader": "*",
     "ext-simplexml": "*",
-    "ext-xmlwriter": "*"
+    "ext-xmlwriter": "*",
+    "ext-curl": "*"
   }
 }

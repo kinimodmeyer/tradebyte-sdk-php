@@ -98,6 +98,55 @@ class Rest
     /**
      * @param string $localFilePath
      * @param string $url
+     * @return string
+     */
+    public function uploadFile(string $localFilePath, string $url): string
+    {
+        $localHandle = fopen($localFilePath, 'r');
+        $curl = curl_init($this->getCreatedURI($url, []));
+        curl_setopt($curl, CURLOPT_PUT, true);
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($curl, CURLOPT_USERPWD, $this->accountUser.':'.$this->accountPassword);
+        curl_setopt($curl, CURLOPT_INFILE, $localHandle);
+        curl_setopt($curl, CURLOPT_INFILESIZE, filesize($localFilePath));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_FAILONERROR, true);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3600);
+        $response = curl_exec($curl);
+        fclose($localHandle);
+        curl_close($curl);
+
+        return $response;
+    }
+
+    /**
+     * @param string $localFilePath
+     * @param string $url
+     * @return string
+     */
+    public function postXMLFile(string $localFilePath, string $url): string
+    {
+        $localHandle = fopen($localFilePath, 'r');
+        $curl = curl_init($this->getCreatedURI($url, []));
+        curl_setopt($curl, CURLOPT_PUT, true);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($curl, CURLOPT_USERPWD, $this->accountUser.':'.$this->accountPassword);
+        curl_setopt($curl, CURLOPT_INFILE, $localHandle);
+        curl_setopt($curl, CURLOPT_INFILESIZE, filesize($localFilePath));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3600);
+        $response = curl_exec($curl);
+        var_dump($url, curl_error($curl));
+        fclose($localHandle);
+        curl_close($curl);
+
+        return $response;
+    }
+
+    /**
+     * @param string $localFilePath
+     * @param string $url
      * @param array $filter
      * @return bool
      */

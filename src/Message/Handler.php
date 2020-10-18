@@ -119,7 +119,7 @@ class Handler
      */
     public function addMessagesFromMessageListFile(string $filePath): string
     {
-        return $this->client->getRestClient()->postXML('messages/', file_get_contents($filePath));
+        return $this->client->getRestClient()->postXMLFile($filePath, 'messages/');
     }
 
     /**

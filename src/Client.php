@@ -58,6 +58,14 @@ class Client
     }
 
     /**
+     * @return Upload\Handler
+     */
+    public function getUploaderHandler(): Upload\Handler
+    {
+        return new Upload\Handler($this);
+    }
+
+    /**
      * @return Message\Handler
      */
     public function getMessageHandler(): Message\Handler

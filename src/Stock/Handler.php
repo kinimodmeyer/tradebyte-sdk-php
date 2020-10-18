@@ -51,6 +51,15 @@ class Handler
     }
 
     /**
+     * @param string $filePath
+     * @return string
+     */
+    public function updateStockFromStockList(string $filePath): string
+    {
+        return $this->client->getRestClient()->postXMLFile($filePath, 'articles/stock');
+    }
+
+    /**
      * @param Stock[] $stockArray
      * @return string
      */
