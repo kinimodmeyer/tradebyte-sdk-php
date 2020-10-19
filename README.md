@@ -62,3 +62,17 @@ execute the test with the following:
 ```bash
 $ ./vendor/bin/phpunit tests
 ```
+
+## Code Analysis
+
+execute the analysis with the following:
+
+```bash
+$ ./vendor/bin/phpcs --standard=PSR12 src
+```
+
+fix (if possible) with the following:
+
+```bash
+$ ./vendor/bin/phpcbf --standard=PSR12 src
+```
