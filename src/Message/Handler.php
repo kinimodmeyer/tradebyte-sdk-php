@@ -107,9 +107,9 @@ class Handler
      * @param int $messageId
      * @return boolean
      */
-    public function updateMessageExported(int $messageId)
+    public function updateMessageProcessed(int $messageId)
     {
-        $this->client->getRestClient()->postXML('messages/'.$messageId.'/exported');
+        $this->client->getRestClient()->postXML('messages/'.$messageId.'/processed');
         return true;
     }
 

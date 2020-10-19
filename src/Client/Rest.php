@@ -188,7 +188,7 @@ class Rest
      * @param string $postData
      * @return string
      */
-    public function postXML(string $url, string $postData): string
+    public function postXML(string $url, string $postData = ''): string
     {
         $context = [
             'http' => [
