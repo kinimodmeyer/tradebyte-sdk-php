@@ -12,4 +12,4 @@ jobs:
       - name: Run Unit test
         run: vendor/bin/phpunit tests
       - name: Run PSR check
-        run: vendor/bin/phpcs --standard=PSR12 src
+        run: vendor/bin/phpcs src

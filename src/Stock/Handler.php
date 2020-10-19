@@ -43,8 +43,8 @@ class Handler
 
     /**
      * @param string $filePath
-     * @param array $filter
-     * @return bool
+     * @param array  $filter
+     * @return boolean
      */
     public function downloadStockList(string $filePath, array $filter = []): bool
     {

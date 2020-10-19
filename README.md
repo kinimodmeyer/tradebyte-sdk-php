@@ -68,11 +68,11 @@ $ ./vendor/bin/phpunit tests
 execute the analysis with the following:
 
 ```bash
-$ ./vendor/bin/phpcs --standard=PSR12 src
+$ ./vendor/bin/phpcs src
 ```
 
 fix (if possible) with the following:
 
 ```bash
-$ ./vendor/bin/phpcbf --standard=PSR12 src
+$ ./vendor/bin/phpcbf src
 ```

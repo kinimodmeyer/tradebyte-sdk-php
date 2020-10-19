@@ -15,7 +15,7 @@ class Stock
     protected $articleNumber;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $stock;
 
@@ -38,7 +38,7 @@ class Stock
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getStock(): ?int
     {
@@ -46,7 +46,7 @@ class Stock
     }
 
     /**
-     * @param int $stock
+     * @param integer $stock
      * @return Stock
      */
     public function setStock(int $stock): Stock

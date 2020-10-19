@@ -10,7 +10,7 @@ use SimpleXMLElement;
 class Order
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -40,17 +40,17 @@ class Order
     protected $channelNumber;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isPaid;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isApproved;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $itemCount;
 
@@ -126,7 +126,7 @@ class Order
     protected $billNumber;
 
     /**
-     * @return int
+     * @return integer
      */
     public function getId(): ?int
     {
@@ -134,7 +134,7 @@ class Order
     }
 
     /**
-     * @param int $id
+     * @param integer $id
      * @return Order
      */
     public function setId(int $id): Order
@@ -234,7 +234,7 @@ class Order
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function isPaid(): ?bool
     {
@@ -242,7 +242,7 @@ class Order
     }
 
     /**
-     * @param bool $isPaid
+     * @param boolean $isPaid
      * @return Order
      */
     public function setIsPaid(bool $isPaid): Order
@@ -252,7 +252,7 @@ class Order
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function isApproved(): ?bool
     {
@@ -260,7 +260,7 @@ class Order
     }
 
     /**
-     * @param bool $isApproved
+     * @param boolean $isApproved
      * @return Order
      */
     public function setIsApproved(bool $isApproved): Order
@@ -270,7 +270,7 @@ class Order
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getItemCount(): ?int
     {
@@ -278,7 +278,7 @@ class Order
     }
 
     /**
-     * @param int $itemCount
+     * @param integer $itemCount
      * @return Order
      */
     public function setItemCount(int $itemCount): Order

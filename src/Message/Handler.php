@@ -27,7 +27,7 @@ class Handler
     }
 
     /**
-     * @param int $messageId
+     * @param integer $messageId
      * @return Message
      */
     public function getMessage(int $messageId): Message
@@ -53,9 +53,9 @@ class Handler
     }
 
     /**
-     * @param string $filePath
-     * @param int $messageId
-     * @return bool
+     * @param string  $filePath
+     * @param integer $messageId
+     * @return boolean
      */
     public function downloadMessage(string $filePath, int $messageId): bool
     {
@@ -98,8 +98,8 @@ class Handler
 
     /**
      * @param string $filePath
-     * @param array $filter
-     * @return bool
+     * @param array  $filter
+     * @return boolean
      */
     public function downloadMessageList(string $filePath, array $filter = []): bool
     {
@@ -107,7 +107,7 @@ class Handler
     }
 
     /**
-     * @param int $messageId
+     * @param integer $messageId
      * @return boolean
      */
     public function updateMessageProcessed(int $messageId)

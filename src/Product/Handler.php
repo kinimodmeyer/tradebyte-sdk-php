@@ -28,8 +28,8 @@ class Handler
     }
 
     /**
-     * @param int $productId
-     * @param int $channelId
+     * @param integer $productId
+     * @param integer $channelId
      * @return Product
      */
     public function getProduct(int $productId, int $channelId): Product
@@ -55,10 +55,10 @@ class Handler
     }
 
     /**
-     * @param string $filePath
-     * @param int $productId
-     * @param int $channelId
-     * @return bool
+     * @param string  $filePath
+     * @param integer $productId
+     * @param integer $channelId
+     * @return boolean
      */
     public function downloadProduct(string $filePath, int $productId, int $channelId): bool
     {
@@ -104,8 +104,8 @@ class Handler
 
     /**
      * @param string $filePath
-     * @param array $filter
-     * @return bool
+     * @param array  $filter
+     * @return boolean
      */
     public function downloadCatalog(string $filePath, array $filter = []): bool
     {

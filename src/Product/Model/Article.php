@@ -8,7 +8,7 @@ namespace Tradebyte\Product\Model;
 class Article
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -28,7 +28,7 @@ class Article
     protected $createdDate;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isActive;
 
@@ -48,37 +48,37 @@ class Article
     protected $unit;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $stock;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $deliveryTime;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $replacement;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $replacementTime;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderMin;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderMax;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderInterval;
 
@@ -108,7 +108,7 @@ class Article
     protected $media;
 
     /**
-     * @return int
+     * @return integer
      */
     public function getId(): ?int
     {
@@ -116,7 +116,8 @@ class Article
     }
 
     /**
-     * @param int $id
+     * @param integer $id
+     * @return void
      */
     public function setId(int $id): void
     {
@@ -172,7 +173,7 @@ class Article
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function isActive(): ?bool
     {
@@ -180,7 +181,7 @@ class Article
     }
 
     /**
-     * @param bool $isActive
+     * @param boolean $isActive
      */
     public function setIsActive(bool $isActive): void
     {
@@ -236,7 +237,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getStock(): ?int
     {
@@ -244,7 +245,7 @@ class Article
     }
 
     /**
-     * @param int $stock
+     * @param integer $stock
      */
     public function setStock(int $stock): void
     {
@@ -252,7 +253,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getDeliveryTime(): ?int
     {
@@ -260,7 +261,7 @@ class Article
     }
 
     /**
-     * @param int $deliveryTime
+     * @param integer $deliveryTime
      */
     public function setDeliveryTime(int $deliveryTime): void
     {
@@ -268,7 +269,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getReplacement(): ?int
     {
@@ -276,7 +277,7 @@ class Article
     }
 
     /**
-     * @param int $replacement
+     * @param integer $replacement
      */
     public function setReplacement(int $replacement): void
     {
@@ -284,7 +285,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getReplacementTime(): ?int
     {
@@ -292,7 +293,7 @@ class Article
     }
 
     /**
-     * @param int $replacementTime
+     * @param integer $replacementTime
      */
     public function setReplacementTime(int $replacementTime): void
     {
@@ -300,7 +301,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getOrderMin(): ?int
     {
@@ -308,7 +309,7 @@ class Article
     }
 
     /**
-     * @param int $orderMin
+     * @param integer $orderMin
      */
     public function setOrderMin(int $orderMin): void
     {
@@ -316,7 +317,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getOrderMax(): ?int
     {
@@ -324,7 +325,7 @@ class Article
     }
 
     /**
-     * @param int $orderMax
+     * @param integer $orderMax
      */
     public function setOrderMax(int $orderMax): void
     {
@@ -332,7 +333,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getOrderInterval(): ?int
     {
@@ -340,7 +341,7 @@ class Article
     }
 
     /**
-     * @param int $orderInterval
+     * @param integer $orderInterval
      */
     public function setOrderInterval(int $orderInterval): void
     {

@@ -22,7 +22,7 @@ class Iterator
     protected $current;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $i = 0;
 
@@ -42,18 +42,18 @@ class Iterator
     protected $filter;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $openLocalFilepath = false;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isOpen = false;
 
     /**
-     * @param Client $client
-     * @param string $url
+     * @param Client  $client
+     * @param string  $url
      * @param mixed[] $filter
      */
     public function __construct(Client $client, string $url, array $filter = [])
@@ -64,7 +64,7 @@ class Iterator
     }
 
     /**
-     * @param bool $openLocalFilepath
+     * @param boolean $openLocalFilepath
      */
     public function setOpenLocalFilepath(bool $openLocalFilepath)
     {
@@ -72,7 +72,7 @@ class Iterator
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function valid()
     {
@@ -80,7 +80,7 @@ class Iterator
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function key()
     {
@@ -99,7 +99,7 @@ class Iterator
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function getIsOpen(): bool
     {

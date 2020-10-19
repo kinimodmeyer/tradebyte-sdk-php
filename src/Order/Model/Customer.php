@@ -8,7 +8,7 @@ namespace Tradebyte\Order\Model;
 class Customer
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -93,7 +93,7 @@ class Customer
     protected $vatId;
 
     /**
-     * @return int
+     * @return integer
      */
     public function getId(): ?int
     {
@@ -101,7 +101,7 @@ class Customer
     }
 
     /**
-     * @param int $id
+     * @param integer $id
      * @return Customer
      */
     public function setId(int $id): Customer

@@ -10,7 +10,7 @@ use XMLReader;
 class Rest
 {
     /**
-     * @var int
+     * @var integer
      */
     private $accountNumber;
 
@@ -30,7 +30,7 @@ class Rest
     private $baseURL = 'https://rest.trade-server.net';
 
     /**
-     * @param int $number
+     * @param integer $number
      */
     public function setAccountNumber(int $number)
     {
@@ -72,7 +72,7 @@ class Rest
 
     /**
      * @param string $url
-     * @param array $filter
+     * @param array  $filter
      * @return string
      */
     private function getCreatedURI(string $url, array $filter = [])
@@ -88,7 +88,7 @@ class Rest
 
     /**
      * @param string $statusLine
-     * @return int
+     * @return integer
      */
     private function getStatusCode(string $statusLine): int
     {
@@ -148,8 +148,8 @@ class Rest
     /**
      * @param string $localFilePath
      * @param string $url
-     * @param array $filter
-     * @return bool
+     * @param array  $filter
+     * @return boolean
      */
     public function downloadFile(string $localFilePath, string $url, array $filter = []): bool
     {
@@ -215,7 +215,7 @@ class Rest
     }
 
     /**
-     * @param string $url
+     * @param string  $url
      * @param mixed[] $filter
      * @return XMLReader
      */

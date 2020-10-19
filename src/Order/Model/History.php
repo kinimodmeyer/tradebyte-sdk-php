@@ -8,7 +8,7 @@ namespace Tradebyte\Order\Model;
 class History
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
@@ -23,7 +23,7 @@ class History
     private $createdDate;
 
     /**
-     * @return int
+     * @return integer
      */
     public function getId(): ?int
     {
@@ -31,7 +31,7 @@ class History
     }
 
     /**
-     * @param int $id
+     * @param integer $id
      * @return History
      */
     public function setId(int $id): History

@@ -10,7 +10,7 @@ use SimpleXMLElement;
 class Message
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -20,12 +20,12 @@ class Message
     protected $type;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderId;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderItemId;
 
@@ -55,7 +55,7 @@ class Message
     protected $channelSku;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $quantity;
 
@@ -105,12 +105,12 @@ class Message
     protected $estShipDate;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isProcessed;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isExported;
 
@@ -125,7 +125,7 @@ class Message
     protected $deliveryInformation;
 
     /**
-     * @return int
+     * @return integer
      */
     public function getId(): ?int
     {
@@ -133,7 +133,7 @@ class Message
     }
 
     /**
-     * @param int $id
+     * @param integer $id
      * @return Message
      */
     public function setId(int $id): Message
@@ -161,7 +161,7 @@ class Message
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getOrderId(): ?int
     {
@@ -169,7 +169,7 @@ class Message
     }
 
     /**
-     * @param int $orderId
+     * @param integer $orderId
      * @return Message
      */
     public function setOrderId(int $orderId): Message
@@ -179,7 +179,7 @@ class Message
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getOrderItemId(): ?int
     {
@@ -187,7 +187,7 @@ class Message
     }
 
     /**
-     * @param int $orderItemId
+     * @param integer $orderItemId
      * @return Message
      */
     public function setOrderItemId(int $orderItemId): Message
@@ -251,7 +251,7 @@ class Message
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getQuantity(): ?int
     {
@@ -259,7 +259,7 @@ class Message
     }
 
     /**
-     * @param int $quantity
+     * @param integer $quantity
      * @return Message
      */
     public function setQuantity(int $quantity): Message
@@ -305,7 +305,7 @@ class Message
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function isProcessed(): ?bool
     {
@@ -313,7 +313,7 @@ class Message
     }
 
     /**
-     * @param bool $isProcessed
+     * @param boolean $isProcessed
      * @return Message
      */
     public function setIsProcessed(bool $isProcessed): Message
@@ -323,7 +323,7 @@ class Message
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function isExported(): ?bool
     {
@@ -331,7 +331,7 @@ class Message
     }
 
     /**
-     * @param bool $isExported
+     * @param boolean $isExported
      * @return Message
      */
     public function setIsExported(bool $isExported): Message

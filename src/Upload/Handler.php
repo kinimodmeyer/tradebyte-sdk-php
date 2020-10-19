@@ -25,7 +25,7 @@ class Handler
     /**
      * @param string $filePath
      * @param string $fileName
-     * @return bool
+     * @return boolean
      */
     public function uploadFile(string $filePath, string $fileName): bool
     {

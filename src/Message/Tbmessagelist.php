@@ -15,10 +15,10 @@ class Tbmessagelist
     protected $iterator;
 
     /**
-     * @param Client $client
-     * @param string $url
+     * @param Client  $client
+     * @param string  $url
      * @param mixed[] $filter
-     * @param bool $localFile
+     * @param boolean $localFile
      */
     public function __construct(Client $client, string $url, $filter = [], $localFile = false)
     {

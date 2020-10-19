@@ -8,7 +8,7 @@ namespace Tradebyte\Order\Model;
 class Item
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -28,7 +28,7 @@ class Item
     protected $ean;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $quantity;
 
@@ -48,7 +48,7 @@ class Item
     protected $createdDate;
 
     /**
-     * @return int
+     * @return integer
      */
     public function getId(): ?int
     {
@@ -56,7 +56,7 @@ class Item
     }
 
     /**
-     * @param int $id
+     * @param integer $id
      * @return Item
      */
     public function setId(int $id): Item
@@ -120,7 +120,7 @@ class Item
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getQuantity(): ?int
     {
@@ -128,7 +128,7 @@ class Item
     }
 
     /**
-     * @param int $quantity
+     * @param integer $quantity
      * @return Item
      */
     public function setQuantity(int $quantity): Item

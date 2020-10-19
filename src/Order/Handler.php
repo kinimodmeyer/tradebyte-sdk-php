@@ -29,7 +29,7 @@ class Handler
     }
 
     /**
-     * @param int $orderId
+     * @param integer $orderId
      * @return Order
      */
     public function getOrder(int $orderId): Order
@@ -55,9 +55,9 @@ class Handler
     }
 
     /**
-     * @param string $filePath
-     * @param int $orderId
-     * @return bool
+     * @param string  $filePath
+     * @param integer $orderId
+     * @return boolean
      */
     public function downloadOrder(string $filePath, int $orderId): bool
     {
@@ -100,8 +100,8 @@ class Handler
 
     /**
      * @param string $filePath
-     * @param array $filter
-     * @return bool
+     * @param array  $filter
+     * @return boolean
      */
     public function downloadOrderList(string $filePath, array $filter = []): bool
     {
@@ -109,7 +109,7 @@ class Handler
     }
 
     /**
-     * @param int $orderId
+     * @param integer $orderId
      * @return boolean
      */
     public function updateOrderExported(int $orderId)
@@ -119,8 +119,8 @@ class Handler
     }
 
     /**
-     * @param string $filePath
-     * @param int $channelId
+     * @param string  $filePath
+     * @param integer $channelId
      * @return string
      */
     public function updateOrderFromFile(string $filePath, int $channelId): string
@@ -132,8 +132,8 @@ class Handler
     }
 
     /**
-     * @param int $channelId
-     * @param Order $order
+     * @param integer $channelId
+     * @param Order   $order
      * @return string
      */
     public function updateOrder(int $channelId, Order $order)

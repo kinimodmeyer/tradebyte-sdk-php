@@ -10,7 +10,7 @@ use SimpleXMLElement;
 class Product
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
@@ -20,12 +20,12 @@ class Product
     private $number;
 
     /**
-     * @var int
+     * @var integer
      */
     private $changeDate;
 
     /**
-     * @var int
+     * @var integer
      */
     private $createdDate;
 
@@ -70,7 +70,7 @@ class Product
     protected $variantfields;
 
     /**
-     * @return int
+     * @return integer
      */
     public function getId(): ?int
     {
@@ -78,7 +78,7 @@ class Product
     }
 
     /**
-     * @param int $id
+     * @param integer $id
      */
     public function setId(int $id): void
     {
@@ -102,7 +102,7 @@ class Product
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getChangeDate(): ?int
     {
@@ -110,7 +110,7 @@ class Product
     }
 
     /**
-     * @param int $changeDate
+     * @param integer $changeDate
      */
     public function setChangeDate(int $changeDate): void
     {
@@ -118,7 +118,7 @@ class Product
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getCreatedDate(): ?int
     {
@@ -126,7 +126,7 @@ class Product
     }
 
     /**
-     * @param int $createdDate
+     * @param integer $createdDate
      */
     public function setCreatedDate(int $createdDate): void
     {
