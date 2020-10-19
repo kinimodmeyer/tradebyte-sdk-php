@@ -10,7 +10,7 @@ use SimpleXMLElement;
 class Message
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -20,12 +20,12 @@ class Message
     protected $type;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderId;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderItemId;
 
@@ -55,7 +55,7 @@ class Message
     protected $channelSku;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $quantity;
 
@@ -105,12 +105,12 @@ class Message
     protected $estShipDate;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isProcessed;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isExported;
 

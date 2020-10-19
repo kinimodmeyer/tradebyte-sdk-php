@@ -15,7 +15,7 @@ class Stock
     protected $articleNumber;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $stock;
 

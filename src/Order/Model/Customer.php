@@ -8,7 +8,7 @@ namespace Tradebyte\Order\Model;
 class Customer
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 

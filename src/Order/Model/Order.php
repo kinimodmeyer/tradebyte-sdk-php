@@ -10,7 +10,7 @@ use SimpleXMLElement;
 class Order
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -40,17 +40,17 @@ class Order
     protected $channelNumber;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isPaid;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isApproved;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $itemCount;
 

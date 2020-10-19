@@ -8,7 +8,7 @@ namespace Tradebyte\Order\Model;
 class Item
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -28,7 +28,7 @@ class Item
     protected $ean;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $quantity;
 

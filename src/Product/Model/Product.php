@@ -10,7 +10,7 @@ use SimpleXMLElement;
 class Product
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 
@@ -20,12 +20,12 @@ class Product
     private $number;
 
     /**
-     * @var int
+     * @var integer
      */
     private $changeDate;
 
     /**
-     * @var int
+     * @var integer
      */
     private $createdDate;
 

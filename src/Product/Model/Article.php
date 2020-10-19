@@ -8,7 +8,7 @@ namespace Tradebyte\Product\Model;
 class Article
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $id;
 
@@ -28,7 +28,7 @@ class Article
     protected $createdDate;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isActive;
 
@@ -48,37 +48,37 @@ class Article
     protected $unit;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $stock;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $deliveryTime;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $replacement;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $replacementTime;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderMin;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderMax;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $orderInterval;
 

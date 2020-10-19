@@ -10,7 +10,7 @@ use XMLReader;
 class Rest
 {
     /**
-     * @var int
+     * @var integer
      */
     private $accountNumber;
 

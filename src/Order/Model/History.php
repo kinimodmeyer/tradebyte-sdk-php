@@ -8,7 +8,7 @@ namespace Tradebyte\Order\Model;
 class History
 {
     /**
-     * @var int
+     * @var integer
      */
     private $id;
 

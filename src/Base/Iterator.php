@@ -22,7 +22,7 @@ class Iterator
     protected $current;
 
     /**
-     * @var int
+     * @var integer
      */
     protected $i = 0;
 
@@ -42,12 +42,12 @@ class Iterator
     protected $filter;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $openLocalFilepath = false;
 
     /**
-     * @var bool
+     * @var boolean
      */
     protected $isOpen = false;
 
