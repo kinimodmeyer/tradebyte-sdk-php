@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Order;
 
 use SimpleXMLElement;
@@ -33,7 +34,7 @@ class Handler
      */
     public function getOrder(int $orderId): Order
     {
-        $catalog = new Tborderlist($this->client, 'orders/'.(int)$orderId, []);
+        $catalog = new Tborderlist($this->client, 'orders/' . (int)$orderId, []);
         $orderIterator = $catalog->getOrders();
         $orderIterator->rewind();
 
@@ -60,12 +61,14 @@ class Handler
      */
     public function downloadOrder(string $filePath, int $orderId): bool
     {
-        $reader = $this->client->getRestClient()->getXML('orders/'.(int)$orderId, []);
+        $reader = $this->client->getRestClient()->getXML('orders/' . (int)$orderId, []);
 
         while ($reader->read()) {
-            if ($reader->nodeType == XMLReader::ELEMENT
+            if (
+                $reader->nodeType == XMLReader::ELEMENT
                 && $reader->depth === 1
-                && $reader->name == 'ORDER') {
+                && $reader->name == 'ORDER'
+            ) {
                 $filePut = file_put_contents($filePath, $reader->readOuterXml());
                 $reader->close();
                 return $filePut;
@@ -111,7 +114,7 @@ class Handler
      */
     public function updateOrderExported(int $orderId)
     {
-        $this->client->getRestClient()->postXML('orders/'.$orderId.'/exported');
+        $this->client->getRestClient()->postXML('orders/' . $orderId . '/exported');
         return true;
     }
 
@@ -122,7 +125,10 @@ class Handler
      */
     public function updateOrderFromFile(string $filePath, int $channelId): string
     {
-        return $this->client->getRestClient()->postXML('orders/?channel='.(int)$channelId, file_get_contents($filePath));
+        return $this->client->getRestClient()->postXML(
+            'orders/?channel=' . (int)$channelId,
+            file_get_contents($filePath)
+        );
     }
 
     /**
@@ -236,6 +242,6 @@ class Handler
         $writer->endElement();
         $writer->endElement();
 
-        return $this->client->getRestClient()->postXML('orders/?channel='.(int)$channelId, $writer->outputMemory());
+        return $this->client->getRestClient()->postXML('orders/?channel=' . (int)$channelId, $writer->outputMemory());
     }
 }

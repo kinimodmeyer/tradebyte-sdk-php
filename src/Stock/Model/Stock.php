@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Stock\Model;
 
 use SimpleXMLElement;

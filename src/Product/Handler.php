@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Product;
 
 use SimpleXMLElement;
@@ -61,12 +62,17 @@ class Handler
      */
     public function downloadProduct(string $filePath, int $productId, int $channelId): bool
     {
-        $reader = $this->client->getRestClient()->getXML('products/'.(int)$productId, ['p_id' => $productId, 'channel' => $channelId]);
+        $reader = $this->client->getRestClient()->getXML(
+            'products/' . (int)$productId,
+            ['p_id' => $productId, 'channel' => $channelId]
+        );
 
         while ($reader->read()) {
-            if ($reader->nodeType == XMLReader::ELEMENT
+            if (
+                $reader->nodeType == XMLReader::ELEMENT
                 && $reader->depth === 2
-                && $reader->name == 'PRODUCT') {
+                && $reader->name == 'PRODUCT'
+            ) {
                 $filePut = file_put_contents($filePath, $reader->readOuterXml());
                 $reader->close();
                 return $filePut;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Product\Tbcat;
 
 use SimpleXMLElement;
@@ -42,9 +43,11 @@ class Iterator extends Base\Iterator implements \Iterator
     public function next()
     {
         while ($this->xmlReader->read()) {
-            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+            if (
+                $this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth == 2
-                && $this->xmlReader->name == 'PRODUCT') {
+                && $this->xmlReader->name == 'PRODUCT'
+            ) {
                 $xmlElement = new SimpleXMLElement($this->xmlReader->readOuterXML());
                 $product = new Product();
                 $product->fillFromSimpleXMLElement($xmlElement);
@@ -70,9 +73,11 @@ class Iterator extends Base\Iterator implements \Iterator
         }
 
         while ($this->xmlReader->read()) {
-            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+            if (
+                $this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth == 1
-                && $this->xmlReader->name == 'SUPPLIER') {
+                && $this->xmlReader->name == 'SUPPLIER'
+            ) {
                 $xmlElement = new SimpleXMLElement($this->xmlReader->readOuterXML());
                 $this->supplierName = (string)$xmlElement->NAME;
                 break;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Order;
 
 use Tradebyte\Client;

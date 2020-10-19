@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Stock\Tbstock;
 
 use Tradebyte\Stock\Model\Stock;
@@ -41,9 +42,11 @@ class Iterator extends Base\Iterator implements \Iterator
     public function next()
     {
         while ($this->xmlReader->read()) {
-            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+            if (
+                $this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth === 1
-                && $this->xmlReader->name == 'ARTICLE') {
+                && $this->xmlReader->name == 'ARTICLE'
+            ) {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
                 $model = new Stock();
                 $model->fillFromSimpleXMLElement($xmlElement);
@@ -69,9 +72,11 @@ class Iterator extends Base\Iterator implements \Iterator
         }
 
         while ($this->xmlReader->read()) {
-            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+            if (
+                $this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth == 0
-                && $this->xmlReader->name == 'TBSTOCK') {
+                && $this->xmlReader->name == 'TBSTOCK'
+            ) {
                 $this->changeDate = $this->xmlReader->getAttribute('changedate');
                 break;
             }

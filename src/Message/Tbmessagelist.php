@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Message;
 
 use Tradebyte\Client;

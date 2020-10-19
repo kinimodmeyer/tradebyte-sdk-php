@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Client;
 
 use XMLReader;
@@ -65,8 +66,8 @@ class Rest
      */
     private function getAuthHeader()
     {
-        $auth = base64_encode($this->accountUser.':'.$this->accountPassword);
-        return 'Authorization: Basic '.$auth;
+        $auth = base64_encode($this->accountUser . ':' . $this->accountPassword);
+        return 'Authorization: Basic ' . $auth;
     }
 
     /**
@@ -76,10 +77,10 @@ class Rest
      */
     private function getCreatedURI(string $url, array $filter = [])
     {
-        $uri = $this->baseURL.'/'.$this->accountNumber.'/'.$url;
+        $uri = $this->baseURL . '/' . $this->accountNumber . '/' . $url;
 
         if (!empty($filter)) {
-            $uri .= '?'.http_build_query($filter);
+            $uri .= '?' . http_build_query($filter);
         }
 
         return $uri;
@@ -106,7 +107,7 @@ class Rest
         $curl = curl_init($this->getCreatedURI($url, []));
         curl_setopt($curl, CURLOPT_PUT, true);
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($curl, CURLOPT_USERPWD, $this->accountUser.':'.$this->accountPassword);
+        curl_setopt($curl, CURLOPT_USERPWD, $this->accountUser . ':' . $this->accountPassword);
         curl_setopt($curl, CURLOPT_INFILE, $localHandle);
         curl_setopt($curl, CURLOPT_INFILESIZE, filesize($localFilePath));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -131,7 +132,7 @@ class Rest
         curl_setopt($curl, CURLOPT_PUT, true);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($curl, CURLOPT_USERPWD, $this->accountUser.':'.$this->accountPassword);
+        curl_setopt($curl, CURLOPT_USERPWD, $this->accountUser . ':' . $this->accountPassword);
         curl_setopt($curl, CURLOPT_INFILE, $localHandle);
         curl_setopt($curl, CURLOPT_INFILESIZE, filesize($localFilePath));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -155,7 +156,7 @@ class Rest
         $context = [
             'http' => [
                 'header' => $this->getAuthHeader()
-                    ."\r\n".'User-Agent: Tradebyte-SDK',
+                    . "\r\n" . 'User-Agent: Tradebyte-SDK',
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
@@ -165,7 +166,7 @@ class Rest
         $statusLine = $http_response_header[0];
 
         if ($this->getStatusCode($statusLine) !== 200) {
-            throw new \RuntimeException('unexpected response status: '.$statusLine);
+            throw new \RuntimeException('unexpected response status: ' . $statusLine);
         }
 
         $localHandle = fopen($localFilePath, 'w+');
@@ -194,9 +195,9 @@ class Rest
             'http' => [
                 'method'  => 'POST',
                 'header' => $this->getAuthHeader()
-                    ."\r\n".'Content-Type: application/xml'
-                    ."\r\n".'Accept: application/xml'
-                    ."\r\n".'User-Agent: Tradebyte-SDK',
+                    . "\r\n" . 'Content-Type: application/xml'
+                    . "\r\n" . 'Accept: application/xml'
+                    . "\r\n" . 'User-Agent: Tradebyte-SDK',
                 'content' => $postData,
                 'ignore_errors' => true,
                 'time_out' => 3600,
@@ -207,7 +208,7 @@ class Rest
         $statusLine = $http_response_header[0];
 
         if (!in_array($this->getStatusCode($statusLine), [200, 201, 204])) {
-            throw new \RuntimeException($statusLine.' / '.$response);
+            throw new \RuntimeException($statusLine . ' / ' . $response);
         }
 
         return $response;
@@ -223,8 +224,8 @@ class Rest
         libxml_set_streams_context(stream_context_create([
             'http' => [
                 'header' => $this->getAuthHeader()
-                    ."\r\n".'Accept: application/xml'
-                    ."\r\n".'User-Agent: Tradebyte-SDK',
+                    . "\r\n" . 'Accept: application/xml'
+                    . "\r\n" . 'User-Agent: Tradebyte-SDK',
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
@@ -235,7 +236,7 @@ class Rest
         $statusLine = $http_response_header[0];
 
         if ($this->getStatusCode($statusLine) !== 200) {
-            throw new \RuntimeException('unexpected response status: '.$statusLine);
+            throw new \RuntimeException('unexpected response status: ' . $statusLine);
         }
 
         return $reader;

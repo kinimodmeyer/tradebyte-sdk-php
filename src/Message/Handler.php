@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Message;
 
 use SimpleXMLElement;
@@ -31,7 +32,7 @@ class Handler
      */
     public function getMessage(int $messageId): Message
     {
-        $catalog = new Tbmessagelist($this->client, 'messages/'.(int)$messageId, []);
+        $catalog = new Tbmessagelist($this->client, 'messages/' . (int)$messageId, []);
         $messageIterator = $catalog->getMessages();
         $messageIterator->rewind();
 
@@ -58,12 +59,14 @@ class Handler
      */
     public function downloadMessage(string $filePath, int $messageId): bool
     {
-        $reader = $this->client->getRestClient()->getXML('messages/'.(int)$messageId, []);
+        $reader = $this->client->getRestClient()->getXML('messages/' . (int)$messageId, []);
 
         while ($reader->read()) {
-            if ($reader->nodeType == XMLReader::ELEMENT
+            if (
+                $reader->nodeType == XMLReader::ELEMENT
                 && $reader->depth === 1
-                && $reader->name == 'MESSAGE') {
+                && $reader->name == 'MESSAGE'
+            ) {
                 $filePut = file_put_contents($filePath, $reader->readOuterXml());
                 $reader->close();
                 return $filePut;
@@ -109,7 +112,7 @@ class Handler
      */
     public function updateMessageProcessed(int $messageId)
     {
-        $this->client->getRestClient()->postXML('messages/'.$messageId.'/processed');
+        $this->client->getRestClient()->postXML('messages/' . $messageId . '/processed');
         return true;
     }
 

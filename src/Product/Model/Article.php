@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Product\Model;
 
 /**

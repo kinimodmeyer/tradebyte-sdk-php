@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Upload;
 
 use Tradebyte\Client;
@@ -28,6 +29,6 @@ class Handler
      */
     public function uploadFile(string $filePath, string $fileName): bool
     {
-        return $this->client->getRestClient()->uploadFile($filePath, 'sync/in/'.$fileName);
+        return $this->client->getRestClient()->uploadFile($filePath, 'sync/in/' . $fileName);
     }
 }

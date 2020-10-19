@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Order\Model;
 
 use SimpleXMLElement;
@@ -694,4 +695,3 @@ class Order
         return $data;
     }
 }
-

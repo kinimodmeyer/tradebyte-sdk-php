@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Order\Tborder;
 
 use Tradebyte\Order\Model\Order;
@@ -24,9 +25,11 @@ class Iterator extends Base\Iterator implements \Iterator
     public function next()
     {
         while ($this->xmlReader->read()) {
-            if ($this->xmlReader->nodeType == XMLReader::ELEMENT
+            if (
+                $this->xmlReader->nodeType == XMLReader::ELEMENT
                 && $this->xmlReader->depth === 1
-                && $this->xmlReader->name == 'ORDER') {
+                && $this->xmlReader->name == 'ORDER'
+            ) {
                 $xmlElement = new \SimpleXMLElement($this->xmlReader->readOuterXML());
                 $model = new Order();
                 $model->fillFromSimpleXMLElement($xmlElement);
