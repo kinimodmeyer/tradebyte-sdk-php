@@ -42,17 +42,14 @@ $client = new Tradebyte\Client([
 //different handler can be used here
 $messageHandler = $client->getMessageHandler();
 
-//fetch and output message-object with message-identifier 5
-var_dump($messageHandler->getMessage(5));
+//fetch message with message-identifier 5
+var_dump($messageHandler->getMessage(5)->getId());
 
 //or download/reopen message
-$messageHandler->downloadMessage(__DIR__.'/message_5.xml');
+$messageHandler->downloadMessage(__DIR__.'/message_5.xml', 5);
 var_dump($messageHandler->getMessageFromFile(__DIR__.'/message_5.xml'));
 
-//or get message list
-foreach ($messageHandler->getMessageList([])->getMessages() as $message) {
-    var_dump($message);
-}
+//see also the other possible methods on the handler for list-handling, acknowledge an many more ...
 ```
 
 ## Example Files
