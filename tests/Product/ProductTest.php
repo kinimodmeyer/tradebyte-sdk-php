@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Product;
 
 use Tradebyte\Base;
@@ -112,6 +113,28 @@ class ProductTest extends Base
                 ],
             ]
         ];
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetCatalogFromFile(): void
+    {
+        $productHandler = (new Client())->getProductHandler();
+        $catalog = $productHandler->getCatalogFromFile(__DIR__ . '/../files/catalog.xml');
+        $products = $catalog->getProducts();
+        $products->rewind();
+
+        $this->assertSame(
+            [
+                'product' => $this->getProductFileRawData(),
+                'supplier_name' => 'supplier_name_test'
+            ],
+            [
+                'product' => $products->current()->getRawData(),
+                'supplier_name' => $catalog->getSupplierName()
+            ]
+        );
     }
 
     /**
