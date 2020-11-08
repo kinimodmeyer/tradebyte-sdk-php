@@ -2,6 +2,7 @@
 
 namespace Tradebyte\Product\Tbcat;
 
+use InvalidArgumentException;
 use SimpleXMLElement;
 use Tradebyte\Product\Model\Product;
 use XMLReader;
@@ -67,7 +68,10 @@ class Iterator extends Base\Iterator implements \Iterator
 
         if ($this->openLocalFilepath) {
             $this->xmlReader = new XMLReader();
-            $this->xmlReader->open($this->url);
+
+            if (@$this->xmlReader->open($this->url) === false) {
+                throw new InvalidArgumentException('can not open file ' . $this->url);
+            }
         } else {
             $this->xmlReader = $this->client->getRestClient()->getXML($this->url, $this->filter);
         }

@@ -183,5 +183,4 @@ class OrderTest extends Base
             ],
         ], $order->getRawData());
     }
-
 }
