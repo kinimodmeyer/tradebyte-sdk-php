@@ -6,22 +6,7 @@ SDK to handle all different ways to interact with Tradebyte API. more informatio
 
 * the sdk is build that way that it not consume much memory and can even process gigabyte of data. this is done by heavy use of iterators and xml readers.
 * depending on the call you can choose between "on the fly" or "download/re-open" processing.
-* the following data end-points are implemented:
-
-- [x] order list
-- [x] order single
-- [x] order set exported
-- [x] order push
-- [x] product list
-- [x] product single
-- [x] stock list
-- [x] stock push
-- [x] message list
-- [x] message single
-- [x] message push
-- [x] message push file
-- [x] message set exported
-- [x] import push
+* the following entities with multiple endpoints are supported: product, order, message, stock, upload
 
 ## Requirements
 
@@ -40,7 +25,24 @@ SDK to handle all different ways to interact with Tradebyte API. more informatio
 $ composer require kinimodmeyer/tradebyte-sdk
 ```
 
-## Execute Examples
+## Quick Example
+
+```php
+$client = new Tradebyte\Client([
+    'credentials' => [
+         'account_number' => '',
+         'account_user' => '',
+         'account_password' => ''
+     ]
+]);
+//different handler can be used here
+$messageHandler = $client->getMessageHandler();
+
+//fetch and oupt message object with identifier 5
+var_dump($messageHandler->getMessage(5));
+```
+
+## Example Files
 
 copy ``vendor/kinimodmeyer/tradebyte-sdk/examples/`` folder to your project-root.
 rename ``examples/example_credentials.php`` to ``examples/credentials.php`` and replace the credentials.
