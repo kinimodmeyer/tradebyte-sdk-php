@@ -25,9 +25,12 @@ SDK to handle all different ways to interact with Tradebyte API. more informatio
 $ composer require kinimodmeyer/tradebyte-sdk
 ```
 
-## Quick Example
+## Quick Example (message)
 
 ```php
+//only needed if not already included
+require './vendor/autoload.php';
+
 $client = new Tradebyte\Client([
     'credentials' => [
          'account_number' => '',
@@ -35,11 +38,21 @@ $client = new Tradebyte\Client([
          'account_password' => ''
      ]
 ]);
+
 //different handler can be used here
 $messageHandler = $client->getMessageHandler();
 
-//fetch and oupt message object with identifier 5
+//fetch and output message-object with message-identifier 5
 var_dump($messageHandler->getMessage(5));
+
+//or download/reopen message
+$messageHandler->downloadMessage(__DIR__.'/message_5.xml');
+var_dump($messageHandler->getMessageFromFile(__DIR__.'/message_5.xml'));
+
+//or get message list
+foreach ($messageHandler->getMessageList([])->getMessages() as $message) {
+    var_dump($message);
+}
 ```
 
 ## Example Files
