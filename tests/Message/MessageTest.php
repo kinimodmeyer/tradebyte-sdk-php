@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Message;
 
 use Tradebyte\Base;
@@ -11,14 +12,11 @@ use Tradebyte\Message\Model\Message;
 class MessageTest extends Base
 {
     /**
-     * @return void
+     * @return mixed[]
      */
-    public function testGetMessageFromFile(): void
+    private function getMessageFileRawData()
     {
-        $messageHandler = (new Client())->getMessageHandler();
-        $messageModel = $messageHandler->getMessageFromFile(__DIR__.'/../files/message.xml');
-
-        $this->assertSame([
+        return [
             'id' => 1,
             'type' => 'type_test',
             'order_id' => 2,
@@ -42,7 +40,31 @@ class MessageTest extends Base
             'is_exported' => true,
             'created_date' => '2016-09-09T14:14:17',
             'delivery_information' => 'delivery_information_test',
-        ], $messageModel->getRawData());
+        ];
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetMessageListFromFile(): void
+    {
+        $messageHandler = (new Client())->getMessageHandler();
+        $messageList = $messageHandler->getMessageListFromFile(__DIR__ . '/../files/messagelist.xml');
+        $messages = $messageList->getMessages();
+        $messages->rewind();
+        $messageModel = $messages->current();
+
+        $this->assertSame($this->getMessageFileRawData(), $messageModel->getRawData());
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetMessageFromFile(): void
+    {
+        $messageHandler = (new Client())->getMessageHandler();
+        $messageModel = $messageHandler->getMessageFromFile(__DIR__ . '/../files/message.xml');
+        $this->assertSame($this->getMessageFileRawData(), $messageModel->getRawData());
     }
 
     /**
