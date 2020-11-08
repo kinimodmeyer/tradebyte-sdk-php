@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Stock;
 
 use Tradebyte\Base;
@@ -16,7 +17,7 @@ class StockTest extends Base
     public function testGetStockListFromFile(): void
     {
         $stockHandler = (new Client())->getStockHandler();
-        $catalog = $stockHandler->getStockListFromFile(__DIR__.'/../files/stock.xml');
+        $catalog = $stockHandler->getStockListFromFile(__DIR__ . '/../files/stock.xml');
         $stockIterator = $catalog->getStock();
         $stockIterator->rewind();
         $stockModel = $stockIterator->current();

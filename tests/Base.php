@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte;
 
 use PHPUnit\Framework\TestCase;

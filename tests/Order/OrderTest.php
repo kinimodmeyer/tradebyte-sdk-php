@@ -1,4 +1,5 @@
 <?php
+
 namespace Tradebyte\Order;
 
 use Tradebyte\Base;
@@ -19,7 +20,7 @@ class OrderTest extends Base
     public function testGetOrderFormFile(): void
     {
         $orderHandler = (new Client())->getOrderHandler();
-        $orderModel = $orderHandler->getOrderFromFile(__DIR__.'/../files/order.xml');
+        $orderModel = $orderHandler->getOrderFromFile(__DIR__ . '/../files/order.xml');
         $expectedSubset = [
             'id' => 1,
             'order_date' => '2018-11-07',
