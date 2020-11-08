@@ -1,5 +1,6 @@
 <?php
-require __DIR__.'/loader.php';
+
+require __DIR__ . '/loader.php';
 
 $client = new Tradebyte\Client(['credentials' => $credentials]);
 $orderHandler = $client->getOrderHandler();
@@ -28,8 +29,8 @@ $orderList->close();
 /*
  * download mode
  */
-$orderHandler->downloadOrderList(__DIR__.'/files/orders.xml', $filter);
-$orderList = $orderHandler->getOrderListFromFile(__DIR__.'/files/orders.xml');
+$orderHandler->downloadOrderList(__DIR__ . '/files/orders.xml', $filter);
+$orderList = $orderHandler->getOrderListFromFile(__DIR__ . '/files/orders.xml');
 
 foreach ($orderList->getOrders() as $order) {
     echo $order->getId();

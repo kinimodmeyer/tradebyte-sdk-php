@@ -1,5 +1,6 @@
 <?php
-require __DIR__.'/loader.php';
+
+require __DIR__ . '/loader.php';
 
 $client = new Tradebyte\Client(['credentials' => $credentials]);
 $messageHandler = $client->getMessageHandler();
@@ -29,8 +30,8 @@ $messageList->close();
 /*
  * download mode
  */
-$messageHandler->downloadMessageList(__DIR__.'/files/messages.xml', $params);
-$messageList = $messageHandler->getMessageListFromFile(__DIR__.'/files/messages.xml');
+$messageHandler->downloadMessageList(__DIR__ . '/files/messages.xml', $params);
+$messageList = $messageHandler->getMessageListFromFile(__DIR__ . '/files/messages.xml');
 
 foreach ($messageList->getMessages() as $message) {
     echo $message->getId();

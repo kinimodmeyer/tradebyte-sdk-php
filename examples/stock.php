@@ -1,5 +1,6 @@
 <?php
-require __DIR__.'/loader.php';
+
+require __DIR__ . '/loader.php';
 
 $client = new Tradebyte\Client(['credentials' => $credentials]);
 $stockHandler = $client->getStockHandler();
@@ -20,8 +21,8 @@ $catalog->close();
 /*
  * download mode
  */
-$stockHandler->downloadStockList(__DIR__.'/files/stock.xml', $params);
-$catalog = $stockHandler->getStockListFromFile(__DIR__.'/files/stock.xml');
+$stockHandler->downloadStockList(__DIR__ . '/files/stock.xml', $params);
+$catalog = $stockHandler->getStockListFromFile(__DIR__ . '/files/stock.xml');
 echo $catalog->getChangeDate();
 
 foreach ($catalog->getStock() as $stock) {
