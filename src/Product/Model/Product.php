@@ -356,8 +356,8 @@ class Product
                     ]);
                 }
 
-                $article->setChangeDate((string)$xmlItem->A_CHANGEDATE);
-                $article->setCreatedDate((string)$xmlItem->A_CREATEDATE);
+                $article->setChangeDate((int)$xmlItem->A_CHANGEDATE);
+                $article->setCreatedDate((int)$xmlItem->A_CREATEDATE);
                 $article->setIsActive((bool)(int)$xmlItem->A_ACTIVE);
                 $article->setEan((string)$xmlItem->A_EAN);
                 $article->setProdNumber((string)$xmlItem->A_PROD_NR);

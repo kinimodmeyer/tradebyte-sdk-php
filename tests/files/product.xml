@@ -1,0 +1,68 @@
+<PRODUCT>
+    <P_NR>4</P_NR>
+    <P_NR_EXTERNAL>p_nr_external_test</P_NR_EXTERNAL>
+    <P_SUB_SUPPLIER identifier="id" key="w"/>
+    <P_CHANGEDATE type="unix_timestamp">1602833805</P_CHANGEDATE>
+    <P_CREATEDATE type="unix_timestamp">1525245206</P_CREATEDATE>
+    <P_ACTIVEDATA>
+        <P_ACTIVE channel="channel_test">1</P_ACTIVE>
+    </P_ACTIVEDATA>
+    <P_NAME>
+        <VALUE xml:lang="x-default">p_name_test</VALUE>
+    </P_NAME>
+    <P_TEXT>
+        <VALUE xml:lang="x-default">p_text_test</VALUE>
+    </P_TEXT>
+    <P_BRAND identifier="name" key="p_brand_key_test">p_brand_test</P_BRAND>
+    <P_VARIANTFIELDS>
+        <P_VARIANTFIELD identifier="name" key="Farbe">Farbe</P_VARIANTFIELD>
+        <P_VARIANTFIELD identifier="name" key="Gr&#xF6;&#xDF;e">Größe</P_VARIANTFIELD>
+    </P_VARIANTFIELDS>
+    <ARTICLEDATA>
+        <ARTICLE>
+            <A_NR>a_nr_test</A_NR>
+            <A_ID>4</A_ID>
+            <A_SUB_SUPPLIER identifier="id" key="w"/>
+            <A_CHANGEDATE type="unix_timestamp">1532602476</A_CHANGEDATE>
+            <A_CREATEDATE type="unix_timestamp">1525245321</A_CREATEDATE>
+            <A_ACTIVE>1</A_ACTIVE>
+            <A_EAN>a_ean_test</A_EAN>
+            <A_PROD_NR>a_prod_nr_test</A_PROD_NR>
+            <A_VARIANTDATA>
+                <A_VARIANT identifier="name" key="Farbe">
+                    <VALUE xml:lang="x-default">weiß</VALUE>
+                </A_VARIANT>
+                <A_VARIANT identifier="name" key="Gr&#xF6;&#xDF;e">
+                    <VALUE xml:lang="x-default">40</VALUE>
+                </A_VARIANT>
+            </A_VARIANTDATA>
+            <A_PRICEDATA>
+                <A_PRICE channel="channel_test" currency="EUR">
+                    <A_VK>27.00</A_VK>
+                    <A_VK_OLD>0.00</A_VK_OLD>
+                    <A_UVP>0.00</A_UVP>
+                    <A_MWST>2</A_MWST>
+                    <A_EK>12.48</A_EK>
+                </A_PRICE>
+            </A_PRICEDATA>
+            <A_MEDIADATA>
+                <A_MEDIA type="image" sort="10000010" origname="1.jpg">a_media_url_test</A_MEDIA>
+            </A_MEDIADATA>
+            <A_UNIT>ST</A_UNIT>
+            <A_STOCK>5</A_STOCK>
+            <A_DELIVERY_TIME>1</A_DELIVERY_TIME>
+            <A_REPLACEMENT>0</A_REPLACEMENT>
+            <A_REPLACEMENT_TIME>0</A_REPLACEMENT_TIME>
+            <A_ORDER_MIN>0</A_ORDER_MIN>
+            <A_ORDER_MAX>0</A_ORDER_MAX>
+            <A_ORDER_INTERVAL>0</A_ORDER_INTERVAL>
+            <A_PARCEL>
+                <A_PIECES>1</A_PIECES>
+                <A_WIDTH>35</A_WIDTH>
+                <A_HEIGHT>5</A_HEIGHT>
+                <A_LENGTH>23</A_LENGTH>
+                <A_WEIGHT>0.25</A_WEIGHT>
+            </A_PARCEL>
+        </ARTICLE>
+    </ARTICLEDATA>
+</PRODUCT>

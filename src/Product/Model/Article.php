@@ -141,33 +141,33 @@ class Article
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getChangeDate(): ?string
+    public function getChangeDate(): ?int
     {
         return $this->changeDate;
     }
 
     /**
-     * @param string $changeDate
+     * @param int $changeDate
      */
-    public function setChangeDate(string $changeDate): void
+    public function setChangeDate(int $changeDate): void
     {
         $this->changeDate = $changeDate;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCreatedDate(): ?string
+    public function getCreatedDate(): ?int
     {
         return $this->createdDate;
     }
 
     /**
-     * @param string $createdDate
+     * @param int $createdDate
      */
-    public function setCreatedDate(string $createdDate): void
+    public function setCreatedDate(int $createdDate): void
     {
         $this->createdDate = $createdDate;
     }
