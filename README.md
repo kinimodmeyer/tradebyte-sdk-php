@@ -79,10 +79,12 @@ execute the analysis with the following:
 
 ```bash
 $ ./vendor/bin/phpcs src
+$ ./vendor/bin/phpcs tests
 ```
 
 fix (if possible) with the following:
 
 ```bash
 $ ./vendor/bin/phpcbf src
+$ ./vendor/bin/phpcbf tests
 ```
