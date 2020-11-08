@@ -27,19 +27,19 @@ class Client
     public function __construct(array $options = [])
     {
         $this->options = $options;
+        $restClient = new Client\Rest();
 
         if (isset($this->options['credentials'])) {
-            $restClient = new Client\Rest();
             $restClient->setAccountNumber((int)$this->options['credentials']['account_number']);
             $restClient->setAccountUser($this->options['credentials']['account_user']);
             $restClient->setAccountPassword($this->options['credentials']['account_password']);
-
-            if (!empty($this->options['base_url'])) {
-                $restClient->setBaseURL($this->options['base_url']);
-            }
-
-            $this->restClient = $restClient;
         }
+
+        if (!empty($this->options['base_url'])) {
+            $restClient->setBaseURL($this->options['base_url']);
+        }
+
+        $this->setRestClient($restClient);
     }
 
     /**
@@ -48,6 +48,15 @@ class Client
     public function getRestClient()
     {
         return $this->restClient;
+    }
+
+    /**
+     * @param Client\Rest $client
+     * @return void
+     */
+    public function setRestClient(Client\Rest $client): void
+    {
+        $this->restClient = $client;
     }
 
     /**

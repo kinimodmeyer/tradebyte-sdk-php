@@ -70,6 +70,41 @@ class MessageTest extends Base
     /**
      * @return void
      */
+    public function testUpdateMessageProcessed(): void
+    {
+        $mock = $this->getMockBuilder(Client\Rest::class)
+            ->disableOriginalConstructor()
+            ->setMethodsExcept(['postXML', 'setAccountNumber', 'setBaseURL'])
+            ->getMock();
+        $mock->setAccountNumber(1234);
+        $mock->setBaseURL('localhost');
+        $mock->expects($this->once())
+            ->method('fileGetContents')
+            ->with(
+                $this->equalTo('localhost/1234/messages/1/processed'),
+                $this->equalTo(false),
+                $this->equalTo([
+                    'http' => [
+                        'method' => 'POST',
+                        'header' => 'Authorization: Basic Og==' . "\r\n" .
+                            'Content-Type: application/xml' . "\r\n" .
+                            'Accept: application/xml' . "\r\n" .
+                            'User-Agent: Tradebyte-SDK',
+                        'content' => '',
+                        'ignore_errors' => true,
+                        'time_out' => 3600
+                    ]
+                ]),
+            )
+            ->will($this->returnValue(['content' => 'foo', 'status_line' => 'HTTP/1.0 200']));
+        $client = new Client();
+        $client->setRestClient($mock);
+        $this->assertSame(true, $client->getMessageHandler()->updateMessageProcessed(1));
+    }
+
+    /**
+     * @return void
+     */
     public function testMessageObjectGetRawData(): void
     {
         $message = new Message();

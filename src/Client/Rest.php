@@ -185,6 +185,22 @@ class Rest
     }
 
     /**
+     * @param string $filename
+     * @param bool $useIncludePath
+     * @param mixed[] $contextArray
+     * @return mixed[]
+     */
+    public function fileGetContents(string $filename, bool $useIncludePath, array $contextArray): array
+    {
+        $content = file_get_contents($filename, $useIncludePath, stream_context_create($contextArray));
+
+        return [
+            'content' => $content,
+            'status_line' =>  $http_response_header[0]
+        ];
+    }
+
+    /**
      * @param string $url
      * @param string $postData
      * @return string
@@ -204,14 +220,15 @@ class Rest
             ]
         ];
 
-        $response =  file_get_contents($this->getCreatedURI($url, []), false, stream_context_create($context));
-        $statusLine = $http_response_header[0];
+        $response = $this->fileGetContents($this->getCreatedURI($url, []), false, $context);
+        $content = $response['content'];
+        $statusLine = $response['status_line'];
 
         if (!in_array($this->getStatusCode($statusLine), [200, 201, 204])) {
-            throw new \RuntimeException($statusLine . ' / ' . $response);
+            throw new \RuntimeException($statusLine . ' / ' . $content);
         }
 
-        return $response;
+        return $content;
     }
 
     /**
