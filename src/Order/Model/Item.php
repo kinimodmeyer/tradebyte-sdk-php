@@ -33,6 +33,11 @@ class Item
     protected $quantity;
 
     /**
+     * @var string
+     */
+    protected $billingText;
+
+    /**
      * @var float
      */
     protected $transferPrice;
@@ -138,6 +143,25 @@ class Item
     }
 
     /**
+     * @return string
+     */
+    public function getBillingText(): ?string
+    {
+        return $this->billingText;
+    }
+
+    /**
+     * @param string $billingText
+     *
+     * @return Item
+     */
+    public function setBillingText(string $billingText): Item
+    {
+        $this->billingText = $billingText;
+        return $this;
+    }
+
+    /**
      * @return float
      */
     public function getTransferPrice(): ?float
@@ -203,6 +227,7 @@ class Item
             'ean' => $this->getEan(),
             'item_price' => $this->getItemPrice(),
             'quantity' => $this->getQuantity(),
+            'billing_text' => $this->getBillingText(),
             'sku' => $this->getSku(),
             'transfer_price' => $this->getTransferPrice(),
         ];

@@ -76,6 +76,7 @@ class OrderTest extends Base
             ->setItemPrice(40.0)
             ->setCreatedDate('2019')
             ->setQuantity(10)
+            ->setBillingText('article test')
             ->setSku('12345')
             ->setChannelId('12345')
             ->setTransferPrice(50.0);
@@ -178,6 +179,7 @@ class OrderTest extends Base
                     'ean' => '12345',
                     'item_price' => 40.0,
                     'quantity' => 10,
+                    'billing_text' => 'article test',
                     'sku' => '12345',
                     'transfer_price' => 50.0
                 ]
