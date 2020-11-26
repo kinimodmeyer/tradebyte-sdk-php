@@ -145,7 +145,7 @@ class Item
     /**
      * @return string
      */
-    public function getBillingText(): string
+    public function getBillingText(): ?string
     {
         return $this->billingText;
     }
