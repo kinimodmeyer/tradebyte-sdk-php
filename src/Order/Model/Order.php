@@ -638,6 +638,7 @@ class Order
                 $item->setSku((string)$xmlItem->SKU);
                 $item->setEan((string)$xmlItem->EAN);
                 $item->setQuantity((int)$xmlItem->QUANTITY);
+                $item->setBillingText((string)$xmlItem->BILLING_TEXT);
                 $item->setTransferPrice((float)$xmlItem->TRANSFER_PRICE);
                 $item->setItemPrice((float)$xmlItem->ITEM_PRICE);
                 $item->setCreatedDate((string)$xmlItem->DATE_CREATED);
