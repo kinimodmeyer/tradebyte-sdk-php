@@ -143,7 +143,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getType(): ?string
     {
@@ -161,7 +161,7 @@ class Message
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getOrderId(): ?int
     {
@@ -179,7 +179,7 @@ class Message
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getOrderItemId(): ?int
     {
@@ -197,7 +197,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getSku(): ?string
     {
@@ -215,7 +215,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelSign(): ?string
     {
@@ -233,7 +233,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelOrderId(): ?string
     {
@@ -251,7 +251,7 @@ class Message
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getQuantity(): ?int
     {
@@ -269,7 +269,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getCarrierParcelType(): ?string
     {
@@ -287,7 +287,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getIdcode(): ?string
     {
@@ -305,7 +305,7 @@ class Message
     }
 
     /**
-     * @return boolean
+     * @return boolean|null
      */
     public function isProcessed(): ?bool
     {
@@ -323,7 +323,7 @@ class Message
     }
 
     /**
-     * @return boolean
+     * @return boolean|null
      */
     public function isExported(): ?bool
     {
@@ -341,7 +341,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getCreatedDate(): ?string
     {
@@ -359,7 +359,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelOrderItemId(): ?string
     {
@@ -377,7 +377,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelSku(): ?string
     {
@@ -395,7 +395,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getIdcodeReturnProposal(): ?string
     {
@@ -413,7 +413,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDeduction(): ?string
     {
@@ -431,7 +431,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getComment(): ?string
     {
@@ -449,7 +449,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getReturnCause(): ?string
     {
@@ -467,7 +467,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getReturnState(): ?string
     {
@@ -485,7 +485,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getService(): ?string
     {
@@ -503,7 +503,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getEstShipDate(): ?string
     {
@@ -521,7 +521,7 @@ class Message
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDeliveryInformation(): ?string
     {

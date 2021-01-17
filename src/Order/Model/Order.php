@@ -126,7 +126,7 @@ class Order
     protected $billNumber;
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getId(): ?int
     {
@@ -144,7 +144,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getOrderDate(): ?string
     {
@@ -162,7 +162,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getOrderCreatedDate(): ?string
     {
@@ -180,7 +180,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelSign(): ?string
     {
@@ -198,7 +198,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelId(): ?string
     {
@@ -216,7 +216,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelNumber(): ?string
     {
@@ -234,7 +234,7 @@ class Order
     }
 
     /**
-     * @return boolean
+     * @return boolean|null
      */
     public function isPaid(): ?bool
     {
@@ -252,7 +252,7 @@ class Order
     }
 
     /**
-     * @return boolean
+     * @return boolean|null
      */
     public function isApproved(): ?bool
     {
@@ -270,7 +270,7 @@ class Order
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getItemCount(): ?int
     {
@@ -288,7 +288,7 @@ class Order
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getTotalItemAmount(): ?float
     {
@@ -306,7 +306,7 @@ class Order
     }
 
     /**
-     * @return Item[]
+     * @return Item[]|null
      */
     public function getItems(): ?array
     {
@@ -324,7 +324,7 @@ class Order
     }
 
     /**
-     * @return History[]
+     * @return History[]|null
      */
     public function getHistory(): ?array
     {
@@ -342,7 +342,7 @@ class Order
     }
 
     /**
-     * @return Customer
+     * @return Customer|null
      */
     public function getShipTo(): ?Customer
     {
@@ -360,7 +360,7 @@ class Order
     }
 
     /**
-     * @return Customer
+     * @return Customer|null
      */
     public function getSellTo(): ?Customer
     {
@@ -378,7 +378,7 @@ class Order
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getShipmentPrice(): ?float
     {
@@ -396,7 +396,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getShipmentIdcodeShip(): ?string
     {
@@ -414,7 +414,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getShipmentIdcodeReturn(): ?string
     {
@@ -432,7 +432,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getShipmentRoutingCode(): ?string
     {
@@ -450,7 +450,7 @@ class Order
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getPaymentCosts(): ?float
     {
@@ -468,7 +468,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getPaymentType(): ?string
     {
@@ -486,7 +486,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getPaymentDirectdebit(): ?string
     {
@@ -504,7 +504,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getCustomerComment(): ?string
     {
@@ -522,7 +522,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getBillNumber(): ?string
     {

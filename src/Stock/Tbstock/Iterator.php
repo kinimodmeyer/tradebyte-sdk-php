@@ -59,6 +59,9 @@ class Iterator extends Base\Iterator implements \Iterator
         $this->current = null;
     }
 
+    /**
+     * @return void
+     */
     public function open()
     {
         if ($this->getIsOpen()) {

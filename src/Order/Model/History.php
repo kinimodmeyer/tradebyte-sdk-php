@@ -23,7 +23,7 @@ class History
     private $createdDate;
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getId(): ?int
     {
@@ -41,7 +41,7 @@ class History
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getType(): ?string
     {
@@ -59,7 +59,7 @@ class History
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getCreatedDate(): ?string
     {

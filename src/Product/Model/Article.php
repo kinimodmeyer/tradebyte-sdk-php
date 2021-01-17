@@ -108,7 +108,7 @@ class Article
     protected $media;
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getId(): ?int
     {
@@ -125,7 +125,7 @@ class Article
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getNumber(): ?string
     {
@@ -141,7 +141,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getChangeDate(): ?int
     {
@@ -157,7 +157,7 @@ class Article
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getCreatedDate(): ?int
     {
@@ -173,7 +173,7 @@ class Article
     }
 
     /**
-     * @return boolean
+     * @return boolean|null
      */
     public function isActive(): ?bool
     {
@@ -189,7 +189,7 @@ class Article
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getEan(): ?string
     {
@@ -205,7 +205,7 @@ class Article
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getProdNumber(): ?string
     {
@@ -221,7 +221,7 @@ class Article
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getUnit(): ?string
     {
@@ -237,7 +237,7 @@ class Article
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getStock(): ?int
     {
@@ -253,7 +253,7 @@ class Article
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getDeliveryTime(): ?int
     {
@@ -269,7 +269,7 @@ class Article
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getReplacement(): ?int
     {
@@ -285,7 +285,7 @@ class Article
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getReplacementTime(): ?int
     {
@@ -301,7 +301,7 @@ class Article
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getOrderMin(): ?int
     {
@@ -317,7 +317,7 @@ class Article
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getOrderMax(): ?int
     {
@@ -333,7 +333,7 @@ class Article
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getOrderInterval(): ?int
     {
@@ -349,7 +349,7 @@ class Article
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getSupSupplier(): ?array
     {
@@ -365,7 +365,7 @@ class Article
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getVariants(): ?array
     {
@@ -381,7 +381,7 @@ class Article
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getPrices(): ?array
     {
@@ -397,7 +397,7 @@ class Article
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getParcel(): ?array
     {
@@ -413,7 +413,7 @@ class Article
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getMedia(): ?array
     {

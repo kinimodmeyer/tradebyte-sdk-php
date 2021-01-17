@@ -46,6 +46,9 @@ class Tbcat
         return $this->iterator;
     }
 
+    /**
+     * @return void
+     */
     public function close(): void
     {
         $this->iterator->close();

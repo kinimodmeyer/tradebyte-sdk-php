@@ -20,7 +20,7 @@ class Stock
     protected $stock;
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getArticleNumber(): ?string
     {
@@ -38,7 +38,7 @@ class Stock
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getStock(): ?int
     {
