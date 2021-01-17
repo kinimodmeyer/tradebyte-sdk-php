@@ -93,7 +93,7 @@ class Customer
     protected $vatId;
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getId(): ?int
     {
@@ -111,7 +111,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelNumber(): ?string
     {
@@ -129,7 +129,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getFirstname(): ?string
     {
@@ -147,7 +147,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getLastname(): ?string
     {
@@ -165,7 +165,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -183,7 +183,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getStreetNumber(): ?string
     {
@@ -201,7 +201,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getZip(): ?string
     {
@@ -219,7 +219,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getCity(): ?string
     {
@@ -237,7 +237,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getCountry(): ?string
     {
@@ -255,7 +255,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getEmail(): ?string
     {
@@ -273,7 +273,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getTitle(): ?string
     {
@@ -291,7 +291,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getNameExtension(): ?string
     {
@@ -309,7 +309,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getStreetExtension(): ?string
     {
@@ -327,7 +327,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getPhonePrivate(): ?string
     {
@@ -345,7 +345,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getPhoneOffice(): ?string
     {
@@ -363,7 +363,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getPhoneMobile(): ?string
     {
@@ -381,7 +381,7 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getVatId(): ?string
     {

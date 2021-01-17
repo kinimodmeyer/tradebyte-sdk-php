@@ -70,7 +70,7 @@ class Product
     protected $variantfields;
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getId(): ?int
     {
@@ -86,7 +86,7 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getNumber(): ?string
     {
@@ -102,7 +102,7 @@ class Product
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getChangeDate(): ?int
     {
@@ -118,7 +118,7 @@ class Product
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getCreatedDate(): ?int
     {
@@ -134,7 +134,7 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getBrand(): ?string
     {
@@ -150,7 +150,7 @@ class Product
     }
 
     /**
-     * @return Article[]
+     * @return Article[]|null
      */
     public function getArticles(): ?array
     {
@@ -166,7 +166,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getSupSupplier(): ?array
     {
@@ -182,7 +182,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getActivations(): ?array
     {
@@ -198,7 +198,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getName(): ?array
     {
@@ -214,7 +214,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getText(): ?array
     {
@@ -230,7 +230,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getMedia(): ?array
     {
@@ -246,7 +246,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getVariantfields(): ?array
     {

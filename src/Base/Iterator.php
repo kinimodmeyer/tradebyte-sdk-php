@@ -106,6 +106,9 @@ class Iterator
         return $this->isOpen;
     }
 
+    /**
+     * @return void
+     */
     public function close(): void
     {
         $this->xmlReader->close();

@@ -138,7 +138,6 @@ class Rest
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3600);
         $response = curl_exec($curl);
-        var_dump($url, curl_error($curl));
         fclose($localHandle);
         curl_close($curl);
 

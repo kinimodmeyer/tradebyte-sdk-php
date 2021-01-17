@@ -53,7 +53,7 @@ class Item
     protected $createdDate;
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getId(): ?int
     {
@@ -71,7 +71,7 @@ class Item
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getChannelId(): ?string
     {
@@ -89,7 +89,7 @@ class Item
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getSku(): ?string
     {
@@ -107,7 +107,7 @@ class Item
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getEan(): ?string
     {
@@ -125,7 +125,7 @@ class Item
     }
 
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getQuantity(): ?int
     {
@@ -143,7 +143,7 @@ class Item
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getBillingText(): ?string
     {
@@ -162,7 +162,7 @@ class Item
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getTransferPrice(): ?float
     {
@@ -180,7 +180,7 @@ class Item
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getItemPrice(): ?float
     {
@@ -198,7 +198,7 @@ class Item
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getCreatedDate(): ?string
     {
