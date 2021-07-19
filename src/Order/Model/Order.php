@@ -636,6 +636,7 @@ class Order
                 $item->setId((int)$xmlItem->TB_ID);
                 $item->setChannelId((string)$xmlItem->CHANNEL_ID);
                 $item->setSku((string)$xmlItem->SKU);
+                $item->setChannelSku((string)$xmlItem->CHANNEL_SKU);
                 $item->setEan((string)$xmlItem->EAN);
                 $item->setQuantity((int)$xmlItem->QUANTITY);
                 $item->setBillingText((string)$xmlItem->BILLING_TEXT);

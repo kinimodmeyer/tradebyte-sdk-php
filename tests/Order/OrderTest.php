@@ -78,6 +78,7 @@ class OrderTest extends Base
             ->setQuantity(10)
             ->setBillingText('article test')
             ->setSku('12345')
+            ->setChannelSku('54321')
             ->setChannelId('12345')
             ->setTransferPrice(50.0);
         $order->setItems([$item]);
@@ -181,6 +182,7 @@ class OrderTest extends Base
                     'quantity' => 10,
                     'billing_text' => 'article test',
                     'sku' => '12345',
+                    'channel_sku' => '54321',
                     'transfer_price' => 50.0
                 ]
             ],

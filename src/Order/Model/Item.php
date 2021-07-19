@@ -25,6 +25,11 @@ class Item
     /**
      * @var string
      */
+    protected $channelSku;
+
+    /**
+     * @var string
+     */
     protected $ean;
 
     /**
@@ -97,12 +102,30 @@ class Item
     }
 
     /**
+     * @return string|null
+     */
+    public function getChannelSku(): ?string
+    {
+        return $this->channelSku;
+    }
+
+    /**
      * @param string $sku
      * @return Item
      */
     public function setSku(string $sku): Item
     {
         $this->sku = $sku;
+        return $this;
+    }
+
+    /**
+     * @param string $channelSku
+     * @return Item
+     */
+    public function setChannelSku(string $channelSku): Item
+    {
+        $this->channelSku = $channelSku;
         return $this;
     }
 
@@ -229,6 +252,7 @@ class Item
             'quantity' => $this->getQuantity(),
             'billing_text' => $this->getBillingText(),
             'sku' => $this->getSku(),
+            'channel_sku' => $this->getChannelSku(),
             'transfer_price' => $this->getTransferPrice(),
         ];
     }
