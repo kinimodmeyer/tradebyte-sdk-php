@@ -12,7 +12,7 @@ SDK to handle all different ways to interact with Tradebyte API. more informatio
 
 * credentials (username,password,account-number)
   * see https://tb-io.tradebyte.org/how-to/generate-rest-api-credentials-in-tb-one/
-* PHP >= 7.3
+* PHP >= 7.4
 * Composer
 * cURL
 

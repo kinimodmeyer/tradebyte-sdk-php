@@ -40,7 +40,7 @@ class Iterator extends Base\Iterator implements \Iterator
     /**
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         while ($this->xmlReader->read()) {
             if (

@@ -74,7 +74,7 @@ class Iterator
     /**
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return !empty($this->current);
     }
@@ -82,7 +82,7 @@ class Iterator
     /**
      * @return integer
      */
-    public function key()
+    public function key(): int
     {
         return $this->i;
     }
@@ -90,7 +90,7 @@ class Iterator
     /**
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->i = 0;
         $this->isOpen = false;

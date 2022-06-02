@@ -74,9 +74,11 @@ class MessageTest extends Base
     {
         $mock = $this->getMockBuilder(Client\Rest::class)
             ->disableOriginalConstructor()
-            ->setMethodsExcept(['postXML', 'setAccountNumber', 'setBaseURL'])
+            ->setMethodsExcept(['postXML', 'setAccountNumber', 'setAccountUser', 'setAccountPassword', 'setBaseURL'])
             ->getMock();
         $mock->setAccountNumber(1234);
+        $mock->setAccountUser('test');
+        $mock->setAccountPassword('test');
         $mock->setBaseURL('localhost');
         $mock->expects($this->once())
             ->method('fileGetContents')
@@ -86,10 +88,10 @@ class MessageTest extends Base
                 $this->equalTo([
                     'http' => [
                         'method' => 'POST',
-                        'header' => 'Authorization: Basic Og==' . "\r\n" .
+                        'header' => 'Authorization: Basic dGVzdDp0ZXN0' . "\r\n" .
                             'Content-Type: application/xml' . "\r\n" .
                             'Accept: application/xml' . "\r\n" .
-                            'User-Agent: Tradebyte-SDK',
+                            'User-Agent: Tradebyte-SDK-PHP',
                         'content' => '',
                         'ignore_errors' => true,
                         'time_out' => 3600
