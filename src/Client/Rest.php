@@ -12,22 +12,27 @@ class Rest
     /**
      * @var integer
      */
-    private $accountNumber;
+    private int $accountNumber;
 
     /**
      * @var string
      */
-    private $accountUser;
+    private string $accountUser;
 
     /**
      * @var string
      */
-    private $accountPassword;
+    private string $accountPassword;
 
     /**
      * @var string
      */
-    private $baseURL = 'https://rest.trade-server.net';
+    private string $baseURL = 'https://rest.trade-server.net';
+
+    /**
+     * @var string
+     */
+    private string $userAgent = 'Tradebyte-SDK-PHP';
 
     /**
      * @param integer $number
@@ -155,7 +160,7 @@ class Rest
         $context = [
             'http' => [
                 'header' => $this->getAuthHeader()
-                    . "\r\n" . 'User-Agent: Tradebyte-SDK',
+                    . "\r\n" . 'User-Agent: ' . $this->userAgent,
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
@@ -212,7 +217,7 @@ class Rest
                 'header' => $this->getAuthHeader()
                     . "\r\n" . 'Content-Type: application/xml'
                     . "\r\n" . 'Accept: application/xml'
-                    . "\r\n" . 'User-Agent: Tradebyte-SDK',
+                    . "\r\n" . 'User-Agent: ' . $this->userAgent,
                 'content' => $postData,
                 'ignore_errors' => true,
                 'time_out' => 3600,
@@ -241,7 +246,7 @@ class Rest
             'http' => [
                 'header' => $this->getAuthHeader()
                     . "\r\n" . 'Accept: application/xml'
-                    . "\r\n" . 'User-Agent: Tradebyte-SDK',
+                    . "\r\n" . 'User-Agent: ' . $this->userAgent,
                 'ignore_errors' => true,
                 'time_out' => 3600,
             ]
