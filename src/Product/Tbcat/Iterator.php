@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Product\Tbcat;
 
 use InvalidArgumentException;
@@ -8,19 +10,11 @@ use Tradebyte\Product\Model\Product;
 use XMLReader;
 use Tradebyte\Base;
 
-/**
- * @package Tradebyte
- */
 class Iterator extends Base\Iterator implements \Iterator
 {
-    /**
-     * @var string
-     */
-    protected $supplierName;
+    private ?Product $current = null;
+    private ?string $supplierName = null;
 
-    /**
-     * @return string
-     */
     public function getSupplierName(): ?string
     {
         if (!$this->getIsOpen()) {
@@ -30,17 +24,16 @@ class Iterator extends Base\Iterator implements \Iterator
         return $this->supplierName;
     }
 
-    /**
-     * @return Product
-     */
     public function current(): Product
     {
         return $this->current;
     }
 
-    /**
-     * @return void
-     */
+    public function valid(): bool
+    {
+        return !empty($this->current);
+    }
+
     public function next(): void
     {
         while ($this->xmlReader->read()) {
@@ -60,10 +53,7 @@ class Iterator extends Base\Iterator implements \Iterator
         $this->current = null;
     }
 
-    /**
-     * @return void
-     */
-    public function open()
+    public function open(): void
     {
         if ($this->getIsOpen()) {
             $this->close();

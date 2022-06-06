@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Product;
 
 use Tradebyte\Base;
@@ -7,14 +9,8 @@ use Tradebyte\Client;
 use Tradebyte\Product\Model\Article;
 use Tradebyte\Product\Model\Product;
 
-/**
- * @package Tradebyte
- */
 class ProductTest extends Base
 {
-    /**
-     * @return mixed[]
-     */
     private function getProductFileRawData(): array
     {
         return [
@@ -115,9 +111,6 @@ class ProductTest extends Base
         ];
     }
 
-    /**
-     * @return void
-     */
     public function testGetCatalogFromFile(): void
     {
         $productHandler = (new Client())->getProductHandler();
@@ -137,9 +130,6 @@ class ProductTest extends Base
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductFromFile(): void
     {
         $productHandler = (new Client())->getProductHandler();
@@ -147,9 +137,6 @@ class ProductTest extends Base
         $this->assertSame($this->getProductFileRawData(), $productModel->getRawData());
     }
 
-    /**
-     * @return void
-     */
     public function testProductObjectGetRawData(): void
     {
         $product = new Product();

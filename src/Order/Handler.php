@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Order;
 
 use SimpleXMLElement;
@@ -10,28 +12,16 @@ use XMLWriter;
 
 /**
  * Handles all order data specific task.
- *
- * @package Tradebyte
  */
 class Handler
 {
-    /**
-     * @var Client
-     */
-    private $client;
+    private Client $client;
 
-    /**
-     * @param Client $client
-     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
-    /**
-     * @param integer $orderId
-     * @return Order
-     */
     public function getOrder(int $orderId): Order
     {
         $catalog = new Tborderlist($this->client, 'orders/' . (int)$orderId, []);
@@ -41,10 +31,6 @@ class Handler
         return $orderIterator->current();
     }
 
-    /**
-     * @param string $filePath
-     * @return Order
-     */
     public function getOrderFromFile(string $filePath): Order
     {
         $xmlElement = new SimpleXMLElement(file_get_contents($filePath));
@@ -54,11 +40,6 @@ class Handler
         return $model;
     }
 
-    /**
-     * @param string  $filePath
-     * @param integer $orderId
-     * @return boolean
-     */
     public function downloadOrder(string $filePath, int $orderId): bool
     {
         $reader = $this->client->getRestClient()->getXML('orders/' . (int)$orderId, []);
@@ -80,49 +61,27 @@ class Handler
         return false;
     }
 
-    /**
-     * @param mixed[] $filter
-     * @return Tborderlist
-     */
     public function getOrderList($filter = []): Tborderlist
     {
         return new Tborderlist($this->client, 'orders/', $filter);
     }
 
-    /**
-     * @param string $filePath
-     * @return Tborderlist
-     */
     public function getOrderListFromFile(string $filePath): Tborderlist
     {
         return new Tborderlist($this->client, $filePath, [], true);
     }
 
-    /**
-     * @param string $filePath
-     * @param array  $filter
-     * @return boolean
-     */
     public function downloadOrderList(string $filePath, array $filter = []): bool
     {
         return $this->client->getRestClient()->downloadFile($filePath, 'orders/', $filter);
     }
 
-    /**
-     * @param integer $orderId
-     * @return boolean
-     */
-    public function updateOrderExported(int $orderId)
+    public function updateOrderExported(int $orderId): bool
     {
         $this->client->getRestClient()->postXML('orders/' . $orderId . '/exported');
         return true;
     }
 
-    /**
-     * @param string  $filePath
-     * @param integer $channelId
-     * @return string
-     */
     public function updateOrderFromFile(string $filePath, int $channelId): string
     {
         return $this->client->getRestClient()->postXML(
@@ -131,12 +90,7 @@ class Handler
         );
     }
 
-    /**
-     * @param integer $channelId
-     * @param Order   $order
-     * @return string
-     */
-    public function updateOrder(int $channelId, Order $order)
+    public function updateOrder(int $channelId, Order $order): string
     {
         $writer = new XMLWriter();
         $writer->openMemory();

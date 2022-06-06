@@ -1,20 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Message;
 
 use Tradebyte\Base;
 use Tradebyte\Client;
 use Tradebyte\Message\Model\Message;
 
-/**
- * @package Tradebyte
- */
 class MessageTest extends Base
 {
-    /**
-     * @return mixed[]
-     */
-    private function getMessageFileRawData()
+    private function getMessageFileRawData(): array
     {
         return [
             'id' => 1,
@@ -30,7 +26,7 @@ class MessageTest extends Base
             'carrier_parcel_type' => 'carrier_test',
             'idcode' => 'idcode_test',
             'idcode_return_proposal' => 'idcode_return_proposal_test',
-            'deduction' => '10',
+            'deduction' => 10.0,
             'comment' => 'comment_test',
             'return_cause' => 'return_cause_test',
             'return_state' => 'return_state_test',
@@ -43,9 +39,6 @@ class MessageTest extends Base
         ];
     }
 
-    /**
-     * @return void
-     */
     public function testGetMessageListFromFile(): void
     {
         $messageHandler = (new Client())->getMessageHandler();
@@ -57,9 +50,6 @@ class MessageTest extends Base
         $this->assertSame($this->getMessageFileRawData(), $messageModel->getRawData());
     }
 
-    /**
-     * @return void
-     */
     public function testGetMessageFromFile(): void
     {
         $messageHandler = (new Client())->getMessageHandler();
@@ -67,9 +57,6 @@ class MessageTest extends Base
         $this->assertSame($this->getMessageFileRawData(), $messageModel->getRawData());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateMessageProcessed(): void
     {
         $mock = $this->getMockBuilder(Client\Rest::class)
@@ -104,9 +91,6 @@ class MessageTest extends Base
         $this->assertSame(true, $client->getMessageHandler()->updateMessageProcessed(1));
     }
 
-    /**
-     * @return void
-     */
     public function testMessageObjectGetRawData(): void
     {
         $message = new Message();
@@ -147,7 +131,7 @@ class MessageTest extends Base
             'carrier_parcel_type' => 'carrier_test',
             'idcode' => 'idcode_test',
             'idcode_return_proposal' => 'idcode_return_proposal_test',
-            'deduction' => '20',
+            'deduction' => 20.0,
             'comment' => 'comment_test',
             'return_cause' => 'return_cause_test',
             'return_state' => 'return_state_test',

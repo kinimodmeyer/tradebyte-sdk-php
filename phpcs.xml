@@ -2,5 +2,4 @@
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHP_CodeSniffer">
     <description>The coding standard for Tradebyte SDK.</description>
     <rule ref="PSR12" />
-    <rule ref="Squiz.Commenting.VariableComment"/>
 </ruleset>

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Message;
 
 use SimpleXMLElement;
@@ -8,28 +10,15 @@ use Tradebyte\Message\Model\Message;
 use XMLReader;
 use XMLWriter;
 
-/**
- * @package Tradebyte
- */
 class Handler
 {
-    /**
-     * @var Client
-     */
-    private $client;
+    private Client $client;
 
-    /**
-     * @param Client $client
-     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
-    /**
-     * @param integer $messageId
-     * @return Message
-     */
     public function getMessage(int $messageId): Message
     {
         $catalog = new Tbmessagelist($this->client, 'messages/' . (int)$messageId, []);
@@ -39,10 +28,6 @@ class Handler
         return $messageIterator->current();
     }
 
-    /**
-     * @param string $filePath
-     * @return Message
-     */
     public function getMessageFromFile(string $filePath): Message
     {
         $xmlElement = new SimpleXMLElement(file_get_contents($filePath));
@@ -52,11 +37,6 @@ class Handler
         return $model;
     }
 
-    /**
-     * @param string  $filePath
-     * @param integer $messageId
-     * @return boolean
-     */
     public function downloadMessage(string $filePath, int $messageId): bool
     {
         $reader = $this->client->getRestClient()->getXML('messages/' . (int)$messageId, []);
@@ -78,57 +58,32 @@ class Handler
         return false;
     }
 
-    /**
-     * @param mixed[] $filter
-     * @return Tbmessagelist
-     */
-    public function getMessageList($filter = []): Tbmessagelist
+    public function getMessageList(array $filter = []): Tbmessagelist
     {
         return new Tbmessagelist($this->client, 'messages/', $filter);
     }
 
-    /**
-     * @param string $filePath
-     * @return Tbmessagelist
-     */
     public function getMessageListFromFile(string $filePath): Tbmessagelist
     {
         return new Tbmessagelist($this->client, $filePath, [], true);
     }
 
-    /**
-     * @param string $filePath
-     * @param array  $filter
-     * @return boolean
-     */
     public function downloadMessageList(string $filePath, array $filter = []): bool
     {
         return $this->client->getRestClient()->downloadFile($filePath, 'messages/', $filter);
     }
 
-    /**
-     * @param integer $messageId
-     * @return boolean
-     */
-    public function updateMessageProcessed(int $messageId)
+    public function updateMessageProcessed(int $messageId): bool
     {
         $this->client->getRestClient()->postXML('messages/' . $messageId . '/processed');
         return true;
     }
 
-    /**
-     * @param string $filePath
-     * @return string
-     */
     public function addMessagesFromMessageListFile(string $filePath): string
     {
         return $this->client->getRestClient()->postXMLFile($filePath, 'messages/');
     }
 
-    /**
-     * @param Message[] $stockArray
-     * @return string
-     */
     public function addMessages(array $stockArray): string
     {
         $writer = new XMLWriter();

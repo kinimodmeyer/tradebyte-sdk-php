@@ -1,149 +1,85 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Product\Model;
 
 use SimpleXMLElement;
 
-/**
- * @package Tradebyte
- */
 class Product
 {
-    /**
-     * @var integer
-     */
-    private $id;
+    private ?int $id = null;
 
-    /**
-     * @var string
-     */
-    private $number;
+    private ?string $number = null;
 
-    /**
-     * @var integer
-     */
-    private $changeDate;
+    private ?int $changeDate = null;
 
-    /**
-     * @var integer
-     */
-    private $createdDate;
+    private ?int $createdDate = null;
 
-    /**
-     * @var string
-     */
-    private $brand;
+    private ?string $brand = null;
 
     /**
      * @var Article[]
      */
-    protected $articles;
+    private ?array $articles = null;
 
-    /**
-     * @var array
-     */
-    protected $supSupplier;
+    private ?array $supSupplier = null;
 
-    /**
-     * @var array
-     */
-    protected $activations;
+    private ?array $activations = null;
 
-    /**
-     * @var array
-     */
-    protected $name;
+    private ?array $name = null;
 
-    /**
-     * @var array
-     */
-    protected $text;
+    private ?array $text = null;
 
-    /**
-     * @var array
-     */
-    protected $media;
+    private ?array $media = null;
 
-    /**
-     * @var array
-     */
-    protected $variantfields;
+    private ?array $variantfields = null;
 
-    /**
-     * @return integer|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param integer $id
-     */
     public function setId(int $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getNumber(): ?string
     {
         return $this->number;
     }
 
-    /**
-     * @param string $number
-     */
     public function setNumber(string $number): void
     {
         $this->number = $number;
     }
 
-    /**
-     * @return integer|null
-     */
     public function getChangeDate(): ?int
     {
         return $this->changeDate;
     }
 
-    /**
-     * @param integer $changeDate
-     */
     public function setChangeDate(int $changeDate): void
     {
         $this->changeDate = $changeDate;
     }
 
-    /**
-     * @return integer|null
-     */
     public function getCreatedDate(): ?int
     {
         return $this->createdDate;
     }
 
-    /**
-     * @param integer $createdDate
-     */
     public function setCreatedDate(int $createdDate): void
     {
         $this->createdDate = $createdDate;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBrand(): ?string
     {
         return $this->brand;
     }
 
-    /**
-     * @param string $brand
-     */
     public function setBrand(string $brand): void
     {
         $this->brand = $brand;
@@ -165,107 +101,67 @@ class Product
         $this->articles = $articles;
     }
 
-    /**
-     * @return array|null
-     */
     public function getSupSupplier(): ?array
     {
         return $this->supSupplier;
     }
 
-    /**
-     * @param array $supSupplier
-     */
     public function setSupSupplier(array $supSupplier): void
     {
         $this->supSupplier = $supSupplier;
     }
 
-    /**
-     * @return array|null
-     */
     public function getActivations(): ?array
     {
         return $this->activations;
     }
 
-    /**
-     * @param array $activations
-     */
     public function setActivations(array $activations): void
     {
         $this->activations = $activations;
     }
 
-    /**
-     * @return array|null
-     */
     public function getName(): ?array
     {
         return $this->name;
     }
 
-    /**
-     * @param array $name
-     */
     public function setName(array $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return array|null
-     */
     public function getText(): ?array
     {
         return $this->text;
     }
 
-    /**
-     * @param array $text
-     */
     public function setText(array $text): void
     {
         $this->text = $text;
     }
 
-    /**
-     * @return array|null
-     */
     public function getMedia(): ?array
     {
         return $this->media;
     }
 
-    /**
-     * @param array $media
-     */
     public function setMedia(array $media): void
     {
         $this->media = $media;
     }
 
-    /**
-     * @return array|null
-     */
     public function getVariantfields(): ?array
     {
         return $this->variantfields;
     }
 
-    /**
-     * @param array $variantfields
-     */
     public function setVariantfields(array $variantfields): void
     {
         $this->variantfields = $variantfields;
     }
 
-    /**
-     * @param SimpleXMLElement $xmlElement
-     * @return void
-     */
-    public function fillFromSimpleXMLElement(SimpleXMLElement $xmlElement)
+    public function fillFromSimpleXMLElement(SimpleXMLElement $xmlElement): void
     {
         $this->setId((int)$xmlElement->P_NR);
         $this->setNumber((string)$xmlElement->P_NR_EXTERNAL);
@@ -439,9 +335,6 @@ class Product
         }
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getRawData(): array
     {
         $data = [

@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- * @package Tradebyte
- */
 class Base extends TestCase
 {
 }

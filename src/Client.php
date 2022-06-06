@@ -1,13 +1,11 @@
 <?php
 
-namespace Tradebyte;
+declare(strict_types=1);
 
-use Tradebyte\Product\Tbcat;
+namespace Tradebyte;
 
 /**
  * Entry point of the library.
- *
- * @package Tradebyte
  */
 class Client
 {
