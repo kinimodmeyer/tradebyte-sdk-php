@@ -1,61 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Base;
 
 use Tradebyte\Client;
-use Tradebyte\Order\Model\Order;
 use XMLReader;
 
-/**
- * @package Tradebyte
- */
 class Iterator
 {
-    /**
-     * @var XMLReader
-     */
-    protected $xmlReader = null;
+    protected ?XMLReader $xmlReader = null;
 
-    /**
-     * @var Order
-     */
-    protected $current;
+    protected int $i = 0;
 
-    /**
-     * @var integer
-     */
-    protected $i = 0;
+    protected Client $client;
 
-    /**
-     * @var Client
-     */
-    protected $client;
+    protected string $url;
 
-    /**
-     * @var string
-     */
-    protected $url;
+    protected array $filter;
 
-    /**
-     * @var mixed[]
-     */
-    protected $filter;
+    protected bool $openLocalFilepath = false;
 
-    /**
-     * @var boolean
-     */
-    protected $openLocalFilepath = false;
+    protected bool $isOpen = false;
 
-    /**
-     * @var boolean
-     */
-    protected $isOpen = false;
-
-    /**
-     * @param Client  $client
-     * @param string  $url
-     * @param mixed[] $filter
-     */
     public function __construct(Client $client, string $url, array $filter = [])
     {
         $this->client = $client;
@@ -63,33 +30,16 @@ class Iterator
         $this->filter = $filter;
     }
 
-    /**
-     * @param boolean $openLocalFilepath
-     */
-    public function setOpenLocalFilepath(bool $openLocalFilepath)
+    public function setOpenLocalFilepath(bool $openLocalFilepath): void
     {
         $this->openLocalFilepath = $openLocalFilepath;
     }
 
-    /**
-     * @return boolean
-     */
-    public function valid(): bool
-    {
-        return !empty($this->current);
-    }
-
-    /**
-     * @return integer
-     */
     public function key(): int
     {
         return $this->i;
     }
 
-    /**
-     * @return void
-     */
     public function rewind(): void
     {
         $this->i = 0;
@@ -98,17 +48,11 @@ class Iterator
         $this->next();
     }
 
-    /**
-     * @return boolean
-     */
     public function getIsOpen(): bool
     {
         return $this->isOpen;
     }
 
-    /**
-     * @return void
-     */
     public function close(): void
     {
         $this->xmlReader->close();

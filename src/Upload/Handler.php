@@ -1,33 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Upload;
 
 use Tradebyte\Client;
 
-/**
- * @package Tradebyte
- */
 class Handler
 {
-    /**
-     * @var Client
-     */
-    private $client;
+    private Client $client;
 
-    /**
-     * @param Client $client
-     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
-    /**
-     * @param string $filePath
-     * @param string $fileName
-     * @return boolean
-     */
-    public function uploadFile(string $filePath, string $fileName): bool
+    public function uploadFile(string $filePath, string $fileName): string
     {
         return $this->client->getRestClient()->uploadFile($filePath, 'sync/in/' . $fileName);
     }

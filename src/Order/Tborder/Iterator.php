@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Order\Tborder;
 
 use InvalidArgumentException;
@@ -7,22 +9,20 @@ use Tradebyte\Order\Model\Order;
 use XMLReader;
 use Tradebyte\Base;
 
-/**
- * @package Tradebyte
- */
 class Iterator extends Base\Iterator implements \Iterator
 {
-    /**
-     * @return Order
-     */
+    private ?Order $current = null;
+
     public function current(): Order
     {
         return $this->current;
     }
 
-    /**
-     * @return void
-     */
+    public function valid(): bool
+    {
+        return !empty($this->current);
+    }
+
     public function next(): void
     {
         while ($this->xmlReader->read()) {
@@ -42,10 +42,7 @@ class Iterator extends Base\Iterator implements \Iterator
         $this->current = null;
     }
 
-    /**
-     * @return void
-     */
-    public function open()
+    public function open(): void
     {
         if ($this->getIsOpen()) {
             $this->close();

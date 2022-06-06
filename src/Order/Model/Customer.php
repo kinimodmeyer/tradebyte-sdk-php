@@ -1,407 +1,233 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Order\Model;
 
-/**
- * @package Tradebyte
- */
 class Customer
 {
-    /**
-     * @var integer
-     */
-    protected $id;
+    private ?int $id = null;
 
-    /**
-     * @var string
-     */
-    protected $channelNumber;
+    private ?string $channelNumber = null;
 
-    /**
-     * @var string
-     */
-    protected $firstname;
+    private ?string $firstname = null;
 
-    /**
-     * @var string
-     */
-    protected $lastname;
+    private ?string $lastname = null;
 
-    /**
-     * @var string
-     */
-    protected $name;
+    private ?string $name = null;
 
-    /**
-     * @var string
-     */
-    protected $streetNumber;
+    private ?string $streetNumber = null;
 
-    /**
-     * @var string
-     */
-    protected $zip;
+    private ?string $zip = null;
 
-    /**
-     * @var string
-     */
-    protected $city;
+    private ?string $city = null;
 
-    /**
-     * @var string
-     */
-    protected $country;
+    private ?string $country = null;
 
-    /**
-     * @var string
-     */
-    protected $email;
+    private ?string $email = null;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    private ?string $title = null;
 
-    /**
-     * @var string
-     */
-    protected $nameExtension;
+    private ?string $nameExtension = null;
 
-    /**
-     * @var string
-     */
-    protected $streetExtension;
+    private ?string $streetExtension = null;
 
-    /**
-     * @var string
-     */
-    protected $phonePrivate;
+    private ?string $phonePrivate = null;
 
-    /**
-     * @var string
-     */
-    protected $phoneOffice;
+    private ?string $phoneOffice = null;
 
-    /**
-     * @var string
-     */
-    protected $phoneMobile;
+    private ?string $phoneMobile = null;
 
-    /**
-     * @var string
-     */
-    protected $vatId;
+    private ?string $vatId = null;
 
-    /**
-     * @return integer|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param integer $id
-     * @return Customer
-     */
     public function setId(int $id): Customer
     {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getChannelNumber(): ?string
     {
         return $this->channelNumber;
     }
 
-    /**
-     * @param string $channelNumber
-     * @return Customer
-     */
     public function setChannelNumber(string $channelNumber): Customer
     {
         $this->channelNumber = $channelNumber;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
-    /**
-     * @param string $firstname
-     * @return Customer
-     */
     public function setFirstname(string $firstname): Customer
     {
         $this->firstname = $firstname;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
-    /**
-     * @param string $lastname
-     * @return Customer
-     */
     public function setLastname(string $lastname): Customer
     {
         $this->lastname = $lastname;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return Customer
-     */
     public function setName(string $name): Customer
     {
         $this->name = $name;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStreetNumber(): ?string
     {
         return $this->streetNumber;
     }
 
-    /**
-     * @param string $streetNumber
-     * @return Customer
-     */
     public function setStreetNumber(string $streetNumber): Customer
     {
         $this->streetNumber = $streetNumber;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getZip(): ?string
     {
         return $this->zip;
     }
 
-    /**
-     * @param string $zip
-     * @return Customer
-     */
     public function setZip(string $zip): Customer
     {
         $this->zip = $zip;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCity(): ?string
     {
         return $this->city;
     }
 
-    /**
-     * @param string $city
-     * @return Customer
-     */
     public function setCity(string $city): Customer
     {
         $this->city = $city;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * @param string $country
-     * @return Customer
-     */
     public function setCountry(string $country): Customer
     {
         $this->country = $country;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     * @return Customer
-     */
     public function setEmail(string $email): Customer
     {
         $this->email = $email;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Customer
-     */
     public function setTitle(string $title): Customer
     {
         $this->title = $title;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getNameExtension(): ?string
     {
         return $this->nameExtension;
     }
 
-    /**
-     * @param string $nameExtension
-     * @return Customer
-     */
     public function setNameExtension(string $nameExtension): Customer
     {
         $this->nameExtension = $nameExtension;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStreetExtension(): ?string
     {
         return $this->streetExtension;
     }
 
-    /**
-     * @param string $streetExtension
-     * @return Customer
-     */
     public function setStreetExtension(string $streetExtension): Customer
     {
         $this->streetExtension = $streetExtension;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPhonePrivate(): ?string
     {
         return $this->phonePrivate;
     }
 
-    /**
-     * @param string $phonePrivate
-     * @return Customer
-     */
     public function setPhonePrivate(string $phonePrivate): Customer
     {
         $this->phonePrivate = $phonePrivate;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPhoneOffice(): ?string
     {
         return $this->phoneOffice;
     }
 
-    /**
-     * @param string $phoneOffice
-     * @return Customer
-     */
     public function setPhoneOffice(string $phoneOffice): Customer
     {
         $this->phoneOffice = $phoneOffice;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPhoneMobile(): ?string
     {
         return $this->phoneMobile;
     }
 
-    /**
-     * @param string $phoneMobile
-     * @return Customer
-     */
     public function setPhoneMobile(string $phoneMobile): Customer
     {
         $this->phoneMobile = $phoneMobile;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getVatId(): ?string
     {
         return $this->vatId;
     }
 
-    /**
-     * @param string $vatId
-     * @return Customer
-     */
     public function setVatId(string $vatId): Customer
     {
         $this->vatId = $vatId;
         return $this;
     }
 
-    /**
-     * @return mixed[]
-     */
-    public function getRawData()
+    public function getRawData(): array
     {
         return [
             'id' => $this->getId(),

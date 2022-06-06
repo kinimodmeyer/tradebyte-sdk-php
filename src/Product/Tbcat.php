@@ -1,42 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Product;
 
 use Tradebyte\Client;
 
-/**
- * @package Tradebyte
- */
 class Tbcat
 {
-    /**
-     * @var Tbcat\Iterator
-     */
-    protected $iterator;
+    private Tbcat\Iterator $iterator;
 
-    /**
-     * @param Client  $client
-     * @param string  $url
-     * @param mixed[] $filter
-     * @param boolean $localFile
-     */
-    public function __construct(Client $client, string $url, $filter = [], $localFile = false)
+    public function __construct(Client $client, string $url, array $filter = [], bool $localFile = false)
     {
         $this->iterator = new Tbcat\Iterator($client, $url, $filter);
         $this->iterator->setOpenLocalFilepath($localFile);
     }
 
-    /**
-     * @return string|null
-     */
     public function getSupplierName(): ?string
     {
         return $this->iterator->getSupplierName();
     }
 
-    /**
-     * @return Tbcat\Iterator
-     */
     public function getProducts(): Tbcat\Iterator
     {
         if (!$this->iterator->getIsOpen()) {
@@ -46,9 +30,6 @@ class Tbcat
         return $this->iterator;
     }
 
-    /**
-     * @return void
-     */
     public function close(): void
     {
         $this->iterator->close();

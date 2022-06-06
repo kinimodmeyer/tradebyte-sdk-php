@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Product;
 
 use SimpleXMLElement;
@@ -9,29 +11,16 @@ use XMLReader;
 
 /**
  * Handles all product data specific task.
- *
- * @package Tradebyte
  */
 class Handler
 {
-    /**
-     * @var Client
-     */
-    private $client;
+    private Client $client;
 
-    /**
-     * @param Client $client
-     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
-    /**
-     * @param integer $productId
-     * @param integer $channelId
-     * @return Product
-     */
     public function getProduct(int $productId, int $channelId): Product
     {
         $catalog = new Tbcat($this->client, 'products/', ['p_id' => $productId, 'channel' => $channelId]);
@@ -41,10 +30,6 @@ class Handler
         return $productIterator->current();
     }
 
-    /**
-     * @param string $filePath
-     * @return Product
-     */
     public function getProductFromFile(string $filePath): Product
     {
         $xmlElement = new SimpleXMLElement(file_get_contents($filePath));
@@ -54,12 +39,6 @@ class Handler
         return $model;
     }
 
-    /**
-     * @param string  $filePath
-     * @param integer $productId
-     * @param integer $channelId
-     * @return boolean
-     */
     public function downloadProduct(string $filePath, int $productId, int $channelId): bool
     {
         $reader = $this->client->getRestClient()->getXML(
@@ -84,29 +63,16 @@ class Handler
         return false;
     }
 
-    /**
-     * @param mixed[] $filter
-     * @return Tbcat
-     */
     public function getCatalog($filter = []): Tbcat
     {
         return new Tbcat($this->client, 'products/', $filter);
     }
 
-    /**
-     * @param string $filePath
-     * @return Tbcat
-     */
     public function getCatalogFromFile(string $filePath): Tbcat
     {
         return new Tbcat($this->client, $filePath, [], true);
     }
 
-    /**
-     * @param string $filePath
-     * @param array  $filter
-     * @return boolean
-     */
     public function downloadCatalog(string $filePath, array $filter = []): bool
     {
         return $this->client->getRestClient()->downloadFile($filePath, 'products/', $filter);

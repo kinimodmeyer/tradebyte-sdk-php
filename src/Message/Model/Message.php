@@ -1,548 +1,313 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Message\Model;
 
 use SimpleXMLElement;
 
-/**
- * @package Tradebyte
- */
 class Message
 {
-    /**
-     * @var integer
-     */
-    protected $id;
+    private ?int $id = null;
 
-    /**
-     * @var string
-     */
-    protected $type;
+    private ?string $type = null;
 
-    /**
-     * @var integer
-     */
-    protected $orderId;
+    private ?int $orderId = null;
 
-    /**
-     * @var integer
-     */
-    protected $orderItemId;
+    private ?int $orderItemId = null;
 
-    /**
-     * @var string
-     */
-    protected $sku;
+    private ?string $sku = null;
 
-    /**
-     * @var string
-     */
-    protected $channelSign;
+    private ?string $channelSign = null;
 
-    /**
-     * @var string
-     */
-    protected $channelOrderId;
+    private ?string $channelOrderId = null;
 
-    /**
-     * @var string
-     */
-    protected $channelOrderItemId;
+    private ?string $channelOrderItemId = null;
 
-    /**
-     * @var string
-     */
-    protected $channelSku;
+    private ?string $channelSku = null;
 
-    /**
-     * @var integer
-     */
-    protected $quantity;
+    private ?int $quantity = null;
 
-    /**
-     * @var string
-     */
-    protected $carrierParcelType;
+    private ?string $carrierParcelType = null;
 
-    /**
-     * @var string
-     */
-    protected $idcode;
+    private ?string $idcode = null;
 
-    /**
-     * @var string
-     */
-    protected $idcodeReturnProposal;
+    private ?string $idcodeReturnProposal = null;
 
-    /**
-     * @var string
-     */
-    protected $deduction;
+    private ?float $deduction = null;
 
-    /**
-     * @var string
-     */
-    protected $comment;
+    private ?string $comment = null;
 
-    /**
-     * @var string
-     */
-    protected $returnCause;
+    private ?string $returnCause = null;
 
-    /**
-     * @var string
-     */
-    protected $returnState;
+    private ?string $returnState = null;
 
-    /**
-     * @var string
-     */
-    protected $service;
+    private ?string $service = null;
 
-    /**
-     * @var string
-     */
-    protected $estShipDate;
+    private ?string $estShipDate = null;
 
-    /**
-     * @var boolean
-     */
-    protected $isProcessed;
+    private ?bool $isProcessed = null;
 
-    /**
-     * @var boolean
-     */
-    protected $isExported;
+    private ?bool $isExported = null;
 
-    /**
-     * @var string
-     */
-    protected $createdDate;
+    private ?string $createdDate = null;
 
-    /**
-     * @var string
-     */
-    protected $deliveryInformation;
+    private ?string $deliveryInformation = null;
 
-    /**
-     * @return integer
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param integer $id
-     * @return Message
-     */
     public function setId(int $id): Message
     {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     * @return Message
-     */
     public function setType(string $type): Message
     {
         $this->type = $type;
         return $this;
     }
 
-    /**
-     * @return integer|null
-     */
     public function getOrderId(): ?int
     {
         return $this->orderId;
     }
 
-    /**
-     * @param integer $orderId
-     * @return Message
-     */
     public function setOrderId(int $orderId): Message
     {
         $this->orderId = $orderId;
         return $this;
     }
 
-    /**
-     * @return integer|null
-     */
     public function getOrderItemId(): ?int
     {
         return $this->orderItemId;
     }
 
-    /**
-     * @param integer $orderItemId
-     * @return Message
-     */
     public function setOrderItemId(int $orderItemId): Message
     {
         $this->orderItemId = $orderItemId;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSku(): ?string
     {
         return $this->sku;
     }
 
-    /**
-     * @param string $sku
-     * @return Message
-     */
     public function setSku(string $sku): Message
     {
         $this->sku = $sku;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getChannelSign(): ?string
     {
         return $this->channelSign;
     }
 
-    /**
-     * @param string $channelSign
-     * @return Message
-     */
     public function setChannelSign(string $channelSign): Message
     {
         $this->channelSign = $channelSign;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getChannelOrderId(): ?string
     {
         return $this->channelOrderId;
     }
 
-    /**
-     * @param string $channelOrderId
-     * @return Message
-     */
     public function setChannelOrderId(string $channelOrderId): Message
     {
         $this->channelOrderId = $channelOrderId;
         return $this;
     }
 
-    /**
-     * @return integer|null
-     */
     public function getQuantity(): ?int
     {
         return $this->quantity;
     }
 
-    /**
-     * @param integer $quantity
-     * @return Message
-     */
     public function setQuantity(int $quantity): Message
     {
         $this->quantity = $quantity;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCarrierParcelType(): ?string
     {
         return $this->carrierParcelType;
     }
 
-    /**
-     * @param string $carrierParcelType
-     * @return Message
-     */
     public function setCarrierParcelType(string $carrierParcelType): Message
     {
         $this->carrierParcelType = $carrierParcelType;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getIdcode(): ?string
     {
         return $this->idcode;
     }
 
-    /**
-     * @param string $idcode
-     * @return Message
-     */
     public function setIdcode(string $idcode): Message
     {
         $this->idcode = $idcode;
         return $this;
     }
 
-    /**
-     * @return boolean|null
-     */
     public function isProcessed(): ?bool
     {
         return $this->isProcessed;
     }
 
-    /**
-     * @param boolean $isProcessed
-     * @return Message
-     */
     public function setIsProcessed(bool $isProcessed): Message
     {
         $this->isProcessed = $isProcessed;
         return $this;
     }
 
-    /**
-     * @return boolean|null
-     */
     public function isExported(): ?bool
     {
         return $this->isExported;
     }
 
-    /**
-     * @param boolean $isExported
-     * @return Message
-     */
     public function setIsExported(bool $isExported): Message
     {
         $this->isExported = $isExported;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCreatedDate(): ?string
     {
         return $this->createdDate;
     }
 
-    /**
-     * @param string $createdDate
-     * @return Message
-     */
     public function setCreatedDate(string $createdDate): Message
     {
         $this->createdDate = $createdDate;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getChannelOrderItemId(): ?string
     {
         return $this->channelOrderItemId;
     }
 
-    /**
-     * @param string $channelOrderItemId
-     * @return Message
-     */
     public function setChannelOrderItemId(string $channelOrderItemId): Message
     {
         $this->channelOrderItemId = $channelOrderItemId;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getChannelSku(): ?string
     {
         return $this->channelSku;
     }
 
-    /**
-     * @param string $channelSku
-     * @return Message
-     */
     public function setChannelSku(string $channelSku): Message
     {
         $this->channelSku = $channelSku;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getIdcodeReturnProposal(): ?string
     {
         return $this->idcodeReturnProposal;
     }
 
-    /**
-     * @param string $idcodeReturnProposal
-     * @return Message
-     */
     public function setIdcodeReturnProposal(string $idcodeReturnProposal): Message
     {
         $this->idcodeReturnProposal = $idcodeReturnProposal;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getDeduction(): ?string
+    public function getDeduction(): ?float
     {
         return $this->deduction;
     }
 
-    /**
-     * @param string $deduction
-     * @return Message
-     */
-    public function setDeduction(string $deduction): Message
+    public function setDeduction(float $deduction): Message
     {
         $this->deduction = $deduction;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getComment(): ?string
     {
         return $this->comment;
     }
 
-    /**
-     * @param string $comment
-     * @return Message
-     */
     public function setComment(string $comment): Message
     {
         $this->comment = $comment;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getReturnCause(): ?string
     {
         return $this->returnCause;
     }
 
-    /**
-     * @param string $returnCause
-     * @return Message
-     */
     public function setReturnCause(string $returnCause): Message
     {
         $this->returnCause = $returnCause;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getReturnState(): ?string
     {
         return $this->returnState;
     }
 
-    /**
-     * @param string $returnState
-     * @return Message
-     */
     public function setReturnState(string $returnState): Message
     {
         $this->returnState = $returnState;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getService(): ?string
     {
         return $this->service;
     }
 
-    /**
-     * @param string $service
-     * @return Message
-     */
     public function setService(string $service): Message
     {
         $this->service = $service;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEstShipDate(): ?string
     {
         return $this->estShipDate;
     }
 
-    /**
-     * @param string $estShipDate
-     * @return Message
-     */
     public function setEstShipDate(string $estShipDate): Message
     {
         $this->estShipDate = $estShipDate;
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDeliveryInformation(): ?string
     {
         return $this->deliveryInformation;
     }
 
-    /**
-     * @param string $deliveryInformation
-     * @return Message
-     */
     public function setDeliveryInformation(string $deliveryInformation): Message
     {
         $this->deliveryInformation = $deliveryInformation;
         return $this;
     }
 
-    /**
-     * @param SimpleXMLElement $xmlElement
-     * @return void
-     */
-    public function fillFromSimpleXMLElement(SimpleXMLElement $xmlElement)
+    public function fillFromSimpleXMLElement(SimpleXMLElement $xmlElement): void
     {
         $this->setId((int)$xmlElement->MESSAGE_ID);
         $this->setType((string)$xmlElement->MESSAGE_TYPE);
@@ -557,7 +322,7 @@ class Message
         $this->setCarrierParcelType((string)$xmlElement->CARRIER_PARCEL_TYPE);
         $this->setIdcode((string)$xmlElement->IDCODE);
         $this->setIdcodeReturnProposal((string)$xmlElement->IDCODE_RETURN_PROPOSAL);
-        $this->setDeduction((string)$xmlElement->DEDUCTION);
+        $this->setDeduction((float)$xmlElement->DEDUCTION);
         $this->setComment((string)$xmlElement->COMMENT);
         $this->setReturnCause((string)$xmlElement->RETURN_CAUSE);
         $this->setReturnState((string)$xmlElement->RETURN_STATE);
@@ -569,10 +334,7 @@ class Message
         $this->setDeliveryInformation((string)$xmlElement->DELIVERY_INFORMATION);
     }
 
-    /**
-     * @return mixed[]
-     */
-    public function getRawData()
+    public function getRawData(): array
     {
         return [
             'id' => $this->getId(),

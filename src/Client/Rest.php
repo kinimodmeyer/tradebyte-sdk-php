@@ -1,86 +1,50 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Client;
 
 use XMLReader;
 
-/**
- * @package Tradebyte
- */
 class Rest
 {
-    /**
-     * @var integer
-     */
-    private int $accountNumber;
+    private ?int $accountNumber = null;
 
-    /**
-     * @var string
-     */
-    private string $accountUser;
+    private ?string $accountUser = null;
 
-    /**
-     * @var string
-     */
-    private string $accountPassword;
+    private ?string $accountPassword = null;
 
-    /**
-     * @var string
-     */
     private string $baseURL = 'https://rest.trade-server.net';
 
-    /**
-     * @var string
-     */
     private string $userAgent = 'Tradebyte-SDK-PHP';
 
-    /**
-     * @param integer $number
-     */
-    public function setAccountNumber(int $number)
+    public function setAccountNumber(int $number): void
     {
         $this->accountNumber = $number;
     }
 
-    /**
-     * @param string $user
-     */
-    public function setAccountUser(string $user)
+    public function setAccountUser(string $user): void
     {
         $this->accountUser = $user;
     }
 
-    /**
-     * @param string $password
-     */
-    public function setAccountPassword(string $password)
+    public function setAccountPassword(string $password): void
     {
         $this->accountPassword = $password;
     }
 
-    /**
-     * @param string $baseURL
-     */
-    public function setBaseURL(string $baseURL)
+    public function setBaseURL(string $baseURL): void
     {
         $this->baseURL = $baseURL;
     }
 
-    /**
-     * @return string
-     */
-    private function getAuthHeader()
+    private function getAuthHeader(): string
     {
         $auth = base64_encode($this->accountUser . ':' . $this->accountPassword);
         return 'Authorization: Basic ' . $auth;
     }
 
-    /**
-     * @param string $url
-     * @param array  $filter
-     * @return string
-     */
-    private function getCreatedURI(string $url, array $filter = [])
+    private function getCreatedURI(string $url, array $filter = []): string
     {
         $uri = $this->baseURL . '/' . $this->accountNumber . '/' . $url;
 
@@ -91,21 +55,12 @@ class Rest
         return $uri;
     }
 
-    /**
-     * @param string $statusLine
-     * @return integer
-     */
     private function getStatusCode(string $statusLine): int
     {
         preg_match('{HTTP\/\S*\s(\d{3})}', $statusLine, $match);
         return (int)$match[1];
     }
 
-    /**
-     * @param string $localFilePath
-     * @param string $url
-     * @return string
-     */
     public function uploadFile(string $localFilePath, string $url): string
     {
         $localHandle = fopen($localFilePath, 'r');
@@ -118,18 +73,13 @@ class Rest
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FAILONERROR, true);
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3600);
-        $response = curl_exec($curl);
+        $response = (string)curl_exec($curl);
         fclose($localHandle);
         curl_close($curl);
 
         return $response;
     }
 
-    /**
-     * @param string $localFilePath
-     * @param string $url
-     * @return string
-     */
     public function postXMLFile(string $localFilePath, string $url): string
     {
         $localHandle = fopen($localFilePath, 'r');
@@ -142,19 +92,13 @@ class Rest
         curl_setopt($curl, CURLOPT_INFILESIZE, filesize($localFilePath));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3600);
-        $response = curl_exec($curl);
+        $response = (string)curl_exec($curl);
         fclose($localHandle);
         curl_close($curl);
 
         return $response;
     }
 
-    /**
-     * @param string $localFilePath
-     * @param string $url
-     * @param array  $filter
-     * @return boolean
-     */
     public function downloadFile(string $localFilePath, string $url, array $filter = []): bool
     {
         $context = [
@@ -188,12 +132,6 @@ class Rest
         return true;
     }
 
-    /**
-     * @param string $filename
-     * @param bool $useIncludePath
-     * @param mixed[] $contextArray
-     * @return mixed[]
-     */
     public function fileGetContents(string $filename, bool $useIncludePath, array $contextArray): array
     {
         $content = file_get_contents($filename, $useIncludePath, stream_context_create($contextArray));
@@ -204,11 +142,6 @@ class Rest
         ];
     }
 
-    /**
-     * @param string $url
-     * @param string $postData
-     * @return string
-     */
     public function postXML(string $url, string $postData = ''): string
     {
         $context = [
@@ -235,11 +168,6 @@ class Rest
         return $content;
     }
 
-    /**
-     * @param string  $url
-     * @param mixed[] $filter
-     * @return XMLReader
-     */
     public function getXML(string $url, array $filter = []): XMLReader
     {
         libxml_set_streams_context(stream_context_create([

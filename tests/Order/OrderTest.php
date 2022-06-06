@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tradebyte\Order;
 
@@ -9,14 +9,8 @@ use Tradebyte\Order\Model\History;
 use Tradebyte\Order\Model\Item;
 use Tradebyte\Order\Model\Order;
 
-/**
- * @package Tradebyte
- */
 class OrderTest extends Base
 {
-    /**
-     * @return void
-     */
     public function testGetOrderFormFile(): void
     {
         $orderHandler = (new Client())->getOrderHandler();
@@ -42,9 +36,6 @@ class OrderTest extends Base
         }
     }
 
-    /**
-     * @return void
-     */
     public function testOrderGetRawData(): void
     {
         $order = new Order();

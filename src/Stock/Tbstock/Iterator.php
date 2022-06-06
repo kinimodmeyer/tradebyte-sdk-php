@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Stock\Tbstock;
 
 use InvalidArgumentException;
@@ -7,19 +9,11 @@ use Tradebyte\Stock\Model\Stock;
 use XMLReader;
 use Tradebyte\Base;
 
-/**
- * @package Tradebyte
- */
 class Iterator extends Base\Iterator implements \Iterator
 {
-    /**
-     * @var string
-     */
-    protected $changeDate;
+    private ?Stock $current = null;
+    private ?string $changeDate = null;
 
-    /**
-     * @return string
-     */
     public function getChangeDate(): ?string
     {
         if (!$this->getIsOpen()) {
@@ -29,17 +23,16 @@ class Iterator extends Base\Iterator implements \Iterator
         return $this->changeDate;
     }
 
-    /**
-     * @return Stock
-     */
     public function current(): Stock
     {
         return $this->current;
     }
 
-    /**
-     * @return void
-     */
+    public function valid(): bool
+    {
+        return !empty($this->current);
+    }
+
     public function next(): void
     {
         while ($this->xmlReader->read()) {
@@ -59,10 +52,7 @@ class Iterator extends Base\Iterator implements \Iterator
         $this->current = null;
     }
 
-    /**
-     * @return void
-     */
-    public function open()
+    public function open(): void
     {
         if ($this->getIsOpen()) {
             $this->close();

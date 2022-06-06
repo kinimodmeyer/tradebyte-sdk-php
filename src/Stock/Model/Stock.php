@@ -1,73 +1,46 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tradebyte\Stock\Model;
 
 use SimpleXMLElement;
 
-/**
- * @package Tradebyte
- */
 class Stock
 {
-    /**
-     * @var string
-     */
-    protected $articleNumber;
+    private ?string $articleNumber = null;
 
-    /**
-     * @var integer
-     */
-    protected $stock;
+    private ?int $stock = null;
 
-    /**
-     * @return string|null
-     */
     public function getArticleNumber(): ?string
     {
         return $this->articleNumber;
     }
 
-    /**
-     * @param string $articleNumber
-     * @return Stock
-     */
     public function setArticleNumber(string $articleNumber): Stock
     {
         $this->articleNumber = $articleNumber;
         return $this;
     }
 
-    /**
-     * @return integer|null
-     */
     public function getStock(): ?int
     {
         return $this->stock;
     }
 
-    /**
-     * @param integer $stock
-     * @return Stock
-     */
     public function setStock(int $stock): Stock
     {
         $this->stock = $stock;
         return $this;
     }
 
-    /**
-     * @param SimpleXMLElement $xmlElement
-     */
     public function fillFromSimpleXMLElement(SimpleXMLElement $xmlElement): void
     {
         $this->setArticleNumber((string)$xmlElement->A_NR);
         $this->setStock((int)$xmlElement->A_STOCK);
     }
 
-    /**
-     * @return mixed[]
-     */
-    public function getRawData()
+    public function getRawData(): array
     {
         return [
             'article_number' => $this->getArticleNumber(),

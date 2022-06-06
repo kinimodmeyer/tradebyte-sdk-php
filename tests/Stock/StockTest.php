@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tradebyte\Stock;
 
@@ -6,14 +6,8 @@ use Tradebyte\Base;
 use Tradebyte\Client;
 use Tradebyte\Stock\Model\Stock;
 
-/**
- * @package Tradebyte
- */
 class StockTest extends Base
 {
-    /**
-     * @return void
-     */
     public function testGetStockListFromFile(): void
     {
         $stockHandler = (new Client())->getStockHandler();
@@ -30,9 +24,6 @@ class StockTest extends Base
         $this->assertEquals('1602870040', $catalog->getChangeDate());
     }
 
-    /**
-     * @return void
-     */
     public function testStockObjectGetRawData(): void
     {
         $stock = new Stock();
