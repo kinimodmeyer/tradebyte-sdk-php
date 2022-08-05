@@ -46,7 +46,7 @@ class Handler
         foreach ($stockArray as $stock) {
             $writer->startElement('ARTICLE');
             $writer->writeElement('A_NR', $stock->getArticleNumber());
-            $writer->writeElement('A_STOCK', (string)$stock->getStock());
+            $writer->writeElement('A_STOCK', (string) $stock->getStock());
             $writer->endElement();
         }
 
