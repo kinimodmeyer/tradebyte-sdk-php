@@ -21,7 +21,7 @@ class Handler
         $this->client = $client;
     }
 
-    public function getProduct(int $productId, int $channelId): Product
+    public function getProduct(int $productId, int $channelId): ?Product
     {
         $catalog = new Tbcat($this->client, 'products/', ['p_id' => $productId, 'channel' => $channelId]);
         $productIterator = $catalog->getProducts();
@@ -52,7 +52,7 @@ class Handler
                 && $reader->depth === 2
                 && $reader->name == 'PRODUCT'
             ) {
-                $filePut = file_put_contents($filePath, $reader->readOuterXml());
+                $filePut = (bool)file_put_contents($filePath, $reader->readOuterXml());
                 $reader->close();
                 return $filePut;
             }

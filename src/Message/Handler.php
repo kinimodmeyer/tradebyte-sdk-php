@@ -47,7 +47,7 @@ class Handler
                 && $reader->depth === 1
                 && $reader->name == 'MESSAGE'
             ) {
-                $filePut = file_put_contents($filePath, $reader->readOuterXml());
+                $filePut = (bool)file_put_contents($filePath, $reader->readOuterXml());
                 $reader->close();
                 return $filePut;
             }
