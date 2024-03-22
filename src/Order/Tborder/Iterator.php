@@ -13,7 +13,7 @@ class Iterator extends Base\Iterator implements \Iterator
 {
     private ?Order $current = null;
 
-    public function current(): Order
+    public function current(): ?Order
     {
         return $this->current;
     }

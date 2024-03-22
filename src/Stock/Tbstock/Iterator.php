@@ -23,7 +23,7 @@ class Iterator extends Base\Iterator implements \Iterator
         return $this->changeDate;
     }
 
-    public function current(): Stock
+    public function current(): ?Stock
     {
         return $this->current;
     }

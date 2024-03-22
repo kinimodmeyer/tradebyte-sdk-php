@@ -24,7 +24,7 @@ class Iterator extends Base\Iterator implements \Iterator
         return $this->supplierName;
     }
 
-    public function current(): Product
+    public function current(): ?Product
     {
         return $this->current;
     }

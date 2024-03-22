@@ -22,7 +22,7 @@ class Handler
         $this->client = $client;
     }
 
-    public function getOrder(int $orderId): Order
+    public function getOrder(int $orderId): ?Order
     {
         $catalog = new Tborderlist($this->client, 'orders/' . (int)$orderId, []);
         $orderIterator = $catalog->getOrders();
@@ -42,7 +42,7 @@ class Handler
 
     public function downloadOrder(string $filePath, int $orderId): bool
     {
-        $reader = $this->client->getRestClient()->getXML('orders/' . (int)$orderId, []);
+        $reader = $this->client->getRestClient()->getXML('orders/' . $orderId);
 
         while ($reader->read()) {
             if (
@@ -50,7 +50,7 @@ class Handler
                 && $reader->depth === 1
                 && $reader->name == 'ORDER'
             ) {
-                $filePut = file_put_contents($filePath, $reader->readOuterXml());
+                $filePut = (bool)file_put_contents($filePath, $reader->readOuterXml());
                 $reader->close();
                 return $filePut;
             }
