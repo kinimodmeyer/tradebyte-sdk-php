@@ -12,6 +12,8 @@ class Stock
 
     private ?int $stock = null;
 
+    private array $stockForWarehouses = [];
+
     public function getArticleNumber(): ?string
     {
         return $this->articleNumber;
@@ -31,6 +33,21 @@ class Stock
     public function setStock(int $stock): Stock
     {
         $this->stock = $stock;
+        return $this;
+    }
+
+    public function getStockForWarehouses(): array
+    {
+        return $this->stockForWarehouses;
+    }
+
+    public function addStockForWarehouse(string $warehouseKey, int $stock): Stock
+    {
+        $this->stockForWarehouses[] = [
+            'identifier' => 'key',
+            'key' => $warehouseKey,
+            'stock' => $stock,
+        ];
         return $this;
     }
 

@@ -37,3 +37,13 @@ $catalog->close();
 $stockHandler->updateStock([
     (new Tradebyte\Stock\Model\Stock())->setArticleNumber('12345')->setStock(6)
 ]);
+
+/*
+ * update stock several warehouse
+ */
+$stockHandler->updateStock([
+    (new Tradebyte\Stock\Model\Stock())
+        ->setArticleNumber('12345')
+        ->addStockForWarehouse('zentrallager', 10)
+        ->addStockForWarehouse('aussenlager', 5)
+]);
