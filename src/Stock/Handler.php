@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Tradebyte\Stock;
 
 use Tradebyte\Client;
+use Tradebyte\Stock\Model\Stock;
+use Tradebyte\Stock\Model\StockUpdate;
 use XMLWriter;
 
 class Handler
@@ -31,11 +33,19 @@ class Handler
         return $this->client->getRestClient()->downloadFile($filePath, 'stock/', $filter);
     }
 
+    /**
+     * @deprecated Don´t use this method, will be removed in next major release.
+     */
     public function updateStockFromStockList(string $filePath): string
     {
         return $this->client->getRestClient()->postXMLFile($filePath, 'articles/stock');
     }
 
+    /**
+     * Don´t use Stock[] anymore as object-array, support will be removed in next major release.
+     *
+     * @param Stock[]|StockUpdate[] $stockArray
+     */
     public function updateStock(array $stockArray): string
     {
         $writer = new XMLWriter();
@@ -46,7 +56,23 @@ class Handler
         foreach ($stockArray as $stock) {
             $writer->startElement('ARTICLE');
             $writer->writeElement('A_NR', $stock->getArticleNumber());
-            $writer->writeElement('A_STOCK', (string)$stock->getStock());
+
+            if ($stock instanceof StockUpdate) {
+                if ($stock->getStock() !== null) {
+                    $writer->writeElement('A_STOCK', (string)$stock->getStock());
+                }
+
+                foreach ($stock->getStockForWarehouses() as $warehouseStock) {
+                    $writer->startElement('A_STOCK');
+                    $writer->writeAttribute('identifier', $warehouseStock['identifier']);
+                    $writer->writeAttribute('key', $warehouseStock['key']);
+                    $writer->text((string)$warehouseStock['stock']);
+                    $writer->endElement();
+                }
+            } else {
+                $writer->writeElement('A_STOCK', (string)$stock->getStock());
+            }
+
             $writer->endElement();
         }
 

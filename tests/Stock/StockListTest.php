@@ -8,7 +8,7 @@ use Tradebyte\Base;
 use Tradebyte\Client;
 use Tradebyte\Stock\Model\Stock;
 
-class StockTest extends Base
+class StockListTest extends Base
 {
     public function testGetStockListFromFile(): void
     {

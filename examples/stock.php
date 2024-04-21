@@ -32,8 +32,20 @@ foreach ($catalog->getStock() as $stock) {
 $catalog->close();
 
 /*
- * update stock
+ * one centralised warehouse
  */
 $stockHandler->updateStock([
-    (new Tradebyte\Stock\Model\Stock())->setArticleNumber('12345')->setStock(6)
+    (new Tradebyte\Stock\Model\StockUpdate())
+        ->setArticleNumber('12345')
+        ->setStock(6)
+]);
+
+/*
+ * several warehouses
+ */
+$stockHandler->updateStock([
+    (new Tradebyte\Stock\Model\StockUpdate())
+        ->setArticleNumber('12345')
+        ->addStockForWarehouse('zentrallager', 10)
+        ->addStockForWarehouse('aussenlager', 5)
 ]);
