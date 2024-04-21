@@ -34,7 +34,17 @@ class Handler
     }
 
     /**
-     * @param StockUpdate[] $stockArray
+     * @deprecated Don´t use this method, will be removed in next major release.
+     */
+    public function updateStockFromStockList(string $filePath): string
+    {
+        return $this->client->getRestClient()->postXMLFile($filePath, 'articles/stock');
+    }
+
+    /**
+     * Don´t use Stock[] anymore as object-array, support will be removed in next major release.
+     *
+     * @param Stock[]|StockUpdate[] $stockArray
      */
     public function updateStock(array $stockArray): string
     {
